@@ -1,0 +1,25 @@
+---
+title: "COVID-19 pandemic in the US"
+author: "Cece Jen, Tina Tu, Nicholas Yousefi"
+format: pdf
+---
+
+# Abstract
+
+(insert text here)
+
+# Introduction
+
+(insert text here)
+
+# Methods
+
+(insert text here)
+
+# Results
+
+(insert text here)
+
+# Discussion
+
+(insert text here)
