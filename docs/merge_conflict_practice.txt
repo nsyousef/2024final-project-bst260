@@ -1,0 +1,7 @@
+This file is going to have merge conflicts.
+
+Edit the following statement (e.g. replace "don't like" with "love":
+
+I don't like BST 260.
+
+I will also edit the statement and then push. Wait until I say so, then pull.
