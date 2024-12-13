@@ -1,8 +1,18 @@
 ---
 title: "Final Project"
 format: html
-editor: visual
+editor: source
 ---
+```{r}
+library(dslabs)
+library(lubridate)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(jsonlite)
+library(httr2)
+library(readr)
+```
 
 #### Data Preparation
 
@@ -10,12 +20,9 @@ editor: visual
 
 ```{r}
 #2020-2023 population by state
-pop_2020_2023 <- read.csv("2020-2023 US POP by State.csv")
+pop_2020_2023 <- read.csv("../data/2020-2023 US POP by State.csv")
 #2024 population by state
-pop_2024 <- read.csv("2024 US POP by State.csv")
-
-View(pop_2020_2023)
-View(pop_2024)
+pop_2024 <- read.csv("../data/2024 US POP by State.csv")
 
 ##Arrange each population dataset
 pop_2020_2023 <- pop_2020_2023|>
@@ -30,7 +37,10 @@ pop_2024 <- pop_2024|>
   rename(state = US.State,
          '2024' = Population.2024)|>
   select(state, '2024')
-   
+
+View(pop_2020_2023)
+View(pop_2024)
+
 ##Check the state differences
 setdiff(pop_2020_2023$state, pop_2024$state)
 
@@ -52,8 +62,6 @@ pop_combined_all <- pop_combined_all|>
     state == "Puerto Rico" ~ "PR",
     .default = state))|>
   filter(!is.na(state)) 
-  #exclude state with NA value because they don't have matching abbreviation
-
 ```
 
 #### 2) COVID19 Cases and Deaths Dataset
@@ -61,7 +69,7 @@ pop_combined_all <- pop_combined_all|>
 ```{r}
 #COVID19 cases
 #online source
-covid_death <- read_csv("COVID19 death.csv")
+covid_death <- read.csv("../data/COVID19 death.csv")
 
 #from pset4
 api <- "https://data.cdc.gov/resource/pwn4-m3yp.json"
@@ -76,7 +84,6 @@ cases <- cases_raw|>
   filter(state %in% pop_combined_common$state)|> #can switch to pop_combined_all
   select(state, date, cases)|>
   arrange(state, date)
-
 ```
 
 #### 3) COVID19 Cases, Deaths, and Population by State from 2020 to 2024
@@ -97,15 +104,15 @@ cases_population <- cases|>
   left_join(pop_combined_common, by=c("state", "year")) #need to add in 2024 cases
 
 #Total COVID19 deaths by state each year from 2020 to 2024
-covid_death <- read_csv("COVID19 death.csv")
+covid_death <- read.csv("../data/COVID19 death.csv")
 
 covid_death <- covid_death|>
-  rename(start_date = `Start Date`,
-         end_date = `End Date`,
-         covid_deaths = `COVID-19 Deaths`,
-         mmwr_week = `MMWR Week`,
+  rename(start_date = `Start.Date`,
+         end_date = `End.Date`,
+         covid_deaths = `COVID.19.Deaths`,
+         mmwr_week = `MMWR.Week`,
          state = State,
-         total_death = `Total Deaths`)|>
+         total_death = `Total.Deaths`)|>
   mutate(start_date = mdy(start_date),
          end_date = mdy(end_date))|>
   mutate(year = year(start_date))|>
@@ -198,38 +205,35 @@ covid_death_state_2021
 
 #2020-2021
 ggplot(covid_death_state_2020_2021, 
-       aes(x = reorder(state, death_rate_per_100k), y = death_rate_per_100k)) +
+       aes(x =death_rate_per_100k, y = reorder(state, death_rate_per_100k))) +
   geom_bar(stat = "identity", fill = "skyblue") +
   labs(
     title = "COVID-19 Death Rates by State (2020-2021)",
-    x = "State",
-    y = "Death Rate per 100,000"
+    x = "Death Rate per 100,000",
+    y = "State"
   )+
-  theme_economist()+
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #2020
 ggplot(covid_death_state_2020, 
-       aes(x = reorder(state, death_rate_per_100k), y = death_rate_per_100k)) +
+       aes(x =death_rate_per_100k, y = reorder(state, death_rate_per_100k))) +
   geom_bar(stat = "identity", fill = "skyblue") +
   labs(
     title = "COVID-19 Death Rates by State (2020)",
-    x = "State",
-    y = "Death Rate per 100,000"
+    x = "Death Rate per 100,000",
+    y = "State"
   )+
-  theme_economist()+
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 #2021
 ggplot(covid_death_state_2021, 
-       aes(x = reorder(state, death_rate_per_100k), y = death_rate_per_100k)) +
+        aes(x =death_rate_per_100k, y = reorder(state, death_rate_per_100k))) +
   geom_bar(stat = "identity", fill = "skyblue") +
   labs(
     title = "COVID-19 Death Rates by State (2021)",
-    x = "State",
-    y = "Death Rate per 100,000"
+    x = "Death Rate per 100,000",
+    y = "State"
   )+
-  theme_economist()+
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
@@ -262,7 +266,6 @@ covid_case_rate_state <- covid_death_pop_case_state|>
     x = "Year",
     y = "Case Fatality Rate (%)"
   ) +
-  theme_economist() +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),  
     plot.margin = margin(1, 1, 1, 1, "cm"),  
@@ -286,8 +289,7 @@ covid_case_rate_overall <- covid_death_pop_case_state|>
   geom_line()+
   labs(title="COVID-19 Case Fatality Rate in the US (2020-2023)",
        x="Year",
-       x="Case Fatality Rate (%)")+
-  theme_economist()
+       x="Case Fatality Rate (%)")
 
 covid_case_rate_overall
 ```
@@ -312,5 +314,23 @@ covid_death_excess
 Repeat 2 but for excess mortality instead of COVID-19 deaths.
 
 ```{r}
+# Compute average excess mortality
+avg_excess <- covid_death_excess |> 
+  group_by(state) |> 
+  mutate(avg_excess = mean(excess_mortality, na.rm = TRUE)) |> 
+  filter(mmwr_week == max(mmwr_week, na.rm = TRUE)) |> 
+  ungroup() |> 
+  arrange(desc(excess_mortality))
+  
 
+#2020-2022 excess mortality
+ggplot(avg_excess, 
+       aes(x = avg_excess, y = reorder(state, avg_excess))) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(
+    title = "Average Excess Mortality by State from 2020-2022",
+    x = "Average Excess Mortality",
+    y = "State"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
