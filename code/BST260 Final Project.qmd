@@ -334,3 +334,23 @@ ggplot(avg_excess,
   ) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
+```{r}
+weekly_excess_2022 <- covid_death|>
+  filter(Year == 2022)|>
+  group_by(state) |> 
+  select(mmwr_week, state, covid_deaths, total_death) |> 
+  filter(complete.cases(mmwr_week, state, covid_deaths, total_death)) |> 
+  mutate(excess_mortality = total_death-covid_deaths) 
+  
+#2022 excess mortality by week
+ggplot(weekly_excess_2022, 
+       aes(x = mmwr_week, y = excess_mortality, color = state)) +
+  geom_line() +
+  labs(
+    title = "Excess Mortality by Week in 2022",
+    x = "Week",
+    y = "Excess Mortality"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
