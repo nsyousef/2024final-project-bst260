@@ -30,9 +30,9 @@ library(plotly)
 
 ```{r}
 #2020-2023 population by state
-pop_2020_2023 <- read.csv("../data/2020-2023_US_POP_by_State.csv")
+pop_2020_2023 <- read.csv("../raw-data/2020-2023_US_POP_by_State.csv")
 #2024 population by state
-pop_2024 <- read.csv("../data/2024_US_POP_by_State.csv")
+pop_2024 <- read.csv("../raw-data/2024_US_POP_by_State.csv")
 
 ##Arrange each population dataset
 pop_2020_2023 <- pop_2020_2023|>
@@ -130,7 +130,7 @@ cases_population_overall <- pop_combined_common|>
 
 ```{r}
 #Total COVID19 deaths by state each year from 2020 to 2024
-covid_death <- read.csv("../data/COVID19_death.csv")
+covid_death <- read.csv("../raw-data/COVID19_death.csv")
 
 #Data wrangling
 covid_death_clean <- covid_death|>
