@@ -1,7 +1,9 @@
 #1. Install necessary packages
-install.packages("httr2")
-install.packages("jsonlite")
-install.packages("ggthemes")
+# install.packages("httr2")
+# install.packages("jsonlite")
+# install.packages("ggthemes")
+
+# For this to work, please set the working directory to the `code` folder.
 
 library(tidyverse)
 library(janitor)
@@ -14,11 +16,11 @@ library(ggthemes)
 
 #1. Load necessary dataset
 #Population
-pop_2020_2023 <- read.csv("2020-2023 US POP by State.csv")
-pop_2024 <- read.csv("2024 US POP by State.csv")
+pop_2020_2023 <- read.csv("../data/2020-2023_US_POP_by_State.csv")
+pop_2024 <- read.csv("../data/2024_US_POP_by_State.csv")
 
-View(pop_2020_2023)
-View(pop_2024)
+head(pop_2020_2023)
+head(pop_2024)
 
 ##Arrange population dataset
 pop_2020_2023 <- pop_2020_2023|>
@@ -45,7 +47,7 @@ pop_combined_common <- inner_join(pop_2020_2023, pop_2024, by = "state")
 pop_combined_common <- pop_combined_common|>
   mutate(state = state.abb[match(state, state.name)])
   
-View(pop_combined_common) 
+head(pop_combined_common)
 
 ##pop_combined_all includes all states 
 pop_combined_all <- full_join(pop_2020_2023, pop_2024, by = "state")
@@ -55,13 +57,17 @@ pop_combined_all <- pop_combined_all|>
     state == "District of Columbia" ~ "DC",
     state == "Puerto Rico" ~ "PR",
     .default = state))|>
-  filter(!is.na(state)) #exulce state with NA value because they don't have matching abbreviation
+  filter(!is.na(state)) # exulce state with NA value because they don't have matching abbreviation
 
-View(pop_combined_all)
+head(pop_combined_all)
+
+# TODO: both tables contain all the same data, so we can probably delete one
+all.equal(pop_combined_all, pop_combined_common)
+# |> TRUE
 
 #COVID19 cases
 #online source
-covid_death <- read_csv("COVID19 death.csv")
+covid_death <- read_csv("../data/COVID19_death.csv")
 
 #from pset4
 api <- "https://data.cdc.gov/resource/pwn4-m3yp.json"
@@ -70,7 +76,7 @@ cases_raw <- request(api) |>
   req_perform() |>
   resp_body_json(simplifyVector = TRUE)
 
-View(cases_raw)
+head(cases_raw)
 
 cases <- cases_raw|>
   mutate(cases = parse_number(new_cases),
@@ -79,7 +85,7 @@ cases <- cases_raw|>
   select(state, date, cases)|>
   arrange(state, date)
 
-View(cases)
+head(cases)
 
 #Combine COVID19 cases and population 2020-2024 dataset
 pop_combined_common <- pop_combined_common|>
@@ -92,10 +98,10 @@ cases_population <- cases|>
   mutate(year = year(date))|>
   group_by(state, year)|>
   summarise(cases_total = sum(cases), .groups = 'drop')|>
-  left_join(pop_combined_common, by=c("state", "year")) #only contains cases 2020-2023, needs to find 2024 cases
+  left_join(pop_combined_common, by=c("state", "year")) # TODO: only contains cases 2020-2023, needs to find 2024 cases
 
 #Total COVID19 deaths by state each year from 2020 to 2024
-covid_death <- read_csv("COVID19 death.csv")
+covid_death <- read_csv("../data/COVID19_death.csv")
 
 covid_death <- covid_death|>
   rename(start_date = `Start Date`,
@@ -128,15 +134,15 @@ covid_death_total<- covid_death_total_state|>
 
 #Combine COVID19 death and population by state 2020-2024
 ##With cases
-#covid_death_total_state_pop <- covid_death_total_state|>
+covid_death_total_state_pop <- covid_death_total_state|>
   left_join(cases_population, by=c("state", "year"))|>
   mutate(total_death = as.numeric(total_death),
          population = as.numeric(population),
          death_rate_per_100k = (total_death / population)*100000
          )|>
-  filter(!is.na(death_rate_per_100k)) ##missing 2023 because no case data for 2023
+  filter(!is.na(death_rate_per_100k)) ##missing 2024 because no case data for 2024
 
-##Without cases because no 2023 case dataset
+##Without cases because no 2024 case dataset
 covid_death_total_state_pop <- covid_death_total_state|>
   left_join(pop_combined_common, by=c("year", "state"))|>
   mutate(death_rate_per_100k =(total_death/population)*1e5)|>
@@ -160,13 +166,3 @@ covid_death_excess <- covid_death|>
             expected_covid_deaths = mean(covid_deaths, na.rm = TRUE),
             .groups = 'drop')|>
   mutate(excess_mortality = expected_deaths-expected_covid_deaths)
-
-
-
-
-
-
-
-
-
-

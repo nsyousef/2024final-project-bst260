@@ -47,3 +47,6 @@ rsconnect/
 
 # Mac files
 .DS_Store
+
+# Census key
+code/census-key.R
