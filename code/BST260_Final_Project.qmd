@@ -26,7 +26,7 @@ library(plotly)
 
 #### Data Preparation
 
-#### 1) Population Dataset
+#### 1) Population Data Set
 
 ```{r}
 #2020-2023 population by state
@@ -48,37 +48,26 @@ pop_2024 <- pop_2024|>
          '2024' = Population.2024)|>
   select(state, '2024')
 
-##Check the state differences
-setdiff(pop_2020_2023$state, pop_2024$state)
-
 ##Combine the two population datasets:
 
-##pop_2020_2023 and pop_2024 have some differences on the state data. 
-
-##Method 1: pop_combined_common includes only common states
-pop_combined_common <- inner_join(pop_2020_2023, pop_2024, by = "state") 
-pop_combined_common <- pop_combined_common|>
-  mutate(state = state.abb[match(state, state.name)])
-
-##Method 2: pop_combined_all includes all states 
-pop_combined_all <- full_join(pop_2020_2023, pop_2024, by = "state")
-pop_combined_all <- pop_combined_all|>
-  mutate(state = state.abb[match(state, state.name)])|>
+pop_all <- full_join(pop_2020_2023, pop_2024, by="state")
+pop_all$"2024" <- ifelse(is.na(pop_all$"2024"),
+                         pop_all$"2023",
+                         pop_all$"2024")
+pop_all <- pop_all|>
   mutate(state = case_when(
     state == "District of Columbia" ~ "DC",
     state == "Puerto Rico" ~ "PR",
-    .default = state))|>
-  filter(!is.na(state)) 
-
-pop_combined_common <- pop_combined_common|>
-  pivot_longer(cols = '2020':'2024', 
+    TRUE ~ ifelse(is.na(state.abb[match(state, state.name)]), 
+                  NA, state.abb[match(state, state.name)])))|>
+  filter(!is.na(state))|>
+  pivot_longer(cols = c("2020", "2021", "2022", "2023", "2024"),
                names_to = "year",
-               values_to = "population")|>
-  mutate(year = as.integer(year),
-         population = as.numeric(population))
+               values_to = "population")
+
 ```
 
-#### 2) COVID19 Cases Dataset
+#### 2) COVID19 Cases Data Set
 
 ```{r}
 #COVID19 cases from pset4
@@ -93,40 +82,46 @@ cases <- cases_raw|>
   mutate(cases = parse_number(new_cases),
          date = as_date(ymd_hms(end_date)),
          year = year(date))|>
-  filter(state %in% pop_combined_common$state)|> #can switch to pop_combined_all
+  filter(state %in% pop_all$state)|> 
   select(state, date, cases, year)|>
   arrange(state, date)
 
+#states
 cases_year_state <- cases|>
   group_by(state, year)|>
   summarise(cases_total = sum(cases, na.rm = TRUE),
-            .groups = 'drop')
+            .groups = 'drop')|>
+  mutate(year = as.character(year))
 
+#US
 cases_year_overall <- cases|>
   group_by(year)|>
   summarise(cases_total = sum(cases, na.rm = TRUE),
-            .groups = 'drop')
+            .groups = 'drop')|>
+  mutate(year = as.character(year))
 ```
 
-#### 3) Combine Population and COVID-19 Cases
+#### 3) Combine Population and COVID-19 Cases Date Sets
 
 -   Population (2020-2024)
 
 -   COVID-19 Cases (2020-2023)
 
 ```{r}
-#by state
-cases_population_state <- pop_combined_common|>
-  left_join(cases_year_state, by=c("state", "year"))
+#states
+cases_population_state <- pop_all|>
+  left_join(cases_year_state, by=c("state", "year"))|>
+  mutate(year = as.numeric(year))
 
-#by overall
-cases_population_overall <- pop_combined_common|>
+#US
+cases_population_overall <- pop_all|>
   group_by(year)|>
   summarise(population = sum(population, na.rm = TRUE))|>
-  left_join(cases_year_overall, by="year")
+  left_join(cases_year_overall, by="year")|>
+  mutate(year = as.numeric(year))
 ```
 
-#### 4) COVID-10 Death and Overall Death Dataset
+#### 4) COVID-10 Death and Overall Death Data Set
 
 ```{r}
 #Total COVID19 deaths by state each year from 2020 to 2024
@@ -147,18 +142,16 @@ covid_death_clean <- covid_death|>
          total_death = as.numeric(total_death))|>
   mutate(year = year(start_date))|>
   filter(year>2019)|>
-  mutate(state = state.abb[match(state, state.name)],
-         state = case_when(
-           state == "District of Columbia" ~ "DC",
-           state == "Puerto Rico" ~ "PR",
-           .default = state))|>
-  filter(state %in% pop_combined_common$state)|>
+  mutate(state = case_when(
+    state == "District of Columbia" ~ "DC",
+    state == "Puerto Rico" ~ "PR",
+    TRUE ~ state.abb[match(state, state.name)]))|>
+  filter(state %in% pop_all$state)|>
   select(start_date, end_date, mmwr_week, state, covid_death, total_death, year)
-
 ```
 
 ```{r}
-#by State
+#states
 covid_state <- covid_death_clean|>
   group_by(state, year)|>
   summarise(covid_death = sum(covid_death, na.rm = TRUE),
@@ -166,12 +159,12 @@ covid_state <- covid_death_clean|>
             .groups = 'drop')|>
   left_join(cases_population_state, by=c("state", "year"))|>
   mutate(covid_death_rate_100k = (covid_death/population)*1e5,
-         overall_death_rate_100k = (total_death/population),
+         total_death_rate_100k = (total_death/population),
          case_fatality_rate = (covid_death/cases_total)*100)|>
   mutate(across(c("covid_death", "total_death", "cases_total", "population", 
-                  "covid_death_rate_100k", "overall_death_rate_100k"), as.numeric))
+                  "covid_death_rate_100k", "total_death_rate_100k"), as.numeric))
 
-#by Overall
+#US
 covid_overall <- covid_death_clean|>
   group_by(year)|>
   summarise(covid_death = sum(covid_death, na.rm = TRUE),
@@ -179,13 +172,13 @@ covid_overall <- covid_death_clean|>
             .groups = 'drop')|>
   left_join(cases_population_overall, by=c("year"))|>
   mutate(covid_death_rate_100k = (covid_death/population)*1e5,
-         overall_death_rate_100k = (total_death/population)*1e5,
+         total_death_rate_100k = (total_death/population)*1e5,
          case_fatality_rate = (covid_death/cases_total)*100)|>
   mutate(across(c("covid_death", "total_death", "cases_total", "population",
-                  "covid_death_rate_100k", "overall_death_rate_100k", "case_fatality_rate")))
+                  "covid_death_rate_100k", "total_death_rate_100k", "case_fatality_rate")))
 ```
 
-#### 1. Divide the pandemic period into waves
+#### Task 1. Divide the pandemic period into waves
 
 Divide the pandemic period, January 2020 to December 2024 into waves. Justify your choice with data visualization.
 
@@ -232,7 +225,8 @@ ggplotly(p2)
 
 ```{r}
 p3 <- covid_state|>
-  filter(year != "2024")|>
+  filter(year!="2024")|>
+  mutate(year=as.numeric(year))|>
   ggplot(aes(x=year, y=cases_total, color=state))+
   geom_point()+
   geom_line()+
@@ -270,7 +264,7 @@ ggplotly(p4)
 #Compare COVID-19 cases and deaths on the same plot
 
 p5 <- covid_overall|>
-  filter(year != "2024")|>
+  filter(year != "2024")|> # case data is not availbe in 2024
   mutate(covid_case_rate_100k =(cases_total/population)*1e5)|>
   ggplot(aes(x=year))+
   geom_line(aes(y=covid_case_rate_100k, color="Case Rate"))+
@@ -286,7 +280,7 @@ p5 <- covid_overall|>
 ggplotly(p5)
 ```
 
-#### 2. COVID 19 Death Rates by State
+#### Task 2. COVID 19 Death Rates by State
 
 For each period, compute the death rates by state. Describe which states did better or worse during the different periods.
 
@@ -304,6 +298,12 @@ p6 <- covid_state|>
 ggplotly(p6)
 ```
 
+-   Observations for Death Rate per 100,000 (2021-2022):
+
+    -   Highest: West Virginia (WV)
+
+    -   Lowest: Vermont (VT)
+
 ##### Plot 7: COVID-19 Death Rates by State (2021)
 
 ```{r}
@@ -317,6 +317,12 @@ p7 <- covid_state|>
 
 ggplotly(p7)
 ```
+
+-   Observations for Death Rate per 100,000 (2021):
+
+    -   Highest: West Virginia (WV)
+
+    -   Lowest: Vermont (VT)
 
 ##### Plot 8: COVID-19 Death Rates by State (2022)
 
@@ -332,11 +338,17 @@ p8 <- covid_state|>
 ggplotly(p8)
 ```
 
-#### 3. COVID 19 Trend
+-   Observations for Death Rate per 100,000 (2022):
+
+    -   Highest: West Virginia (WV)
+
+    -   Lowest: Alaska (AK)
+
+#### Task 3. COVID 19 Trend
 
 Describe if COVID-19 became less or more virulent across the different periods.
 
--   **COVID-19 Case Fatality Rate by State and Overall (2020-2023)**
+**COVID-19 Case Fatality Rate by State and Overall (2020-2023)**
 
 ##### Plot 9: COVID-19 Case Fatality Rate by States (2020-2023)
 
@@ -344,7 +356,7 @@ Describe if COVID-19 became less or more virulent across the different periods.
 
 ```{r}
 p9 <- covid_state|>
-  filter(year!="2024")|>
+  filter(year!="2024")|> # case data is not availbe in 2024
   ggplot(aes(x=year, y=case_fatality_rate, colour = state))+
   geom_point()+
   geom_line()+
@@ -355,7 +367,7 @@ p9 <- covid_state|>
 ggplotly(p9)
 
 p10 <- covid_overall|>
-  filter(year!="2024")|>
+  filter(year!="2024")|> # case data is not availbe in 2024
   ggplot(aes(x=year, y=case_fatality_rate))+
   geom_point(color="blue")+
   geom_line(color="red")+
@@ -365,6 +377,12 @@ p10 <- covid_overall|>
 
 ggplotly(p10)
 ```
+
+-   Observations for COVID-19 Case Fatality Rate in the US (2020-2023):
+
+    -   CFR experienced a sharp decline from 2020 to 2021 and continued to decrease at a slower pace from 2021 to 2022.
+
+    -   However, there was an increase in the CFR from 2022 to 2023.
 
 ##### Plot 11: COVID-19 Death Rates by State (2020-2021)
 
@@ -393,6 +411,14 @@ ggplotly(p11)
 ggplotly(p12)
 ```
 
+-   Observations for COVID-19 Case Fatality Rate by States (2020-2022):
+
+    -   Vermont exhibited the highest CFR in early 2020. However, from 2021 to 2022, there was a dramatic decrease in its CFR, ultimately making it the state with the lowest CFR.
+
+-   Observations for COVID-19 Case Fatality Rate by States (2021-2022):
+
+    -   Nevada exihbited the highest CFR in early 2021 while Vermont exhibited the lowest.
+
 ##### Plot 13: COVID-19 Case Fatality Rate in the US (2020-2021)
 
 ##### Plot 14: COVID-19 Case Fatality Rate in the US (2021-2022)
@@ -403,6 +429,8 @@ p13 <- covid_overall|>
   ggplot(aes(x=year, y=case_fatality_rate))+
   geom_point(color="blue")+
   geom_line(color="red")+
+  scale_x_continuous(breaks = 2020:2021, 
+                     labels = as.character(2020:2021))+
   labs(title="COVID-19 Case Fatality Rate in the US (2020-2021)",
        x="Year",
        y="Case Fatality Rate (%)")
@@ -412,6 +440,8 @@ p14 <- covid_overall|>
   ggplot(aes(x=year, y=case_fatality_rate))+
   geom_point(color="blue")+
   geom_line(color="red")+
+  scale_x_continuous(breaks = 2021:2022, 
+                     labels = as.character(2021:2022))+
   labs(title="COVID-19 Case Fatality Rate in the US (2021-2022)",
        x="Year",
        y="Case Fatality Rate (%)")
@@ -420,23 +450,58 @@ ggplotly(p13)
 ggplotly(p14)
 ```
 
-#### 4. Weekly Excess Mortality by State
+-   Observations for COVID-19 Case Fatality Rate in the US (2020-2021) and (2021-2022):
+
+    -   For both periods, CFR exhibited a decline.
+
+#### Task 4. Weekly Excess Mortality by State
 
 Estimate excess mortality for each week for each state. Do COVID-19 deaths explain the excess mortality?
 
 ```{r}
+week_2024 <- covid_death_clean|>
+  filter(year == 2024)|>
+  select(mmwr_week)|>
+  na.omit()
 
-covid_death_excess <- covid_death|>
-  group_by(state, mmwr_week)|>
-  summarise(expected_deaths = mean(total_death, na.rm = TRUE),
-            expected_covid_deaths = mean(covid_deaths, na.rm = TRUE),
-            .groups = 'drop')|>
-  mutate(excess_mortality = expected_deaths-expected_covid_deaths)
+dat <- covid_death_clean|>
+  left_join(cases_population_state, by = c("state", "year"))|>
+  rename(week = "mmwr_week")|>
+  mutate(mortality = total_death/population*1e5,
+         day = difftime(start_date, min(start_date), units = "day"),
+         week = as.factor(week))|>
+  filter(week %in% week_2024$mmwr_week)|>
+  select(-cases_total)|>
+  group_by(state)|>
+  fill(covid_death, total_death, population, .direction = "down")
 
-covid_death_excess
+fit <- dat|> 
+  filter(year == "2024") #2024 because it has the lowest COVID 19 Mortality Rate
+
+mod <- lm(mortality ~ week+day, fit)
+
+pred <- predict(mod, newdata = dat, se.fit = TRUE)
 ```
 
-#### 5. Excess Mortality by State
+```{r}
+dat <- dat|>
+  mutate(expected = pred$fit*population,
+         excess = total_death - expected,
+         se_expected = pred$se.fit*population,
+         sigma_outcome = sd(mod$residuals)*population,
+         se_excess = sqrt(sigma_outcome^2 + se_expected^2))
+```
+
+```{r}
+covid_death_excess <- covid_death_clean|>
+  left_join(expected_death_year, by = c("state", "year"))|>
+  mutate(excess_mortality = expected_death - total_death)
+
+covid_death_excess|>
+  select(year, mmwr_week, state, excess_mortality, covid_death, total_death)
+```
+
+#### Task 5. Excess Mortality by State
 
 Repeat 2 but for excess mortality instead of COVID-19 deaths.
 
