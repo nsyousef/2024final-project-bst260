@@ -50,16 +50,14 @@ pop_all <- pop_all |>
 
 ###############################################################
 #2. COVID19 Cases Data Set
-api <- "https://data.cdc.gov/resource/pwn4-m3yp.json"
-cases_raw <- request(api) |>
-  req_url_query("$limit" = 10000000) |>
-  req_perform() |>
-  resp_body_json(simplifyVector = TRUE)
+
+# to refresh this file with new data, please run `code/download_case_data.r`
+cases_raw <- read_csv("../raw-data/COVID19_cases.csv")
 
 cases <- cases_raw |>
   mutate(
-    cases = parse_number(new_cases),
-    date = as_date(ymd_hms(end_date)),
+    cases = new_cases,
+    date = as_date(end_date),
     year = year(date),
     week = week(date)
   ) |> # Add week number
