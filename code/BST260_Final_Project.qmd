@@ -65,7 +65,9 @@ pop_all <- pop_all|>
   filter(!is.na(state))|>
   pivot_longer(cols = c("2020", "2021", "2022", "2023", "2024"),
                names_to = "year",
-               values_to = "population")
+               values_to = "population")|>
+  mutate(year = as.numeric(year),
+         population = as.numeric(population))
 
 ```
 
@@ -81,8 +83,6 @@ cases_raw <- request(api) |>
   req_url_query("$limit" = 10000000) |>
   req_perform() |>
   resp_body_json(simplifyVector = TRUE)
-
-
 ```
 
 Next, we performed data wrangling to ensure usability.
@@ -99,18 +99,31 @@ Next, we performed data wrangling to ensure usability.
 -   Data Filtering for States: The states were filtered to include only the states in pop_all, which comprises 52 states (including all 50 U.S. states, the District of Columbia, and Puerto Rico).
 
 ```{r}
-cases <- cases_raw|>
+#cases <- cases_raw|>
+ # mutate(cases = parse_number(new_cases),
+ #        date = as_date(ymd_hms(end_date)),
+ #        year = year(date))|>
+#  filter(state %in% pop_all$state)|> 
+#  select(state, date, cases, year)|>
+#  arrange(state, date)
+
+cases <- cases_raw |>
   mutate(cases = parse_number(new_cases),
          date = as_date(ymd_hms(end_date)),
-         year = year(date))|>
-  filter(state %in% pop_all$state)|> 
-  select(state, date, cases, year)|>
-  arrange(state, date)
+         year = year(date),
+         week = week(date)) |> # Add week number
+  mutate(cases = as.numeric(cases),
+         year = as.numeric(year),
+         week = as.numeric(week))|>
+  rename(case_date = date)|>
+  filter(state %in% pop_all$state) |> 
+  select(state, case_date, cases, year, week) |> # Include the week column
+  arrange(state, case_date)
 ```
 
 The processed data was then organized into two distinct dataset to facilitate comparative analyses:
 
-#### 1.2.1 State-Level COVID19 Cases Data Set
+#### #1.2.1 State-Level COVID19 Cases Data Set (no need?)
 
 ```{r}
 #states
@@ -122,7 +135,7 @@ cases_year_state <- cases|>
 
 ```
 
-#### 1.2.2 National-Level COVID19 Cases Data Set
+#### #1.2.2 National-Level COVID19 Cases Data Set (no need?)
 
 ```{r}
 #US
@@ -135,9 +148,16 @@ cases_year_overall <- cases|>
 
 #### 1.3 Combine Population and COVID-19 Cases Date Sets
 
-To facilitate a comprehensive analysis of the impact of COVID-19 relative to population metrics, we merged the population data (2020-2024) with the aggregated COVID-19 cases data (2020-2023). This merging process was performed separately for state-level and national-level data to enable detailed comparative analyses.
+To facilitate a comprehensive analysis of the impact of COVID-19 relative to population metrics, we merged the population data (2020-2024) with the aggregated COVID-19 cases data (2020-2023).
 
-#### 1.3.1 State-Level Data Combination
+```{r}
+cases_population <- pop_all|>
+  left_join(cases, by = c("state", "year"))
+```
+
+This merging process was performed separately for state-level and national-level data to enable detailed comparative analyses.
+
+#### #1.3.1 State-Level Data Combination (no need?)
 
 We combined the state-specific population data with the corresponding state and year-aggregated COVID-19 cases using a left join operation. This ensured that all population data entries were retained, including those without corresponding case data. The `year` column was converted from character to numeric format to standardize the data types across all fields, resulting in the `cases_population_state` dataset.
 
@@ -148,7 +168,7 @@ cases_population_state <- pop_all|>
   mutate(year = as.numeric(year))
 ```
 
-#### 1.3.2 National-Level Data Combination
+#### #1.3.2 National-Level Data Combination (no need?)
 
 For a the US dataset, we first aggregated the population data by year to match the temporal granularity of the COVID-19 data. Summation was used to compute the total population per year, accounting for any missing values with `na.rm = TRUE`. We then merged this aggregated population data with the national COVID-19 cases data. A similar left join operation was employed, ensuring alignment on the `year` field. The final `cases_population_overall` dataset also had the `year` field converted from character to numeric to maintain consistency.
 
@@ -174,22 +194,24 @@ covid_death_clean <- covid_death|>
   rename(start_date = `Start.Date`,
          end_date = `End.Date`,
          covid_death = `COVID.19.Deaths`,
-         mmwr_week = `MMWR.Week`,
+         week = `MMWR.Week`,
          state = State,
          total_death = `Total.Deaths`,
          percentage_expected_death = Percent.of.Expected.Deaths)|>
   mutate(start_date = mdy(start_date),
-         end_date = mdy(end_date),
-         covid_death = as.numeric(covid_death),
-         total_death = as.numeric(total_death))|>
+         end_date = mdy(end_date))|>
   mutate(year = year(start_date))|>
+  mutate(covid_death = as.numeric(covid_death),
+         total_death = as.numeric(total_death),
+         year = as.numeric(year),
+         week = as.numeric(week))|>
   filter(year>2019)|>
   mutate(state = case_when(
     state == "District of Columbia" ~ "DC",
     state == "Puerto Rico" ~ "PR",
     TRUE ~ state.abb[match(state, state.name)]))|>
   filter(state %in% pop_all$state)|>
-  select(start_date, end_date, mmwr_week, state, covid_death, total_death, year)
+  select(state, start_date, end_date, week, covid_death, total_death, year, percentage_expected_death)
 ```
 
 #### 1.5 Complete Dataset: 
@@ -206,7 +228,41 @@ To assess the impact of COVID-19 mortality both at the state and national levels
 
 -   **Total Death Rate**: The overall number of deaths per 10,000 people
 
-#### 1.5.1 State-Level Complete Dataset
+```{r}
+covid <- covid_death_clean|>
+  left_join(cases_population, by = c("state", "year", "week"))|>
+  group_by(state, year)|>
+  fill(population, .direction = "downup")|>
+  ungroup()
+```
+
+```{r}
+covid_state <- covid|>
+  group_by(state, year, week)|> 
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            total_death = sum(total_death, na.rm = TRUE),
+            population = first(population), 
+            cases_total = sum(cases, na.rm = TRUE),
+            .groups = 'drop')|> 
+  mutate(covid_death_rate_100k = (covid_death / population) * 1e5,
+         total_death_rate_100k = (total_death / population) * 1e5,
+         case_fatality_rate = (covid_death/cases_total)*100)
+```
+
+```{r}
+covid_overall <- covid|>
+  group_by(year, week)|>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            total_death = sum(total_death, na.rm = TRUE),
+            population = first(population), 
+            cases_total = sum(cases, na.rm = TRUE),
+            .groups = 'drop')|> 
+  mutate(covid_death_rate_100k = (covid_death / population) * 1e5,
+         total_death_rate_100k = (total_death / population) * 1e5,
+         case_fatality_rate = (covid_death/cases_total)*100)
+```
+
+#### #1.5.1 State-Level Complete Dataset
 
 ```{r}
 #states
@@ -223,7 +279,7 @@ covid_state <- covid_death_clean|>
                   "covid_death_rate_100k", "total_death_rate_100k"), as.numeric))
 ```
 
-#### 1.5.2 National-Level Complete Dataset
+#### #1.5.2 National-Level Complete Dataset
 
 ```{r}
 #US
@@ -249,6 +305,24 @@ Divide the pandemic period, January 2020 to December 2024 into waves. Justify yo
 ##### Plot 1: COVID-19 Death Rate per 100,000 People by State (2020-2024)
 
 ```{r}
+covid|>
+  group_by(year, week)|>
+  summarise(avg_covid_death_rate_100k = mean(covid_death_rate_100k, na.rm = TRUE), 
+            .groups = 'drop')|>
+  ggplot(aes(x = week, y = avg_covid_death_rate_100k, 
+             group = year, color = as.factor(year))) +
+  geom_line() +
+  geom_point() +
+  scale_y_continuous(limits = c(0, 1))+
+  labs(
+    title = "COVID-19 Death Rate per 100,000 People by Year (2020-2024)",
+    x = "Week",
+    y = "COVID-19 Death Rate (per 100,000)",
+    color = "Year"
+  ) 
+```
+
+```{r}
 p1 <- covid_state|>
   ggplot(aes(x=year, y=covid_death_rate_100k, color=state))+
            geom_line()+
@@ -258,6 +332,16 @@ p1 <- covid_state|>
                 y = "Death Rate (per 100,000)")
 
 ggplotly(p1)
+```
+
+```{r}
+covid_state|>
+  ggplot(aes(x=year, y=covid_death_rate_100k, color=state))+
+           geom_line()+
+           geom_point()+
+           labs(title = "COVID-19 Death Rate per 100,000 People by State (2020-2024)",
+                x = "Year",
+                y = "Death Rate (per 100,000)")
 ```
 
 ##### Plot 2: COVID-19 Death Rate per 100,000 People in the US (2020-2024)
