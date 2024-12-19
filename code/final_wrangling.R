@@ -1,5 +1,15 @@
 #Data Wrangling
 
+install.packages(c("dplyr", "tidyr", "lubridate", "httr2", "readr", "stringr", "ggplot2"))
+
+library(dplyr)
+library(tidyr)
+library(lubridate)
+library(httr2)
+library(readr)
+library(stringr)
+library(ggplot2)
+
 #1. Population Data Set
 #2020-2023 population by state
 pop_2020_2023 <- read.csv("../raw-data/2020-2023_US_POP_by_State.csv")
