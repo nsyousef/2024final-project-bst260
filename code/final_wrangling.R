@@ -1,6 +1,6 @@
 #Data Wrangling
 
-install.packages(c("dplyr", "tidyr", "lubridate", "httr2", "readr", "stringr", "ggplot2"))
+# Set the working directory to the `code` folder before running this file.
 
 library(dplyr)
 library(tidyr)
@@ -112,7 +112,8 @@ covid <- covid_death_clean|>
   fill(population, .direction = "downup")|>
   ungroup()
 
-
+# write file
+write.csv(covid, file = "../data/covid_cases_deaths.csv", row.names = FALSE)
 
 
 
