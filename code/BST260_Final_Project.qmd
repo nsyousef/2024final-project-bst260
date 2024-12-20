@@ -4,6 +4,8 @@ format: html
 editor: source
 ---
 
+## Method
+
 ```{r}
 # TODO: add libraries
 library(tidyverse)
@@ -13,13 +15,69 @@ library(plotly)
 covid <- read_csv("../data/covid_cases_deaths.csv")
 ```
 
-#### 2) Divide the pandemic period into waves
+### Data Preparation
+
+To prepare and wrangle the data for this analysis, we integrated multiple datasets, cleaned the data, and structured it for consistency and analysis. The key steps are detailed below:
+
+#### 1. **Population Data Wrangling**
+
+-   We processed population data for U.S. states from two datasets: population estimates from 2020 to 2023 and 2024 projections. These datasets were merged into a single dataset.
+
+-   The states with missing population data for 2024 was filled using its corresponding 2023 population.
+
+-   State names were converted to standardized abbreviations for consistency, and non-U.S. states (e.g., territories) were excluded.
+
+-   The population data was pivoted into a long format, where each row represents a state-year combination with the corresponding population value.
+
+#### 2. **COVID-19 Death Data Wrangling**
+
+-   The COVID-19 death dataset was filtered to include only weekly data for consistency.
+
+-   Relevant columns, including weekly start and end dates, state, COVID-19 deaths, total deaths, and percentage of expected deaths, were renamed and standardized.
+
+-   Dates were converted into a standard date format, and year and week numbers were extracted.
+
+-   State names were standardized to abbreviations, and data was filtered to include only states present in the population dataset.
+
+-   The cleaned dataset includes weekly COVID-19 death counts and related information for each state.
+
+#### 3. **Combining Death and Population Data**
+
+-   The cleaned COVID-19 death data was merged with the population dataset by state and year to ensure each record included population data, allowing the calculation of rates (e.g., death rates per 100,000 people).
+
+#### 4. **COVID-19 Cases Data Wrangling**
+
+-   The COVID-19 cases dataset was cleaned and standardized. Weekly case numbers, end dates, and state abbreviations were extracted and converted into the same structure as the death data.
+
+-   Only states present in the population dataset were included.
+
+-   The processed dataset contains weekly case counts for each state.
+
+#### 5. **Final Dataset Integration**
+
+-   The cleaned COVID-19 death, population, and case datasets were integrated into a single dataset by merging them on state, year, and week.
+
+-   Population data was forward and backward filled to ensure completeness for all records.
+
+-   Additional columns, such as epidemiological week (`epiweek`) and year, were calculated for consistency with standard reporting practices.
+
+#### 6. **Final Dataset Output**
+
+-   The final dataset contains the following variables: state, date, epidemiological week, COVID-19 deaths, total deaths, population, and cases. This dataset provides a comprehensive, time-resolved view of COVID-19 impacts across U.S. states.
+
+-   The processed dataset was exported as a CSV file for subsequent analysis.
+
+### 1) Divide the pandemic period into waves
 
 Divide the pandemic period, January 2020 to December 2024 into waves. Justify your choice with data visualization.
 
-#### COVID-19 Death Rate per 100,000 People Over Time (2020-2024)
+We first computed the following:
 
-##### Plot 1: COVID-19 Death Rate per 100,000 People by State (2020-2024)
+-   COVID-19 death rate per 100,000 people
+
+-   Total death rate per 100,000 people (for the following questions)
+
+-   Case fatality rate (%) (for the following questions)
 
 ```{r}
 covid_overall <- covid|>
@@ -34,300 +92,323 @@ covid_overall <- covid|>
          total_death_rate_100k = (total_death / population) * 1e5,
          case_fatality_rate = (covid_death/cases_total)*100)
 
-base_plot <- covid_overall |> ggplot(aes(
-  x = date,
-)) + labs(
-  x = "Date"
-)
+base_plot <- covid_overall|> 
+  ggplot(aes(x = date,))+
+  labs(x = "Date")
+```
 
+### 1.1 COVID-19 Death Rate Trend (2020-2024)
+
+We then made two plots to observe the trends of COVID-19 death rate from 2020 to 2024 and COVID-19 cases from 2020 to 2023.
+
+```{r}
 y_map_death <- aes(y = covid_death_rate_100k)
+
 death_rate_plot <- base_plot + 
   geom_point(mapping = y_map_death) + 
-  geom_line(mapping = y_map_death) +
+  geom_line(mapping = y_map_death, color = "red") +
   ylab("COVID Death Rate Per 100K")
 
 ggplotly(death_rate_plot)
+```
 
+### 1.2 COVID-19 Case Trend (2020-2023)
+
+```{r}
 y_map_cases <- aes(y = cases_total)
+
 cases_plot <- base_plot + 
   geom_point(mapping = y_map_cases) + 
-  geom_line(mapping = y_map_cases) +
+  geom_line(mapping = y_map_cases, color = "red") +
   ylab("Total COVID Cases")
 
 ggplotly(cases_plot)
 ```
 
-Notes on rationale:
+### 1.3 Define Periods
 
--   we plotted both cases and deaths over time
+After analyzing the trends in COVID-19 death rates and case counts, we decided to divide the pandemic period into three waves based on the number of COVID-19 cases. This approach was chosen because it better reflects the overall spread of the virus. For instance, the virus might have been spreading widely among younger populations, who are less likely to experience severe outcomes or fatalities. By focusing on case counts rather than death tolls, we aim to capture the dynamics of viral transmission during the pandemic.
 
--   we decided to just focus on the cases to determine the waves
+-   Period 1: 2020-01-11 to 2021-11-06
 
-    -   We made this choice because we feel it better reflects the state of the virus. For example, the virus could be spreading a lot among young people but not killing any of them since they are young. We wanted to focus on how it was spreading rather than the death toll.
+-   Period 2: 2021-11-06 to 2022-04-09
 
--   Periods: start of pandemic - 2021-11-06; 2021-11-06 - 2022-04-09; 2022-04-09 - 2024-05-13 (when no more case data)
-
-##### Plot 2: COVID-19 Death Rate per 100,000 People in the US (2020-2024)
+-   Period 3: 2022-04-09 to 2024-05-13
 
 ```{r}
-p2 <- covid_overall|>
-  ggplot(aes(x=year, y=covid_death_rate_100k))+
-  geom_line(color = "red")+
-  geom_point(color="blue")+
-  labs(
-    title = "COVID-19 Death Rate per 100,000 People in the US (2020-2024)",
-    x = "Year",
-    y = "Death Rate (per 100,000)")
+covid_period_1 <- covid|>
+  filter(date >= "2020-01-11" & date <= "2021-11-06")
+  
+covid_period_2 <- covid|>
+  filter(date >= "2021-11-06" & date <= "2022-04-09")
 
-ggplotly(p2)
+covid_period_3 <- covid|>
+  filter(date >= "2022-04-09" & date <= "2024-05-13")
 ```
 
-#### Observation:
-
--   First wave: 2020
-
--   Second wave: Late 2020 to early 2021
-
-#### COVID-19 Cases Over Time (2020-2023)
-
-##### Plot 3: COVID-19 Cases by State (2020-2023)
-
-```{r}
-p3 <- covid_state|>
-  filter(year!="2024")|>
-  mutate(year=as.numeric(year))|>
-  ggplot(aes(x=year, y=cases_total, color=state))+
-  geom_point()+
-  geom_line()+
-  labs(title = "COVID-19 Cases by State (2020-2023)",
-       x="Year",
-       y="Cases")
-
-ggplotly(p3)
-```
-
-##### Plot 4: COVID-19 Cases in the US (2020-2023)
-
-```{r}
-p4 <- covid_overall|>
-  filter(year != "2024")|>
-  ggplot(aes(x=year, y=cases_total))+
-  geom_point(color="red")+
-  geom_line(color="blue")+
-  labs(title = "COVID-19 Cases in the US (2020-2023)",
-       x="Year",
-       y="Cases")
-
-ggplotly(p4)
-```
-
-#### Observation:
-
--   Highest peak: 2022 (wave 2021-2022)
-
--   Second peak: 2021 (wave 2020-2021)
-
-##### Plot 5: COVID-19 Case Rate vs COVID-19 Death Rate (2020-2023)
-
-```{r}
-#Compare COVID-19 cases and deaths on the same plot
-
-p5 <- covid_overall|>
-  filter(year != "2024")|> # case data is not availbe in 2024
-  mutate(covid_case_rate_100k =(cases_total/population)*1e5)|>
-  ggplot(aes(x=year))+
-  geom_line(aes(y=covid_case_rate_100k, color="Case Rate"))+
-  geom_line(aes(y=covid_death_rate_100k, color="Death Rate"))+
-  labs(title = "COVID-19 Case Rate vs COVID-19 Death Rate (2020-2023)",
-       x="Year",
-       y="Rate per 100,000",
-       color= "Metric")+
-  scale_color_manual(values = c("Case Rate" = "navy",
-                                "Death Rate" = "red"),
-                     name="")
-
-ggplotly(p5)
-```
-
-#### 3) COVID 19 Death Rates by State
+### 2) COVID 19 Death Rates by State
 
 For each period, compute the death rates by state. Describe which states did better or worse during the different periods.
 
-##### Plot 6: COVID-19 Death Rates by State (2021-2022)
+### 2.1 Period 1: 2020-01-11 to 2021-11-06
+
+##### 2.1.1 State-Level COVID-19 Death Rate
 
 ```{r}
-p6 <- covid_state|>
-  filter(year>=2021 & year<=2022)|>
-  ggplot(aes(x =covid_death_rate_100k, y = reorder(state, covid_death_rate_100k)))+
-  geom_bar(stat = "identity", fill = "skyblue") +
-  labs(title = "COVID-19 Death Rates by State (2021-2022)",
-       x = "Death Rate per 100,000",
-       y = "State")
+p2.1.1 <-covid_period_1|>
+  mutate(covid_death_rate_100k = (covid_death / population)*1e5)|>
+  ggplot(aes(x=date, y=covid_death_rate_100k, color= state))+
+  geom_point()+
+  geom_line()+
+  labs(title = "State-Level COVID-19 Death Rate (2020-01-11 to 2021-11-06)",
+       x = "Date",
+       y = "Death Rate (per 100k People)")
 
-ggplotly(p6)
+ggplotly(p2.1.1)
 ```
 
--   Observations for Death Rate per 100,000 (2021-2022):
-
-    -   Highest: West Virginia (WV)
-
-    -   Lowest: Vermont (VT)
-
-##### Plot 7: COVID-19 Death Rates by State (2021)
+##### 2.1.2 State-Level Cumulative COVID-19 Death Rates
 
 ```{r}
-p7 <- covid_state|>
-  filter(year=="2021")|>
-  ggplot(aes(x =covid_death_rate_100k, y = reorder(state, covid_death_rate_100k)))+
-  geom_bar(stat = "identity", fill = "skyblue") +
-  labs(title = "COVID-19 Death Rates by State (2021)",
-       x = "Death Rate per 100,000",
-       y = "State")
+p2.1.2 <- covid_period_1 |> 
+  group_by(state) |>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            population = first(population),            
+            death_rate_per_100k = (covid_death /population)*1e5,
+            .groups = 'drop')|>
+  ggplot(aes(x=reorder(state, death_rate_per_100k), y=death_rate_per_100k))+
+  geom_bar(stat = 'identity', fill = 'lightblue')+
+  coord_flip()+
+  labs(title = "State-Level Cumulative COVID-19 Death Rates (2020-01-11 to 2021-11-06)",
+       x = "State",
+       y = "Death Rate (per 100k people)")
 
-ggplotly(p7)
+ggplotly(p2.1.2)
 ```
 
--   Observations for Death Rate per 100,000 (2021):
+#### Observation:
 
-    -   Highest: West Virginia (WV)
+During Period 1, Tennessee (TN) had the greatest COVID-19 death rate when Vermont (VT) had the lowest.
 
-    -   Lowest: Vermont (VT)
+### **2.2 Period 2: 2021-11-06 to 2022-04-09**
 
-##### Plot 8: COVID-19 Death Rates by State (2022)
+##### 2.2.1 State-Level COVID-19 Death Rate
 
 ```{r}
-p8 <- covid_state|>
-  filter(year=="2022")|>
-  ggplot(aes(x =covid_death_rate_100k, y = reorder(state, covid_death_rate_100k)))+
-  geom_bar(stat = "identity", fill = "skyblue") +
-  labs(title = "COVID-19 Death Rates by State (2022)",
-       x = "Death Rate per 100,000",
-       y = "State")
+p2.2.1 <-covid_period_2|>
+  mutate(covid_death_rate_100k = (covid_death / population)*1e5)|>
+  ggplot(aes(x=date, y=covid_death_rate_100k, color= state))+
+  geom_point()+
+  geom_line()+
+  labs(title = "State-Level COVID-19 Death Rate (2021-11-06 to 2022-04-09)",
+       x = "Date",
+       y = "Death Rate (per 100k People)")
 
-ggplotly(p8)
+ggplotly(p2.2.1)
 ```
 
--   Observations for Death Rate per 100,000 (2022):
+##### 2.2.2 State-Level Cumulative COVID-19 Death Rates
 
-    -   Highest: West Virginia (WV)
+```{r}
+p2.2.2 <- covid_period_2 |> 
+  group_by(state) |>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            population = first(population),            
+            death_rate_per_100k = (covid_death /population)*1e5,
+            .groups = 'drop')|>
+  ggplot(aes(x=reorder(state, death_rate_per_100k), y=death_rate_per_100k))+
+  geom_bar(stat = 'identity', fill = 'lightblue')+
+  coord_flip()+
+  labs(title = "State-Level Cumulative COVID-19 Death Rates (2021-11-06 to 2022-04-09)",
+       x = "State",
+       y = "Death Rate (per 100k people)")
 
-    -   Lowest: Alaska (AK)
+ggplotly(p2.2.2)
+```
 
-#### 4) COVID 19 Trend
+#### Observation:
+
+During Period 2, West Virginia (WV) had the greatest COVID-19 death rate when Hawaii (HI) had the lowest.
+
+### 2.3 Period 3: 2022-04-09 to 2024-05-13
+
+##### 2.3.1 State-Level COVID-19 Death Rate
+
+```{r}
+p2.3.1 <-covid_period_3|>
+  mutate(covid_death_rate_100k = (covid_death / population)*1e5)|>
+  ggplot(aes(x=date, y=covid_death_rate_100k, color= state))+
+  geom_point()+
+  geom_line()+
+  labs(title = "State-Level COVID-19 Death Rate (2022-04-09 to 2024-05-13)",
+       x = "Date",
+       y = "Death Rate (per 100k People)")
+
+ggplotly(p2.3.1)
+```
+
+##### 2.3.2 State-Level Cumulative COVID-19 Death Rates
+
+```{r}
+p2.3.2 <- covid_period_3 |> 
+  group_by(state) |>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            population = first(population),            
+            death_rate_per_100k = (covid_death /population)*1e5,
+            .groups = 'drop')|>
+  ggplot(aes(x=reorder(state, death_rate_per_100k), y=death_rate_per_100k))+
+  geom_bar(stat = 'identity', fill = 'lightblue')+
+  coord_flip()+
+  labs(title = "State-Level Cumulative COVID-19 Death Rates (2022-04-09 to 2024-05-13)",
+       x = "State",
+       y = "Death Rate (per 100k people)")
+
+ggplotly(p2.3.2)
+```
+
+#### Observation:
+
+During Period 3, Kentucky (KY) had the greatest COVID-19 death rate when Alaska (AK) had the lowest.
+
+### 3) COVID 19 Trend
 
 Describe if COVID-19 became less or more virulent across the different periods.
 
-**COVID-19 Case Fatality Rate by State and Overall (2020-2023)**
+### 3.1 Period 1: 2020-01-11 to 2021-11-06
 
-##### Plot 9: COVID-19 Case Fatality Rate by States (2020-2023)
-
-##### Plot 10: COVID-19 Case Fatality Rate in the US (2020-2023)
+##### 3.1.1 National COVID-19 Case Fatality Rate
 
 ```{r}
-p9 <- covid_state|>
-  filter(year!="2024")|> # case data is not availbe in 2024
-  ggplot(aes(x=year, y=case_fatality_rate, colour = state))+
+p3.1.1 <- covid_period_1|>
+  group_by(date)|>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            cases_total = sum(cases, na.rm = TRUE),
+            .groups = 'drop')|>
+  mutate(case_fatality_rate = (covid_death/cases_total)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate))+
   geom_point()+
   geom_line()+
-  labs(title="COVID-19 Case Fatality Rate by States (2020-2023)",
-       x="Year",
-       y="Case Fatality Rate (%)")
+  labs(title = "National COVID-19 Case Fatality Rate (2020-01-11 to 2021-11-06)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
+
+ggplotly(p3.1.1)
+```
+
+#### Observation:
+
+During Period 1, the COVID-19 fatality rate exhibited a sharp increase from February 29, 2020, to March 7, 2020, peaking at 20.79%. Following this peak, the fatality rate declined significantly to 2.59% and eventually to 0.77% towards the end of this period.
+
+The trend during this period showed that COVID-19 became less virulent over time. However, the sharp rise and fall during Period 1 indicate that early in the pandemic, the virus was particularly lethal, possibly due to a lack of understanding of effective treatments and overwhelmed healthcare systems.
+
+Notably, according to **Plot 3.1.2**, Florida (FL) recorded the highest COVID-19 fatality rate (77.27%) among all states.
+
+##### 3.1.2 State-Level COVID-19 Case Fatality Rates
+
+```{r}
+p3.1.2 <- covid_period_1|>
+  mutate(case_fatality_rate = (covid_death/cases)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate, color=state))+
+  geom_point()+
+  geom_line()+
+ labs(title = "State-Level COVID-19 Case Fatality Rates (2020-01-11 to 2021-11-06)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
   
-ggplotly(p9)
-
-p10 <- covid_overall|>
-  filter(year!="2024")|> # case data is not availbe in 2024
-  ggplot(aes(x=year, y=case_fatality_rate))+
-  geom_point(color="blue")+
-  geom_line(color="red")+
-  labs(title="COVID-19 Case Fatality Rate in the US (2020-2023)",
-       x="Year",
-       y="Case Fatality Rate (%)")
-
-ggplotly(p10)
+ggplotly(p3.1.2)
 ```
 
--   Observations for COVID-19 Case Fatality Rate in the US (2020-2023):
+### **3.2 Period 2: 2021-11-06 to 2022-04-09**
 
-    -   CFR experienced a sharp decline from 2020 to 2021 and continued to decrease at a slower pace from 2021 to 2022.
-
-    -   However, there was an increase in the CFR from 2022 to 2023.
-
-##### Plot 11: COVID-19 Death Rates by State (2020-2021)
-
-##### Plot 12: COVID-19 Case Fatality Rate by States (2021-2022)
+##### 3.2.1 National COVID-19 Case Fatality Rate
 
 ```{r}
-p11 <- covid_state|>
-  filter(year>="2020" & year<="2021")|>
-  ggplot(aes(x=year, y=case_fatality_rate, colour = state))+
+p3.2.1 <- covid_period_2|>
+  group_by(date)|>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            cases_total = sum(cases, na.rm = TRUE),
+            .groups = 'drop')|>
+  mutate(case_fatality_rate = (covid_death/cases_total)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate))+
   geom_point()+
   geom_line()+
-  labs(title="COVID-19 Case Fatality Rate by States (2020-2021)",
-       x="Year",
-       y="Case Fatality Rate (%)")
+  labs(title = "National COVID-19 Case Fatality Rate (2021-11-06 to 2022-04-09)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
 
-p12 <- covid_state|>
-  filter(year>="2021" & year<="2022")|>
-  ggplot(aes(x=year, y=case_fatality_rate, colour = state))+
-  geom_point()+
-  geom_line()+
-  labs(title="COVID-19 Case Fatality Rate by States (2021-2022)",
-       x="Year",
-       y="Case Fatality Rate (%)")
-
-ggplotly(p11)
-ggplotly(p12)
+ggplotly(p3.2.1)
 ```
 
--   Observations for COVID-19 Case Fatality Rate by States (2020-2022):
+#### Observation:
 
-    -   Vermont exhibited the highest CFR in early 2020. However, from 2021 to 2022, there was a dramatic decrease in its CFR, ultimately making it the state with the lowest CFR.
+During Period 2, the COVID-19 fatality rate exhibited an unstable trend, initially decreasing, followed by an increase, and then another decrease. The highest fatality rate during this period was 1.68%, and the lowest was 0.38%, both significantly lower than the corresponding highest and lowest rates in Period 1.
 
--   Observations for COVID-19 Case Fatality Rate by States (2021-2022):
+The fatality rate experienced two major decreases and one major increase during this period. The first decrease occurred between November 6, 2021, and January 15, 2022, while the second decrease was observed between March 12, 2022, and April 9, 2022. The major increase took place between January 15, 2022, and March 12, 2022.
 
-    -   Nevada exihbited the highest CFR in early 2021 while Vermont exhibited the lowest.
+Notably, according to **Plot 3.2.2,** Kansas (KS) recorded the highest COVID-19 fatality rate (7.02%) among all states.
 
-##### Plot 13: COVID-19 Case Fatality Rate in the US (2020-2021)
-
-##### Plot 14: COVID-19 Case Fatality Rate in the US (2021-2022)
+##### 3.2.2 State-Level COVID-19 Case Fatality Rates
 
 ```{r}
-p13 <- covid_overall|>
-  filter(year>="2020" & year<="2021")|>
-  ggplot(aes(x=year, y=case_fatality_rate))+
-  geom_point(color="blue")+
-  geom_line(color="red")+
-  scale_x_continuous(breaks = 2020:2021, 
-                     labels = as.character(2020:2021))+
-  labs(title="COVID-19 Case Fatality Rate in the US (2020-2021)",
-       x="Year",
-       y="Case Fatality Rate (%)")
-
-p14 <- covid_overall|>
-  filter(year>="2021" & year<="2022")|>
-  ggplot(aes(x=year, y=case_fatality_rate))+
-  geom_point(color="blue")+
-  geom_line(color="red")+
-  scale_x_continuous(breaks = 2021:2022, 
-                     labels = as.character(2021:2022))+
-  labs(title="COVID-19 Case Fatality Rate in the US (2021-2022)",
-       x="Year",
-       y="Case Fatality Rate (%)")
-
-ggplotly(p13)
-ggplotly(p14)
+p3.2.2 <- covid_period_2|>
+  mutate(case_fatality_rate = (covid_death/cases)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate, color=state))+
+  geom_point()+
+  geom_line()+
+ labs(title = "State-Level COVID-19 Case Fatality Rates (2021-11-06 to 2022-04-09)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
+  
+ggplotly(p3.2.2)
 ```
 
--   Observations for COVID-19 Case Fatality Rate in the US (2020-2021) and (2021-2022):
+### 3.3 Period 3: 2022-04-09 to 2024-05-13
 
-    -   For both periods, CFR exhibited a decline.
+##### 3.3.1 National COVID-19 Case Fatality Rate
 
+```{r}
+p3.3.1 <- covid_period_3|>
+  group_by(date)|>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            cases_total = sum(cases, na.rm = TRUE),
+            .groups = 'drop')|>
+  mutate(case_fatality_rate = (covid_death/cases_total)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate))+
+  geom_point()+
+  geom_line()+
+  labs(title = "National COVID-19 Case Fatality Rate (2022-04-09 to 2024-05-13)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
+
+ggplotly(p3.3.1)
+```
+
+#### Observation:
+
+During Period 3, the COVID-19 fatality rate initially exhibited a sharp decrease and followed by a gradual increase. The decline occurred between April 9, 2022 and May 21, 2022, and the increase then followed. The highest fatality rate during this period was 1.07%, and the lowest was 0.25%, both significantly lower than the corresponding highest and lowest rates in Period 1 and slighly lower than the ones in Period 3.
+
+Notably, according to **Plot 3.1.2**, Kentucky (KY) recorded the highest COVID-19 fatality rate (8.58%) among all states.
+
+##### 3.3.2 State-Level COVID-19 Case Fatality Rates
+
+```{r}
+p3.3.2 <- covid_period_3|>
+  mutate(case_fatality_rate = (covid_death/cases)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate, color=state))+
+  geom_point()+
+  geom_line()+
+ labs(title = "State-Level COVID-19 Case Fatality Rates (2022-04-09 to 2024-05-13)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
+  
+ggplotly(p3.3.2)
+```
+
+```{r}
 #### 5) Weekly Excess Mortality by State
 
 Estimate excess mortality for each week for each state. Do COVID-19 deaths explain the excess mortality?
 
-```{r}
 week_2024 <- covid_death_clean|>
   filter(year == 2024)|>
   select(mmwr_week)|>
