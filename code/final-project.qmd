@@ -371,8 +371,6 @@ Notably, according to **Plot 3.2.2,** Kansas (KS) recorded the highest COVID-19 
 
 ### 3.3 Period 3: 2022-04-09 to 2024-05-13
 
-##### 3.3.1 National COVID-19 Case Fatality Rate
-
 ```{r}
 #3.3.1 National COVID-19 Case Fatality Rate
 p3.3.1 <- covid_period_3|>
@@ -488,11 +486,9 @@ p4 <- covid_exp_deaths |>
 ggplotly(p4) 
 ```
 
+#### Observation:
+
 Looking at the plot, the excess mortality rate is pretty consistently higher than the COVID deaths. This suggests that COVID-19 deaths do not explain the excess mortality.
-
-Potential TODO items:
-
--   Perhaps the method you used to calculate excess deaths is incorrect. Perhaps you should get actual death data for the previous years and compute the expected deaths yourself using linear regression, like in the problem set. This would let you account for biases like demographic changes, that could affect mortality.
 
 ### 5) Excess Mortality by State Comparison
 
@@ -500,7 +496,7 @@ Potential TODO items:
 
 I.e. For each period compute the excess mortality by state. Describe which states did better or worse during the different periods.
 
-Will aggregate across all dates for easy visualization.
+Will aggregate across all dates for easy visualisation.
 
 ```{r}
 covid_pers <- list(
@@ -572,6 +568,8 @@ p5.3 <- exc_mort_per_3 |> mutate(state = reorder(state, exc_mort_rate)) |>
   )
 ggplotly(p5.3)
 ```
+
+#### Observation:
 
 During period 1, the states that had the highest excess mortality rates were MS, AZ, AL, and SC. The states with the lowest excess mortality rates were VT, HI, NH, and NY.
 
