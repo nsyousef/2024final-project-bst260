@@ -137,10 +137,10 @@ After analyzing the trends in COVID-19 death rates and case counts, we decided t
 
 ```{r}
 covid_period_1 <- covid|>
-  filter(date >= "2020-01-11" & date <= "2021-11-06")
+  filter(date >= "2020-01-11" & date < "2021-11-06")
   
 covid_period_2 <- covid|>
-  filter(date >= "2021-11-06" & date <= "2022-04-09")
+  filter(date >= "2021-11-06" & date < "2022-04-09")
 
 covid_period_3 <- covid|>
   filter(date >= "2022-04-09" & date <= "2024-05-13")
@@ -404,95 +404,144 @@ p3.3.2 <- covid_period_3|>
 ggplotly(p3.3.2)
 ```
 
-```{r}
-#### 5) Weekly Excess Mortality by State
+# Question 4
 
-Estimate excess mortality for each week for each state. Do COVID-19 deaths explain the excess mortality?
+*For those working in groups:* Estimate excess mortality for each week for each state. Do COVID-19 deaths explain the excess mortality?
 
-week_2024 <- covid_death_clean|>
-  filter(year == 2024)|>
-  select(mmwr_week)|>
-  na.omit()
+From: https://data.cdc.gov/NCHS/Provisional-COVID-19-Death-Counts-by-Week-Ending-D/r8kw-7aab/about_data
 
-dat <- covid_death_clean|>
-  left_join(cases_population_state, by = c("state", "year"))|>
-  rename(week = "mmwr_week")|>
-  mutate(mortality = total_death/population*1e5,
-         day = difftime(start_date, min(start_date), units = "day"),
-         week = as.factor(week))|>
-  filter(week %in% week_2024$mmwr_week)|>
-  select(-cases_total)|>
-  group_by(state)|>
-  fill(covid_death, total_death, population, .direction = "down")
+> "Percent of expected deaths is the number of weekly deaths for all causes compared to the average number across the same week in 2017–2019."
 
-fit <- dat|> 
-  filter(year == "2024") #2024 because it has the lowest COVID 19 Mortality Rate
+From: https://www.cdc.gov/nchs/nvss/vsrr/covid19/index.htm
 
-mod <- lm(mortality ~ week+day, fit)
+> "Percent of expected deaths provided in this release are shown to provide context for interpreting provisional counts of COVID-19 deaths and deaths due to related causes. Where estimated values are high (e.g., greater than 100%), this suggests that mortality is higher in 2020-2023 relative to the same weeks of prior years. Where estimated values of completeness are low, this could indicate that data are incomplete due to delayed reporting, or that mortality is lower in 2020-2023 compared with prior years, or some combination of these factors."
 
-pred <- predict(mod, newdata = dat, se.fit = TRUE)
-```
+In other words, if `percentage_expected_death` > 100, mortality is higher now (2020-2023) than it was in prior years. Where `percentage_expected_death` < 100, mortality is lower now (2020-2023) than it was in prior years.
+
+$$
+\text{percentage_expected_death} = \frac{\text{total_death_2020_to_2024}}{\text{total_death_2017_to_2019} \times 100
+$$
+
+Since we are comparing across states, states with larger populations will have larger excess mortalities. Therefore, we compute mortality rates (per 100,000) to allow for comparison between states.
 
 ```{r}
-dat <- dat|>
-  mutate(expected = pred$fit*population,
-         excess = total_death - expected,
-         se_expected = pred$se.fit*population,
-         sigma_outcome = sd(mod$residuals)*population,
-         se_excess = sqrt(sigma_outcome^2 + se_expected^2))
-```
+# compute excess mortality
+covid_exp_deaths <- covid |> 
+  # compute expected deaths
+  mutate(prop_exp_death = percentage_expected_death / 100) |> 
+  mutate(exp_death = total_death / prop_exp_death) |> 
+  # compute excess mortality
+  # need to use rates since mortality will depend on population
+  mutate(
+    total_death_rate = total_death / population * 1e5,
+    exp_death_rate = exp_death / population * 1e5
+  ) |> 
+  mutate(exc_mort_rate = total_death_rate - exp_death_rate)
 
-```{r}
-covid_death_excess <- covid_death_clean|>
-  left_join(expected_death_year, by = c("state", "year"))|>
-  mutate(excess_mortality = expected_death - total_death)
-
-covid_death_excess|>
-  select(year, mmwr_week, state, excess_mortality, covid_death, total_death)
-```
-
-#### 6) Excess Mortality by State
-
-Repeat 2 but for excess mortality instead of COVID-19 deaths.
-
-```{r}
-# Compute average excess mortality
-avg_excess <- covid_death_excess |> 
-  group_by(state) |> 
-  mutate(avg_excess = mean(excess_mortality, na.rm = TRUE)) |> 
-  filter(mmwr_week == max(mmwr_week, na.rm = TRUE)) |> 
+# plot excess mortality
+# for simplicity of viewing, will collapse to total excess mortality over all US
+covid_exp_deaths |> 
+  select(state, date, covid_death, total_death, exp_death, population) |> 
+  group_by(date) |> 
+  summarize(
+    covid_death = sum(covid_death, na.rm=T),
+    total_death = sum(total_death, na.rm=T),
+    exp_death = sum(exp_death, na.rm=T),
+    population = sum(population, na.rm=T) # since we are collapsing across states, sum population of each state to get total US pop
+  ) |> 
   ungroup() |> 
-  arrange(desc(excess_mortality))
-  
-
-#2020-2022 excess mortality
-ggplot(avg_excess, 
-       aes(x = avg_excess, y = reorder(state, avg_excess))) +
-  geom_bar(stat = "identity", fill = "skyblue") +
+  mutate(
+    total_death_rate = total_death / population * 1e5,
+    exp_death_rate = exp_death / population * 1e5,
+    covid_death_rate = covid_death / population * 1e5
+  ) |> 
+  mutate(exc_mort_rate = total_death_rate - exp_death_rate) |> 
+  select(date, covid_death_rate, exc_mort_rate) |> 
+  pivot_longer(cols = c("covid_death_rate", "exc_mort_rate"), names_to = "death_type", values_to = "num_deaths") |> 
+  ggplot(aes(
+    x = date,
+    y = num_deaths,
+    color = death_type
+  )) + geom_point() + geom_line() +
   labs(
-    title = "Average Excess Mortality by State from 2020-2022",
-    x = "Average Excess Mortality",
-    y = "State"
-  ) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+    x = "Date",
+    y = "Death Rate (per 100,000)",
+    color = "Death Rate Type"
+  )
+  
 ```
+
+Looking at the plot, the excess mortality rate is pretty consistently higher than the COVID deaths. This suggests that COVID-19 deaths do not explain the excess mortality.
+
+Potential TODO items:
+
+* Perhaps the method you used to calculate excess deaths is incorrect. Perhaps you should get actual death data for the previous years and compute the expected deaths yourself using linear regression, like in the problem set. This would let you account for biases like demographic changes, that could affect mortality.
+
+# Question 5
+
+*For those working in groups:* Repeat 2 but for excess mortality instead of COVID-19 deaths.
+
+I.e. For each period compute the excess mortality by state. Describe which states did better or worse during the different periods.
+
+Will aggregate across all dates for easy visualization.
+
+TODO: will population of states bias the results? (i.e. states with higher population have higher excess mortality?)
 
 ```{r}
-weekly_excess_2022 <- covid_death|>
-  filter(Year == 2022)|>
-  group_by(state) |> 
-  select(mmwr_week, state, covid_deaths, total_death) |> 
-  filter(complete.cases(mmwr_week, state, covid_deaths, total_death)) |> 
-  mutate(excess_mortality = total_death-covid_deaths) 
+covid_pers <- list(
+  per1 = list(
+    start = make_date(2020, 1, 11),
+    end = make_date(2021, 11, 6)
+  ),
+  per2 = list(
+    start = make_date(2021, 11, 6),
+    end = make_date(2022, 4, 9)
+  ),
+  per3 = list(
+    start = make_date(2022, 4, 9),
+    end = make_date(2024, 5, 13)
+  )
+)
+
+# aggregate across all dates
+exc_mortality_period <- function(per_start_date, per_end_date) {
+  output <- covid_exp_deaths |> 
+    filter((date >= per_start_date) & (date < per_end_date)) |> 
+    group_by(state) |> 
+    summarize(
+      covid_death = sum(covid_death, na.rm=T),
+      total_death = sum(total_death, na.rm=T),
+      exp_death = sum(exp_death, na.rm=T),
+      population = first(population)
+    ) |> ungroup() |> 
+    mutate(
+      total_death_rate = total_death / population * 1e5,
+      exp_death_rate = exp_death / population * 1e5,
+      covid_death_rate = exp_death / population * 1e5
+    ) |> 
+    mutate(exc_mort_rate = total_death_rate - exp_death_rate)
   
-#2022 excess mortality by week
-ggplot(weekly_excess_2022, 
-       aes(x = mmwr_week, y = excess_mortality, color = state)) +
-  geom_line() +
-  labs(
-    title = "Excess Mortality by Week in 2022",
-    x = "Week",
-    y = "Excess Mortality"
-  ) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  return(output)
+}
+
+exc_mort_per_1 <- exc_mortality_period(covid_pers$per1$start, covid_pers$per1$end)
+exc_mort_per_1 |> mutate(state = reorder(state, exc_mort_rate)) |> 
+  ggplot(aes(y = state, x = exc_mort_rate)) +
+  geom_col()
+
+exc_mort_per_2 <- exc_mortality_period(covid_pers$per2$start, covid_pers$per2$end)
+exc_mort_per_2 |> mutate(state = reorder(state, exc_mort_rate)) |> 
+  ggplot(aes(y = state, x = exc_mort_rate)) +
+  geom_col()
+
+exc_mort_per_3 <- exc_mortality_period(covid_pers$per3$start, covid_pers$per3$end)
+exc_mort_per_3 |> mutate(state = reorder(state, exc_mort_rate)) |> 
+  ggplot(aes(y = state, x = exc_mort_rate)) +
+  geom_col()
 ```
+
+During period 1, the states that had the highest excess mortality rates were MS, AZ, AL, and SC. The states with the lowest excess mortality rates were VT, HI, NH, and NY.
+
+During period 2, the states that had the highest excess mortality rates were NM, WV, AZ, OH. The states with the lowest excess mortality rates were NY, HI, MA, PR.
+
+During period 3, the states that had the highest excess mortality rates were SC, AK, OR, DE. The states with the lowest excess mortality rates were NJ, RI, PA, NY.
