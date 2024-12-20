@@ -49,38 +49,13 @@ pop_all <- pop_all |>
   mutate(year = as.numeric(year), population = as.numeric(population))
 
 ###############################################################
-#2. COVID19 Cases Data Set
-
-# to refresh this file with new data, please run `code/download_case_data.r`
-cases_raw <- read_csv("../raw-data/COVID19_cases.csv")
-
-cases <- cases_raw |>
-  mutate(
-    cases = new_cases,
-    date = as_date(end_date),
-    year = year(date),
-    week = week(date)
-  ) |> # Add week number
-  mutate(cases = as.numeric(cases),
-         year = as.numeric(year),
-         week = as.numeric(week)) |>
-  rename(case_date = date) |>
-  filter(state %in% pop_all$state) |>
-  select(state, case_date, cases, year, week) |> # Include the week column
-  arrange(state, case_date)
-
-###############################################################
-#3, Combine Population and COVID-19 Cases Date Sets
-cases_population <- pop_all |>
-  left_join(cases, by = c("state", "year"))
-
-###############################################################
-#4. COVID-19 Death and Overall Death Data Set
+#2. COVID-19 Death and Overall Death Data Set
 #Total COVID19 deaths by state each year from 2020 to 2024
 covid_death <- read.csv("../raw-data/COVID19_death.csv")
 
 #Data wrangling
 covid_death_clean <- covid_death |>
+  filter(Group == "By Week") |> 
   rename(
     start_date = `Start.Date`,
     end_date = `End.Date`,
@@ -120,10 +95,38 @@ covid_death_clean <- covid_death |>
   )
 
 ###############################################################
+#3, Combine Population and COVID-19 Cases Date Sets
+deaths_population <- pop_all |>
+  left_join(covid_death_clean, by = c("state", "year"))
+
+###############################################################
+#4. COVID19 Cases Data Set
+
+# to refresh this file with new data, please run `code/download_case_data.r`
+cases_raw <- read_csv("../raw-data/COVID19_cases.csv")
+
+cases <- cases_raw |>
+  mutate(
+    cases = new_cases,
+    date = as_date(end_date),
+    year = year(date),
+    week = week(date)
+  ) |> # Add week number
+  mutate(cases = as.numeric(cases),
+         year = as.numeric(year),
+         week = as.numeric(week)) |>
+  rename(case_date = date) |>
+  filter(state %in% pop_all$state) |>
+  select(state, case_date, cases, year, week) |> # Include the week column
+  arrange(state, case_date)
+
+
+
+###############################################################
 #5. Complete Dataset
 
-covid <- covid_death_clean |>
-  left_join(cases_population, by = c("state", "year", "week")) |>
+covid <- deaths_population |>
+  left_join(cases, by = c("state", "year", "week")) |>
   group_by(state, year) |>
   fill(population, .direction = "downup") |>
   ungroup() |> mutate(date = end_date) |>
