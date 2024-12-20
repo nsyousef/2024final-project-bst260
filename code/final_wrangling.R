@@ -125,6 +125,7 @@ cases <- cases_raw |>
 ###############################################################
 #5. Complete Dataset
 
+<<<<<<< Updated upstream
 covid <- deaths_population |>
   left_join(cases, by = c("state", "year", "week")) |>
   group_by(state, year) |>
@@ -144,3 +145,10 @@ covid <- deaths_population |>
 
 # write file
 write.csv(covid, file = "../data/covid_cases_deaths.csv", row.names = FALSE)
+=======
+covid <- covid_death_clean|>
+  left_join(cases_population, by = c("state", "year", "week"))|>
+  group_by(state, year)|>
+  fill(population, .direction = "downup")|>
+  ungroup()
+>>>>>>> Stashed changes
