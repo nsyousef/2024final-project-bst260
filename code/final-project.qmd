@@ -163,9 +163,8 @@ To compare the death rates between each state, we first computed death rates by 
 
 -   **Time Series Plot of State-Level COVID-19 Death Rates**: This graph displays the COVID-19 death rate per 100,000 people for each state over time, using both points and lines to represent changes. This visualization allows for easy comparison of trends between states within the specified period.
 
-```{=html}
 <!-- -->
-```
+
 -   **Bar Chart of State-Level Cumulative COVID-19 Death Rates**: This visualization uses a bar chart to display the cumulative COVID-19 death rates per 100,000 people for each state within the specified period. The states are ordered by death rate, facilitating an easy comparison of the pandemic's impact across states. The bars are coloured in light blue for visual clarity, and the states are listed on the y-axis (due to `coord_flip()`), making it straightforward to identify and compare the rates across states.
 
 #### 2.1 Period 1: 2020-01-11 to 2021-11-06
@@ -204,7 +203,7 @@ ggplotly(p2.1.2)
 
 During Period 1, Mississippi State (MS) had the greatest COVID-19 death rate when Vermont (VT) had the lowest.
 
-#### **2.2 Period 2: 2021-11-06 to 2022-04-09**
+#### 2.2 Period 2: 2021-11-06 to 2022-04-09
 
 ```{r}
 #2.2.1 State-Level COVID-19 Death Rate
@@ -330,7 +329,7 @@ The trend during this period showed that COVID-19 became less virulent over time
 
 Notably, according to **Plot 3.1.2**, Florida (FL) recorded the highest COVID-19 fatality rate (77.27%) among all states.
 
-### **3.2 Period 2: 2021-11-06 to 2022-04-09**
+### 3.2 Period 2: 2021-11-06 to 2022-04-09
 
 ```{r}
 #3.2.1 National COVID-19 Case Fatality Rate
