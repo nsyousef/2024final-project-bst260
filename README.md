@@ -28,7 +28,7 @@ To run the code in this project, you will need the following R libraries:
 
 ### Obtaining Data
 
-Most of the raw data is stored in the `raw-data` directory. The case data can be refreshed by running the script `download_case_data.r`.
+Most of the raw data is stored in the `raw-data` directory. This data can be refreshed by running the script `download_data.r`. Only `deaths_pre_2020.csv` and `COVID19_cases.csv` can be refeshed.
 
 ### Data Wrangling
 

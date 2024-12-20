@@ -429,6 +429,13 @@ $$
 Since we are comparing across states, states with larger populations will have larger excess mortalities. Therefore, we compute mortality rates (per 100,000) to allow for comparison between states.
 
 ```{r}
+
+# New version
+
+deaths_pre_2020 <- read_csv("../data/deaths_pre_2020.csv")
+
+# Old version
+
 # compute excess mortality
 covid_exp_deaths <- covid |> 
   # compute expected deaths
