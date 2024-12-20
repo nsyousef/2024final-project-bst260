@@ -1,14 +1,23 @@
 ---
-title: "Final Project"
+title: "COVID-19 Pandemic Impact"
 author: "Cece Jen, Tina Tu, Nicholas Yousefi"
 format: html
 editor: source
 ---
 
-## Method
+## Abstract
+
+TODO
+
+## Introduction
+
+TODO
+
+## Methods
 
 ```{r}
-# TODO: add libraries
+#| output: false
+
 library(tidyverse)
 library(plotly)
 
@@ -459,6 +468,10 @@ covid_exp_deaths |>
   mutate(exc_mort_rate = total_death_rate - exp_death_rate) |> 
   select(date, covid_death_rate, exc_mort_rate) |> 
   pivot_longer(cols = c("covid_death_rate", "exc_mort_rate"), names_to = "death_type", values_to = "num_deaths") |> 
+  mutate(death_type = case_when(
+    death_type == "covid_death_rate" ~ "COVID Death Rate",
+    death_type == "exc_mort_rate" ~ "Excess Mortality Rate"
+  )) |> 
   ggplot(aes(
     x = date,
     y = num_deaths,
@@ -467,7 +480,8 @@ covid_exp_deaths |>
   labs(
     x = "Date",
     y = "Death Rate (per 100,000)",
-    color = "Death Rate Type"
+    color = "Death Rate Type",
+    title = "Overall Excess Mortality and COVID Death Rates in U.S. Throughout Pandemic"
   )
   
 ```
@@ -485,8 +499,6 @@ Potential TODO items:
 I.e. For each period compute the excess mortality by state. Describe which states did better or worse during the different periods.
 
 Will aggregate across all dates for easy visualization.
-
-TODO: will population of states bias the results? (i.e. states with higher population have higher excess mortality?)
 
 ```{r}
 covid_pers <- list(
@@ -528,17 +540,29 @@ exc_mortality_period <- function(per_start_date, per_end_date) {
 exc_mort_per_1 <- exc_mortality_period(covid_pers$per1$start, covid_pers$per1$end)
 exc_mort_per_1 |> mutate(state = reorder(state, exc_mort_rate)) |> 
   ggplot(aes(y = state, x = exc_mort_rate)) +
-  geom_col()
+  geom_col() + labs(
+    x = "Excess Mortality Rate (per 100,000 people)",
+    y = "State",
+    title = "Excess Mortality Rate By State During Period 1 (2020-01-11 to 2021-11-06)"
+  )
 
 exc_mort_per_2 <- exc_mortality_period(covid_pers$per2$start, covid_pers$per2$end)
 exc_mort_per_2 |> mutate(state = reorder(state, exc_mort_rate)) |> 
   ggplot(aes(y = state, x = exc_mort_rate)) +
-  geom_col()
+  geom_col() + labs(
+    x = "Excess Mortality Rate (per 100,000 people)",
+    y = "State",
+    title = "Excess Mortality Rate By State During Period 2 (2021-11-06 to 2022-04-09)"
+  )
 
 exc_mort_per_3 <- exc_mortality_period(covid_pers$per3$start, covid_pers$per3$end)
 exc_mort_per_3 |> mutate(state = reorder(state, exc_mort_rate)) |> 
   ggplot(aes(y = state, x = exc_mort_rate)) +
-  geom_col()
+  geom_col() + labs(
+    x = "Excess Mortality Rate (per 100,000 people)",
+    y = "State",
+    title = "Excess Mortality Rate By State During Period 3 (2022-04-09 to 2024-05-13)"
+  )
 ```
 
 During period 1, the states that had the highest excess mortality rates were MS, AZ, AL, and SC. The states with the lowest excess mortality rates were VT, HI, NH, and NY.
@@ -546,3 +570,17 @@ During period 1, the states that had the highest excess mortality rates were MS,
 During period 2, the states that had the highest excess mortality rates were NM, WV, AZ, OH. The states with the lowest excess mortality rates were NY, HI, MA, PR.
 
 During period 3, the states that had the highest excess mortality rates were SC, AK, OR, DE. The states with the lowest excess mortality rates were NJ, RI, PA, NY.
+
+## Discussion
+
+We found that during wave 1, Mississippi had the highest cumulative death rate and Vermont had the lowest. Phase 1 went from the start of the pandemic until around the time the Omicron variant of COVID was discovered. Many of the states with high death rates are located in the southeastern region of the United States, whereas many of the states with low death rates are located either in the northern region of the United States or away from the US mainland (i.e. Hawaii, Alaska, Puerto Rico). The states away from the US mainland likely had fewer deaths because fewer people were travelling during that phase, enabling people there to stay isolated. Also, many states in the south likely had less restrictive stay-at-home orders, especially during the later stages of phase 1, resulting in the virus spreading more and a higher death count.
+
+During the second wave, which went from around the time the Omicron variant was discovered until the time when masks became optional, West Virginia had the highest death rate and Hawaii had the lowest. The states with the highest number of deaths are located in various regions of the United States. Hawaii, and Puerto Rico, had relatively low death rates, most likely because they are away from the US mainland and saw limited travel. Alaska had higher death counts, likely because, since it is not an island, it saw more travel to and from it. During this phase of the pandemic, restrictions remained relatively low compared to at the start of the pandemic. For example, schools held classes in-person or hybrid for the most part, and people were going out more than at the start of the pandemic. Additionally, Omicron was a highly transmissible variant of COVID. Therefore, it makes sense that the states with higher and lower death rates would be more scattered and less confined to certain regions.
+
+During the thrid wave, from when mask mandates lessened until the end of the pandemic, the states with the highest and lowest death rates tended to be scattered across the country. Around this time, COVID restrictions were being eased, which likely contributed to the spread of the virus. However, compared to the other two periods, death rates in this period were lowest overall. This is likely because many people either already had COVID and were immune or were vaccinated.
+
+We also examined COVID-19 case fatality rates during the three periods to assess whether COVID became more or less virulent during the periods. Case fatality rate appeared to be highest during the first period. At the begining of the period, it was between 5 and 10%, likely due to the fact that the healthcare system was still discovering how to best treat people with COVID. It remained relatively constant from the end of the first period until throughout the second period, with a slight dip at the start of January (which is likely due mainly to random fluctuations in the rate rather than anything significant). Period 3 exhibited a similar trend. The relatively constant trend from the end of period 1 and throughouot periods 2 and 3 may be due to the fact that we were taking measures to isolate people, especially the most vulnerable, so fewer COVID cases led to deaths. Toward the later stages of the pandemic, when the isolation measures ended, we had vaccines and other means to protect the most vulnerable, causing fewer COVID cases to lead to deaths.
+
+Lastly, we examined excess mortality to determine whether COVID-19 deaths explained the excess mortality. Looking at overall excess mortality, we found that it was higher overall than the mortality rate due to COVID deaths, suggesting that COVID deaths do not explain the excess mortality. It is possible that other factors, such as mental health struggles due to stay at home orders may explain the excess mortality.
+
+One limitation with our calculation of excess mortality is we did not have data on factors such as changing population demographics, nor on actual death rates of prior years. We had to rely on the percent excess mortality given in our COVID-19 dataset to calculate expected numbers of deaths. Therefore, we were not able to account for factors such as changing population demographics. We assumed that those who calculated the percentage of expected deaths took factors like these into account, but we do not have a way to verify what factors exactly, nor how thorough they were.
