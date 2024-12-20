@@ -2,13 +2,7 @@
 
 # Set the working directory to the `code` folder before running this file.
 
-library(dplyr)
-library(tidyr)
-library(lubridate)
-library(httr2)
-library(readr)
-library(stringr)
-library(ggplot2)
+library(tidyverse)
 
 #1. Population Data Set
 #2020-2023 population by state
