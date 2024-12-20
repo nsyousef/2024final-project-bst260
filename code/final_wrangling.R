@@ -139,7 +139,9 @@ covid <- deaths_population |>
     percentage_expected_death,
     population,
     cases
-  ) |> mutate(week = epiweek(date), year = epiyear(date))
+  ) |> 
+  mutate(week = epiweek(date), year = epiyear(date))|>
+  mutate(cases = ifelse(year == "2024", NA, cases)) #remove case data for year 2024 as we have no case data for 2024
 
 # write file
 write.csv(covid, file = "../data/covid_cases_deaths.csv", row.names = FALSE)
