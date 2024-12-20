@@ -154,5 +154,7 @@ deaths_pre_2020 <- deaths_pre_2020_raw |>
   )) |>
   filter(state %in% pop_all$state)
 
+pop_pre_2020 <- read_csv("../raw-data/pop_data_pre_2020.csv")
+
 # write file
 write.csv(covid, file = "../data/deaths_pre_2020.csv", row.names = FALSE)
