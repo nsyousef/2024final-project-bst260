@@ -139,3 +139,20 @@ covid <- deaths_population |>
 
 # write file
 write.csv(covid, file = "../data/covid_cases_deaths.csv", row.names = FALSE)
+
+# Wrangle pre-2020 deaths data
+deaths_pre_2020_raw <- read.csv("../raw-data/deaths_pre_2020.csv")
+
+deaths_pre_2020 <- deaths_pre_2020_raw |> 
+  mutate(date = ymd_hms(weekendingdate)) |> 
+  mutate(year = mmwryear, week = mmwrweek, state = jurisdiction_of_occurrence, deaths = allcause) |> 
+  select(year, week, state, deaths, date) |> 
+  mutate(state = case_when(
+    state == "District of Columbia" ~ "DC",
+    state == "Puerto Rico" ~ "PR",
+    TRUE ~ state.abb[match(state, state.name)]
+  )) |>
+  filter(state %in% pop_all$state)
+
+# write file
+write.csv(covid, file = "../data/deaths_pre_2020.csv", row.names = FALSE)
