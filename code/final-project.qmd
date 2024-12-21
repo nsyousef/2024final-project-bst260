@@ -56,26 +56,19 @@ covid <- read_csv("../data/covid_cases_deaths.csv")
 
 The key steps are detailed below:
 
-1.  **Population Data Wrangling:**
-    We integrated U.S. state population estimates from 2020-2023 and from 2024, filling gaps with the previous year's data and standardizing state names to abbreviations. The dataset was restructured into a long format to align each state with corresponding annual population figures.
+1.  **Population Data Wrangling:** We integrated U.S. state population estimates from 2020-2023 and from 2024, filling gaps with the previous year's data and standardizing state names to abbreviations. The dataset was restructured into a long format to align each state with corresponding annual population figures.
 
-```{=html}
 <!-- -->
-```
-1.  **COVID-19 Death Data Wrangling:**
-    Weekly COVID-19 death data was standardized by filtering for consistency, renaming relevant columns, and converting dates to a standard format. We ensured inclusion of only those states present in the population dataset, resulting in a dataset of weekly death counts.
 
-2.  **Combining Death and Population Data:**
-    The standardized death data was merged with population figures by state and year, enabling calculation of death rates per 100,000 people to facilitate comparative analysis.
+1.  **COVID-19 Death Data Wrangling:** Weekly COVID-19 death data was standardized by filtering for consistency, renaming relevant columns, and converting dates to a standard format. We ensured inclusion of only those states present in the population dataset, resulting in a dataset of weekly death counts.
 
-3.  **COVID-19 Cases Data Wrangling:**
-    The cases dataset underwent similar standardization, aligning weekly case data with the death dataset structure. It includes only the states featured in the population dataset to maintain consistency across data types. The cases dataset only recorded up to May 2023.
+2.  **Combining Death and Population Data:** The standardized death data was merged with population figures by state and year, enabling calculation of death rates per 100,000 people to facilitate comparative analysis.
 
-4.  **Final Dataset Integration:**
-    We merged the cleaned death, population, and cases datasets by state, year, and week, ensuring completeness with forward and backward filling. This integration also included calculating epidemiological weeks and years for standard reporting.
+3.  **COVID-19 Cases Data Wrangling:** The cases dataset underwent similar standardization, aligning weekly case data with the death dataset structure. It includes only the states featured in the population dataset to maintain consistency across data types. The cases dataset only recorded up to May 2023.
 
-5.  **Final Dataset Output:**
-    Our comprehensive dataset, capturing detailed COVID-19 metrics for each U.S. state, was formatted exported as a CSV file for further analysis. This dataset includes columns for `state`, `date`, `week`, `covid_death`, `total_death`, `year`, `percentage_expected_death`, `population`, and `cases`, providing a thorough view of the pandemic’s impact across U.S. states.
+4.  **Final Dataset Integration:** We merged the cleaned death, population, and cases datasets by state, year, and week, ensuring completeness with forward and backward filling. This integration also included calculating epidemiological weeks and years for standard reporting.
+
+5.  **Final Dataset Output:** Our comprehensive dataset, capturing detailed COVID-19 metrics for each U.S. state, was formatted exported as a CSV file for further analysis. This dataset includes columns for `state`, `date`, `week`, `covid_death`, `total_death`, `year`, `percentage_expected_death`, `population`, and `cases`, providing a thorough view of the pandemic’s impact across U.S. states.
 
 ### 1) COVID-19 Pandemic Waves
 
@@ -85,9 +78,8 @@ We first computed the following:
 
 -   **Total COVID-19 cases by week**
 
-```{=html}
 <!-- -->
-```
+
 -   **COVID-19 death rate per 100,000 people by week**
 
 $$
@@ -522,14 +514,11 @@ ggplotly(p3.1.1)
 
 We evaluated COVID-10 virulence trend with CFR both nationally and across states. Our analysis highlighted periods of significant variation, detailed in Supplementary Figures 9 to 14.
 
--   **Period 1 (January 11, 2020, to November 6, 2021):**
-    Nationally, CFR peaked at 20.79% early in the pandemic between February 29 and March 7, 2020, as shown in Supplementary Figure 9, then declined to 2.59% and ultimately to 0.77% by the end of this period. The highest state-specific CFR was observed in Florida at 77.27% (Supplementary Figure 10).
+-   **Period 1 (January 11, 2020, to November 6, 2021):** Nationally, CFR peaked at 20.79% early in the pandemic between February 29 and March 7, 2020, as shown in Supplementary Figure 9, then declined to 2.59% and ultimately to 0.77% by the end of this period. The highest state-specific CFR was observed in Florida at 77.27% (Supplementary Figure 10).
 
--   **Period 2 (November 6, 2021, to April 9, 2022):**
-    CFR fluctuations characterized this period; it initially decreased, rose, and then fell again, with the highest reported at 1.68% and the lowest at 0.38% (Supplementary Figure 11). Ohio recorded the highest state CFR of 7.02% during this period (Supplementary Figure 12).
+-   **Period 2 (November 6, 2021, to April 9, 2022):** CFR fluctuations characterized this period; it initially decreased, rose, and then fell again, with the highest reported at 1.68% and the lowest at 0.38% (Supplementary Figure 11). Ohio recorded the highest state CFR of 7.02% during this period (Supplementary Figure 12).
 
--   **Period 3 (April 9, 2022, to May 13, 2023):**
-    A sharp initial decrease in CFR was followed by a gradual rise, with the period’s lowest at 0.25% and the highest at 1.07% (Supplementary Figure 13). The highest state CFR was in Kentucky at 8.58% (Supplementary Figure 14).
+-   **Period 3 (April 9, 2022, to May 13, 2023):** A sharp initial decrease in CFR was followed by a gradual rise, with the period’s lowest at 0.25% and the highest at 1.07% (Supplementary Figure 13). The highest state CFR was in Kentucky at 8.58% (Supplementary Figure 14).
 
 ### 4) Weekly Excess Mortality by State
 
