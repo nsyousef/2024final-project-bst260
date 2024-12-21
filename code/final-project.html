@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cece Jen, Tina Tu, Nicholas Yousefi">
+
+<title>COVID-19 Pandemic Impact</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="final-project_files/libs/clipboard/clipboard.min.js"></script>
+<script src="final-project_files/libs/quarto-html/quarto.js"></script>
+<script src="final-project_files/libs/quarto-html/popper.min.js"></script>
+<script src="final-project_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="final-project_files/libs/quarto-html/anchor.min.js"></script>
+<link href="final-project_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="final-project_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="final-project_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="final-project_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="final-project_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="final-project_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="final-project_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="final-project_files/libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="final-project_files/libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="final-project_files/libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="final-project_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="final-project_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="final-project_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="final-project_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">COVID-19 Pandemic Impact</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cece Jen, Tina Tu, Nicholas Yousefi </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<section id="objective" class="level4">
+<h4 class="anchored" data-anchor-id="objective">Objective</h4>
+<p>To assess the effects of the covid-19 pandemic on nationwide and state level mortality from 2020 to 2024 with integrated data. We used longitudinal time series data to provide comprehensive analysis of infection and mortality trends over time.</p>
+</section>
+<section id="key-findings" class="level4">
+<h4 class="anchored" data-anchor-id="key-findings">Key Findings</h4>
+<p>We identified distinct waves of infection before and after the emergence of the Omicron Variant in November 2021, and the expand of authorization of the secondary booster dose for adults in 2022. Before the widespread of the Omicron Variant, the COVID-19 fatality rate had a sharp increase with large state-by-state variation. In response to the Omicron variant surge, several states reimpose mask mandates and restrictions, resulting a relatively low fatality rate given the widespread of the virus. As of 2024, public health recommendations continue to adapt to the changing landscape of the pandemic, the transmission and death attributable to COVID-19 became to stabilize.</p>
+</section>
+<section id="significance" class="level4">
+<h4 class="anchored" data-anchor-id="significance">Significance</h4>
+<p>This study highlights the importance of robust data integration and visualization in tracking and responding to public health crises. The insights derived from this analysis can inform future pandemic preparedness and response strategies.</p>
+</section>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The COVID-19 pandemic marked the introduction of a virulent coronavirus into the human society, resulting in millions of infections and deaths across United States since late 2019. Understanding the temporal and spatial dynamics of the pandemic is crucial for public health interventions and policy decisions.</p>
+<p>In the United States, the pandemic has revealed significant variability in infection and fatality rates across states. As of 2024, the country has experienced multiple waves of infection, with significant challenges posed by Delta and Omicron variants. The authorization and distribution of vaccines also played a crucial role in affecting the overall trends of pandemic. In this project, we aim to analyze the impact of the COVID-19 pandemic across U.S. states from 2020 to 2024, with a specific focus on understanding the temporal trends in COVID-19 cases and death rates, identifying distinct waves of infection, assessing the relationship between excess mortality and COVID-19 death rate. This study seeks to provide a comprehensive analysis of the pandemic’s progression and its implications on mortality over the last few years.</p>
+<p>The primary objectives of this research are to examine the temporal trends in COVID-19 cases and death rates across U.S. states from 2020 to 2024, identify distinct waves of the pandemic and correlate them with excess mortality rate during this period.</p>
+<section id="hypotheses" class="level4">
+<h4 class="anchored" data-anchor-id="hypotheses">Hypotheses</h4>
+<ol type="1">
+<li><strong>Regional Variation Hypothesis:</strong> States in the southeastern region of the United States would have had higher cumulative death rates during the initial wave of the pandemic compared to states in the northern region or away from the mainland (e.g., Hawaii, Alaska, Puerto Rico) due to differences in public health measures and travel restrictions. Specifically, states like New York, California, and Washington, which experienced early and severe outbreaks and implemented strict lockdowns policies starting in early 2020 might have lower death rates. Whereas states that took a more hands-off approach (e.g., Florida) might have higher death rates initially.</li>
+<li><strong>Variant Impact Hypothesis:</strong> The Omicron variant, first reported in late 2021 and being highly transmissible, would have led to more scattered patterns of transmission but relatively lower death rates across all states in the U.S. during the second wave.</li>
+<li><strong>Case Fatality Rate Hypothesis:</strong> The case fatality rate would be highest during the first period due to the initial strain on healthcare systems and will remain relatively constant during the second and third periods due to improved testing techniques, treatment protocols and vaccination efforts. Following the authorization and distribution of the secondary booster vaccine of Pfizer-BioNTech and Moderna, as well as the natural immune response of the population, the virus would become less virulent, and the mortality rate would gradually stabilize.</li>
+<li><strong>Excess Mortality Hypothesis:</strong> Excess mortality during the pandemic would be higher but also roughly correlated with the mortality of COVID-19, suggesting the presence of other contributing factors such as mental health struggles and indirect impacts of the pandemic. In other words, excess mortality will not be completely attributable to the death caused by COVID-19.</li>
+</ol>
+<p>By addressing these objectives and hypotheses, this study aims to generate actionable insights that can assist public health policy makers to improve preparedness for possible future outbreaks. The findings will contribute to a deeper understanding of the special and temporal factors driving the pandemic’s dynamics and highlight the importance of data-driven approaches in decision-making when it comes to combating a novel pathogen that endangers the human society.</p>
+</section>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="data-preparation">Data Preparation</h3>
+<p>To prepare and wrangle the data for this analysis, we integrated multiple datasets, cleaned the data, and structured it for consistency and analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/covid_cases_deaths.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 13364 Columns: 9
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (1): state
+dbl  (7): week, covid_death, total_death, year, percentage_expected_death, p...
+date (1): date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>The key steps are detailed below:</p>
+<ol type="1">
+<li><strong>Population Data Wrangling:</strong> We integrated U.S. state population estimates from 2020-2023 and from 2024, filling gaps with the previous year’s data and standardizing state names to abbreviations. The dataset was restructured into a long format to align each state with corresponding annual population figures.</li>
+</ol>
+<!-- -->
+<ol type="1">
+<li><p><strong>COVID-19 Death Data Wrangling:</strong> Weekly COVID-19 death data was standardized by filtering for consistency, renaming relevant columns, and converting dates to a standard format. We ensured inclusion of only those states present in the population dataset, resulting in a dataset of weekly death counts.</p></li>
+<li><p><strong>Combining Death and Population Data:</strong> The standardized death data was merged with population figures by state and year, enabling calculation of death rates per 100,000 people to facilitate comparative analysis.</p></li>
+<li><p><strong>COVID-19 Cases Data Wrangling:</strong> The cases dataset underwent similar standardization, aligning weekly case data with the death dataset structure. It includes only the states featured in the population dataset to maintain consistency across data types. The cases dataset only recorded up to May 2023.</p></li>
+<li><p><strong>Final Dataset Integration:</strong> We merged the cleaned death, population, and cases datasets by state, year, and week, ensuring completeness with forward and backward filling. This integration also included calculating epidemiological weeks and years for standard reporting.</p></li>
+<li><p><strong>Final Dataset Output:</strong> Our comprehensive dataset, capturing detailed COVID-19 metrics for each U.S. state, was formatted exported as a CSV file for further analysis. This dataset includes columns for <code>state</code>, <code>date</code>, <code>week</code>, <code>covid_death</code>, <code>total_death</code>, <code>year</code>, <code>percentage_expected_death</code>, <code>population</code>, and <code>cases</code>, providing a thorough view of the pandemic’s impact across U.S. states.</p></li>
+</ol>
+</section>
+<section id="covid-19-pandemic-waves" class="level3">
+<h3 class="anchored" data-anchor-id="covid-19-pandemic-waves">1) COVID-19 Pandemic Waves</h3>
+<p><em>Divide the pandemic period, January 2020 to December 2024 into waves. Justify your choice with data visualization.</em></p>
+<p>We first computed the following:</p>
+<ul>
+<li><strong>Total COVID-19 cases by week</strong></li>
+</ul>
+<!-- -->
+<ul>
+<li><strong>COVID-19 death rate per 100,000 people by week</strong></li>
+</ul>
+<p><span class="math display">\[
+\text{COVID-19 Death Rate} = \left(\frac{\text{COVID-19 Deaths}}{\text{Population}}\right) \times 10^5
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>base_plot <span class="ot">&lt;-</span> covid<span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, week)<span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">covid_death =</span> <span class="fu">sum</span>(covid_death, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co">#Total COVID-19 cases by week </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">cases_total =</span> <span class="fu">sum</span>(cases, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">population =</span> <span class="fu">sum</span>(population),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">date =</span> <span class="fu">first</span>(date),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">'drop'</span>)<span class="sc">|&gt;</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">covid_death_rate_100k =</span> (covid_death <span class="sc">/</span> population) <span class="sc">*</span> <span class="fl">1e5</span>)<span class="sc">|&gt;</span> <span class="co">#COVID-19 death rate per 100,000 people by week</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date,))<span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We then made two plots to observe the trends of:</p>
+<ul>
+<li><p><strong>COVID-19 death rate from 2020 to 2024</strong></p></li>
+<li><p><strong>COVID-19 cases from 2020 to 2023</strong></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#COVID-19 Death Rate Trend (2020-2024)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y_map_death <span class="ot">&lt;-</span> <span class="fu">aes</span>(<span class="at">y =</span> covid_death_rate_100k)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>p1<span class="fl">.1</span> <span class="ot">&lt;-</span> base_plot <span class="sc">+</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> y_map_death) <span class="sc">+</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> y_map_death, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 1. COVID-19 death rate from 2020 to 2024"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"COVID Death Rate Per 100K"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#COVID-19 Case Trend (2020-2023)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>y_map_cases <span class="ot">&lt;-</span> <span class="fu">aes</span>(<span class="at">y =</span> cases_total)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>p1<span class="fl">.2</span> <span class="ot">&lt;-</span> base_plot <span class="sc">+</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> y_map_cases) <span class="sc">+</span> </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> y_map_cases, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 2. COVID-19 cases from 2020 to 2023"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total COVID Cases"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We then divided the pandemic period into three waves based on the number of COVID-19 cases:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>covid_period_1 <span class="ot">&lt;-</span> covid<span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;=</span> <span class="st">"2020-01-11"</span> <span class="sc">&amp;</span> date <span class="sc">&lt;</span> <span class="st">"2021-11-06"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>covid_period_2 <span class="ot">&lt;-</span> covid<span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;=</span> <span class="st">"2021-11-06"</span> <span class="sc">&amp;</span> date <span class="sc">&lt;</span> <span class="st">"2022-04-09"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>covid_period_3 <span class="ot">&lt;-</span> covid<span class="sc">|&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;=</span> <span class="st">"2022-04-09"</span> <span class="sc">&amp;</span> date <span class="sc">&lt;=</span> <span class="st">"2023-05-13"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="covid-19-death-rates-by-state-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="covid-19-death-rates-by-state-comparison">2) COVID 19 Death Rates by State Comparison</h3>
+<p><em>For each period, compute the death rates by state. Describe which states did better or worse during the different periods.</em></p>
+<p>We first computed death rates by state in each period and made two different visualisations:</p>
+<ul>
+<li><p><strong>Time Series Plot of State-Level COVID-19 Death Rates:</strong> This plot visualizes the COVID-19 death rate per 100,000 people for each state over time. Using <code>ggplot2</code>, it combines point markers and lines to track changes in death rates, with states differentiated by color.</p></li>
+<li><p><strong>Bar Chart of State-Level Cumulative COVID-19 Death Rates:</strong> This plot aggregates COVID-19 deaths to compute cumulative death rates per 100,000 people for each state, displayed using a bar chart. Bars are filled light blue and reordered by death rate to aid comparison.</p></li>
+</ul>
+<section id="period-1" class="level4">
+<h4 class="anchored" data-anchor-id="period-1">2.1 Period 1</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.1.1 State-Level COVID-19 Death Rate</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>p2.<span class="fl">1.1</span> <span class="ot">&lt;-</span>covid_period_1<span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">covid_death_rate_100k =</span> (covid_death <span class="sc">/</span> population)<span class="sc">*</span><span class="fl">1e5</span>)<span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>covid_death_rate_100k, <span class="at">color=</span> state))<span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 3. State-Level COVID-19 Death Rate (2020-01-11 to 2021-11-06)"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Death Rate (per 100k People)"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#2.1.2 State-Level Cumulative COVID-19 Death Rates</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>p2.<span class="fl">1.2</span> <span class="ot">&lt;-</span> covid_period_1 <span class="sc">|&gt;</span> </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">covid_death =</span> <span class="fu">sum</span>(covid_death, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">population =</span> <span class="fu">first</span>(population),            </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">death_rate_per_100k =</span> (covid_death <span class="sc">/</span>population)<span class="sc">*</span><span class="fl">1e5</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">'drop'</span>)<span class="sc">|&gt;</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(state, death_rate_per_100k), <span class="at">y=</span>death_rate_per_100k))<span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'lightblue'</span>)<span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 4. State-Level Cumulative COVID-19 Death Rates</span><span class="sc">\n</span><span class="st">(2020-01-11 to 2021-11-06)"</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"State"</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Death Rate (per 100k people)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="period-2" class="level4">
+<h4 class="anchored" data-anchor-id="period-2">2.2 Period 2</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.2.1 State-Level COVID-19 Death Rate</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>p2.<span class="fl">2.1</span> <span class="ot">&lt;-</span>covid_period_2<span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">covid_death_rate_100k =</span> (covid_death <span class="sc">/</span> population)<span class="sc">*</span><span class="fl">1e5</span>)<span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>covid_death_rate_100k, <span class="at">color=</span> state))<span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 5. State-Level COVID-19 Death Rate (2021-11-06 to 2022-04-09)"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Death Rate (per 100k People)"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#2.2.2 State-Level Cumulative COVID-19 Death Rates</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>p2.<span class="fl">2.2</span> <span class="ot">&lt;-</span> covid_period_2 <span class="sc">|&gt;</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">covid_death =</span> <span class="fu">sum</span>(covid_death, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">population =</span> <span class="fu">first</span>(population),            </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">death_rate_per_100k =</span> (covid_death <span class="sc">/</span>population)<span class="sc">*</span><span class="fl">1e5</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">'drop'</span>)<span class="sc">|&gt;</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(state, death_rate_per_100k), <span class="at">y=</span>death_rate_per_100k))<span class="sc">+</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'lightblue'</span>)<span class="sc">+</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 6. State-Level Cumulative COVID-19 Death Rates</span><span class="sc">\n</span><span class="st">(2021-11-06 to 2022-04-09)"</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"State"</span>,</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Death Rate (per 100k people)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="period-3" class="level4">
+<h4 class="anchored" data-anchor-id="period-3">2.3 Period 3</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.3.1 State-Level COVID-19 Death Rate</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>p2.<span class="fl">3.1</span> <span class="ot">&lt;-</span>covid_period_3<span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">covid_death_rate_100k =</span> (covid_death <span class="sc">/</span> population)<span class="sc">*</span><span class="fl">1e5</span>)<span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>covid_death_rate_100k, <span class="at">color=</span> state))<span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 7. State-Level COVID-19 Death Rate</span><span class="sc">\n</span><span class="st">(2022-04-09 to 2023-05-13)"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Death Rate (per 100k People)"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#2.3.2 State-Level Cumulative COVID-19 Death Rates</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>p2.<span class="fl">3.2</span> <span class="ot">&lt;-</span> covid_period_3 <span class="sc">|&gt;</span> </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">covid_death =</span> <span class="fu">sum</span>(covid_death, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">population =</span> <span class="fu">first</span>(population),            </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">death_rate_per_100k =</span> (covid_death <span class="sc">/</span>population)<span class="sc">*</span><span class="fl">1e5</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">'drop'</span>)<span class="sc">|&gt;</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(state, death_rate_per_100k), <span class="at">y=</span>death_rate_per_100k))<span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'lightblue'</span>)<span class="sc">+</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 8. State-Level Cumulative COVID-19 Death Rates</span><span class="sc">\n</span><span class="st">(2022-04-09 to 2023-05-13)"</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"State"</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Death Rate (per 100k people)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="covid-19-virulence-trend" class="level3">
+<h3 class="anchored" data-anchor-id="covid-19-virulence-trend">3) COVID 19 Virulence Trend</h3>
+<p><em>Describe if COVID-19 became less or more virulent across the different periods.</em></p>
+<p>To evaluate the trend of COVID-19 virulence acorss different periods, we first computed case fatality rate (CFR):</p>
+<p><span class="math display">\[\text{Case Fatality Rate} = \left(\frac{\text{COVID-19 Death}}{\text{COVID-19 Cases}}\right) \times 100\]</span></p>
+<p>We then visualised the changes in the CFR over time within specified period with two different plots:</p>
+<ul>
+<li><p><strong>National COVID-19 Case Fatality Rate</strong></p></li>
+<li><p><strong>State-Level COVID-19 Case Fatality Rates</strong></p></li>
+</ul>
+<section id="period-1-1" class="level4">
+<h4 class="anchored" data-anchor-id="period-1-1">3.1 Period 1</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#3.1.1 National COVID-19 Case Fatality Rate</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>p3.<span class="fl">1.1</span> <span class="ot">&lt;-</span> covid_period_1<span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date)<span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">covid_death =</span> <span class="fu">sum</span>(covid_death, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">cases_total =</span> <span class="fu">sum</span>(cases, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">'drop'</span>)<span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">case_fatality_rate =</span> (covid_death<span class="sc">/</span>cases_total)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>case_fatality_rate))<span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 9. National COVID-19 Case Fatality Rate (2020-01-11 to 2021-11-06)"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Case Fatality Rate (%)"</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#3.1.2 State-Level COVID-19 Case Fatality Rates</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>p3.<span class="fl">1.2</span> <span class="ot">&lt;-</span> covid_period_1<span class="sc">|&gt;</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">case_fatality_rate =</span> (covid_death<span class="sc">/</span>cases)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">|&gt;</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>case_fatality_rate, <span class="at">color=</span>state))<span class="sc">+</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 10. State-Level COVID-19 Case Fatality Rates</span><span class="sc">\n</span><span class="st">(2020-01-11 to 2021-11-06)"</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Case Fatality Rate (%)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="period-2-1" class="level4">
+<h4 class="anchored" data-anchor-id="period-2-1">3.2 Period 2</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#3.2.1 National COVID-19 Case Fatality Rate</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>p3.<span class="fl">2.1</span> <span class="ot">&lt;-</span> covid_period_2<span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date)<span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">covid_death =</span> <span class="fu">sum</span>(covid_death, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">cases_total =</span> <span class="fu">sum</span>(cases, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">'drop'</span>)<span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">case_fatality_rate =</span> (covid_death<span class="sc">/</span>cases_total)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">|&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>case_fatality_rate))<span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 11. National COVID-19 Case Fatality Rate</span><span class="sc">\n</span><span class="st">(2021-11-06 to 2022-04-09)"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Case Fatality Rate (%)"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#3.2.2 State-Level COVID-19 Case Fatality Rates</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>p3.<span class="fl">2.2</span> <span class="ot">&lt;-</span> covid_period_2<span class="sc">|&gt;</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">case_fatality_rate =</span> (covid_death<span class="sc">/</span>cases)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">|&gt;</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>case_fatality_rate, <span class="at">color=</span>state))<span class="sc">+</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 12. State-Level COVID-19 Case Fatality Rates</span><span class="sc">\n</span><span class="st">(2021-11-06 to 2022-04-09)"</span>,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Case Fatality Rate (%)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="period-3-1" class="level4">
+<h4 class="anchored" data-anchor-id="period-3-1">3.3 Period 3</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#3.3.1 National COVID-19 Case Fatality Rate</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>p3.<span class="fl">3.1</span> <span class="ot">&lt;-</span> covid_period_3<span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date)<span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">covid_death =</span> <span class="fu">sum</span>(covid_death, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">cases_total =</span> <span class="fu">sum</span>(cases, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">'drop'</span>)<span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">case_fatality_rate =</span> (covid_death<span class="sc">/</span>cases_total)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>case_fatality_rate))<span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 13. National COVID-19 Case Fatality Rate</span><span class="sc">\n</span><span class="st">(2022-04-09 to 2023-05-13)"</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Case Fatality Rate (%)"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#3.3.2 State-Level COVID-19 Case Fatality Rates</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>p3.<span class="fl">3.2</span> <span class="ot">&lt;-</span> covid_period_3<span class="sc">|&gt;</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">case_fatality_rate =</span> (covid_death<span class="sc">/</span>cases)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">|&gt;</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>case_fatality_rate, <span class="at">color=</span>state))<span class="sc">+</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Figure 14. State-Level COVID-19 Case Fatality Rates</span><span class="sc">\n</span><span class="st">(2022-04-09 to 2023-05-13)"</span>,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Case Fatality Rate (%)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="weekly-excess-mortality-by-state" class="level3">
+<h3 class="anchored" data-anchor-id="weekly-excess-mortality-by-state">4) Weekly Excess Mortality by State</h3>
+<p><em>For those working in groups:</em> Estimate excess mortality for each week for each state. Do COVID-19 deaths explain the excess mortality?</p>
+<p>From: https://data.cdc.gov/NCHS/Provisional-COVID-19-Death-Counts-by-Week-Ending-D/r8kw-7aab/about_data</p>
+<blockquote class="blockquote">
+<p>“Percent of expected deaths is the number of weekly deaths for all causes compared to the average number across the same week in 2017–2019.”</p>
+</blockquote>
+<p>From: https://www.cdc.gov/nchs/nvss/vsrr/covid19/index.htm</p>
+<blockquote class="blockquote">
+<p>“Percent of expected deaths provided in this release are shown to provide context for interpreting provisional counts of COVID-19 deaths and deaths due to related causes. Where estimated values are high (e.g., greater than 100%), this suggests that mortality is higher in 2020-2023 relative to the same weeks of prior years. Where estimated values of completeness are low, this could indicate that data are incomplete due to delayed reporting, or that mortality is lower in 2020-2023 compared with prior years, or some combination of these factors.”</p>
+</blockquote>
+<p>In other words, if <code>percentage_expected_death</code> &gt; 100, mortality is higher now (2020-2023) than it was in prior years. Where <code>percentage_expected_death</code> &lt; 100, mortality is lower now (2020-2023) than it was in prior years.</p>
+<p><span class="math display">\[\text{Percentage Expected Death} = \left(\frac{\text{Total Death 2020 to 2024}}{\text{Total Death 2017 to 2019}}\right) \times 100
+\]</span></p>
+<p>Since we are comparing across states, states with larger populations will have larger excess mortalities. Therefore, we computed mortality rates (per 100,000) to allow for comparison between states.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute excess mortality</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>covid_exp_deaths <span class="ot">&lt;-</span> covid <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute expected deaths</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_exp_death =</span> percentage_expected_death <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exp_death =</span> total_death <span class="sc">/</span> prop_exp_death) <span class="sc">|&gt;</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute excess mortality</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># need to use rates since mortality will depend on population</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_death_rate =</span> total_death <span class="sc">/</span> population <span class="sc">*</span> <span class="fl">1e5</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">exp_death_rate =</span> exp_death <span class="sc">/</span> population <span class="sc">*</span> <span class="fl">1e5</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exc_mort_rate =</span> total_death_rate <span class="sc">-</span> exp_death_rate)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># plot excess mortality</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># for simplicity of viewing, will collapse to total excess mortality over all US</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> covid_exp_deaths <span class="sc">|&gt;</span> </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(state, date, covid_death, total_death, exp_death, population) <span class="sc">|&gt;</span> </span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">|&gt;</span> </span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">covid_death =</span> <span class="fu">sum</span>(covid_death, <span class="at">na.rm=</span>T),</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_death =</span> <span class="fu">sum</span>(total_death, <span class="at">na.rm=</span>T),</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">exp_death =</span> <span class="fu">sum</span>(exp_death, <span class="at">na.rm=</span>T),</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">population =</span> <span class="fu">sum</span>(population, <span class="at">na.rm=</span>T) <span class="co"># since we are collapsing across states, sum population of each state to get total US pop</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_death_rate =</span> total_death <span class="sc">/</span> population <span class="sc">*</span> <span class="fl">1e5</span>,</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">exp_death_rate =</span> exp_death <span class="sc">/</span> population <span class="sc">*</span> <span class="fl">1e5</span>,</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">covid_death_rate =</span> covid_death <span class="sc">/</span> population <span class="sc">*</span> <span class="fl">1e5</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exc_mort_rate =</span> total_death_rate <span class="sc">-</span> exp_death_rate) <span class="sc">|&gt;</span> </span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, covid_death_rate, exc_mort_rate) <span class="sc">|&gt;</span> </span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"covid_death_rate"</span>, <span class="st">"exc_mort_rate"</span>), <span class="at">names_to =</span> <span class="st">"death_type"</span>, <span class="at">values_to =</span> <span class="st">"num_deaths"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">death_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    death_type <span class="sc">==</span> <span class="st">"covid_death_rate"</span> <span class="sc">~</span> <span class="st">"COVID Death Rate"</span>,</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    death_type <span class="sc">==</span> <span class="st">"exc_mort_rate"</span> <span class="sc">~</span> <span class="st">"Excess Mortality Rate"</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span> </span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> date,</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> num_deaths,</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> death_type</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Death Rate (per 100,000)"</span>,</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Death Rate Type"</span>,</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Figure 15. Overall Excess Mortality and COVID Death Rates in U.S.</span><span class="sc">\n</span><span class="st">Throughout Pandemic"</span></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="excess-mortality-by-state-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="excess-mortality-by-state-comparison">5) Excess Mortality by State Comparison</h3>
+<p><em>For those working in groups: Repeat 2 but for excess mortality instead of COVID-19 deaths.</em></p>
+<p>I.e. For each period compute the excess mortality by state. Describe which states did better or worse during the different periods.</p>
+<p>We aggregated across all dates for easy visualisation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>covid_pers <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Period 1</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">per1 =</span> <span class="fu">list</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">start =</span> <span class="fu">make_date</span>(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">11</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">end =</span> <span class="fu">make_date</span>(<span class="dv">2021</span>, <span class="dv">11</span>, <span class="dv">6</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Period 2</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">per2 =</span> <span class="fu">list</span>(</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">start =</span> <span class="fu">make_date</span>(<span class="dv">2021</span>, <span class="dv">11</span>, <span class="dv">6</span>),</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">end =</span> <span class="fu">make_date</span>(<span class="dv">2022</span>, <span class="dv">4</span>, <span class="dv">9</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Period 3</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">per3 =</span> <span class="fu">list</span>(</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">start =</span> <span class="fu">make_date</span>(<span class="dv">2022</span>, <span class="dv">4</span>, <span class="dv">9</span>),</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">end =</span> <span class="fu">make_date</span>(<span class="dv">2023</span>, <span class="dv">5</span>, <span class="dv">13</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># aggregate across all dates</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>exc_mortality_period <span class="ot">&lt;-</span> <span class="cf">function</span>(per_start_date, per_end_date) {</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> covid_exp_deaths <span class="sc">|&gt;</span> </span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>((date <span class="sc">&gt;=</span> per_start_date) <span class="sc">&amp;</span> (date <span class="sc">&lt;</span> per_end_date)) <span class="sc">|&gt;</span> </span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(state) <span class="sc">|&gt;</span> </span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">covid_death =</span> <span class="fu">sum</span>(covid_death, <span class="at">na.rm=</span>T),</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">total_death =</span> <span class="fu">sum</span>(total_death, <span class="at">na.rm=</span>T),</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">exp_death =</span> <span class="fu">sum</span>(exp_death, <span class="at">na.rm=</span>T),</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">population =</span> <span class="fu">first</span>(population)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">total_death_rate =</span> total_death <span class="sc">/</span> population <span class="sc">*</span> <span class="fl">1e5</span>,</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">exp_death_rate =</span> exp_death <span class="sc">/</span> population <span class="sc">*</span> <span class="fl">1e5</span>,</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">covid_death_rate =</span> exp_death <span class="sc">/</span> population <span class="sc">*</span> <span class="fl">1e5</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">exc_mort_rate =</span> total_death_rate <span class="sc">-</span> exp_death_rate)</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="co">#Period 1</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>exc_mort_per_1 <span class="ot">&lt;-</span> <span class="fu">exc_mortality_period</span>(covid_pers<span class="sc">$</span>per1<span class="sc">$</span>start, covid_pers<span class="sc">$</span>per1<span class="sc">$</span>end)</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>p5<span class="fl">.1</span> <span class="ot">&lt;-</span> exc_mort_per_1 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">reorder</span>(state, exc_mort_rate)) <span class="sc">|&gt;</span> </span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> state, <span class="at">x =</span> exc_mort_rate)) <span class="sc">+</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Excess Mortality Rate (per 100,000 people)"</span>,</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"State"</span>,</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Figure 16. Excess Mortality Rate By State During Period 1</span><span class="sc">\n</span><span class="st">(2020-01-11 to 2021-11-06)"</span></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="co">#Period 2</span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>exc_mort_per_2 <span class="ot">&lt;-</span> <span class="fu">exc_mortality_period</span>(covid_pers<span class="sc">$</span>per2<span class="sc">$</span>start, covid_pers<span class="sc">$</span>per2<span class="sc">$</span>end)</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>p5<span class="fl">.2</span> <span class="ot">&lt;-</span> exc_mort_per_2 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">reorder</span>(state, exc_mort_rate)) <span class="sc">|&gt;</span> </span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> state, <span class="at">x =</span> exc_mort_rate)) <span class="sc">+</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Excess Mortality Rate (per 100,000 people)"</span>,</span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"State"</span>,</span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Figure 17. Excess Mortality Rate By State During Period 2</span><span class="sc">\n</span><span class="st">(2021-11-06 to 2022-04-09)"</span></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="co">#Period 3</span></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="co">#Period 3</span></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>exc_mort_per_3 <span class="ot">&lt;-</span> <span class="fu">exc_mortality_period</span>(covid_pers<span class="sc">$</span>per3<span class="sc">$</span>start, covid_pers<span class="sc">$</span>per3<span class="sc">$</span>end)</span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>p5<span class="fl">.3</span> <span class="ot">&lt;-</span> exc_mort_per_3 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">reorder</span>(state, exc_mort_rate)) <span class="sc">|&gt;</span> </span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> state, <span class="at">x =</span> exc_mort_rate)) <span class="sc">+</span></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Excess Mortality Rate (per 100,000 people)"</span>,</span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"State"</span>,</span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Figure 18. Excess Mortality Rate By State During Period 3</span><span class="sc">\n</span><span class="st">(2022-04-09 to 2023-05-13)"</span></span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="covid-19-pandemic-waves-1" class="level3">
+<h3 class="anchored" data-anchor-id="covid-19-pandemic-waves-1">1) COVID-19 Pandemic Waves</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p1<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-dcb87c25b5bda5545950" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-dcb87c25b5bda5545950">{"x":{"data":[{"x":[18272,18279,18286,18293,18300,18307,18314,18321,18328,18335,18342,18349,18356,18363,18370,18377,18384,18391,18398,18405,18412,18419,18426,18433,18440,18447,18454,18461,18468,18475,18482,18489,18496,18503,18510,18517,18524,18531,18538,18545,18552,18559,18566,18573,18580,18587,18594,18601,18608,18615,18622,18629,18636,18643,18650,18657,18664,18671,18678,18685,18692,18699,18706,18713,18720,18727,18734,18741,18748,18755,18762,18769,18776,18783,18790,18797,18804,18811,18818,18825,18832,18839,18846,18853,18860,18867,18874,18881,18888,18895,18902,18909,18916,18923,18930,18937,18944,18951,18958,18965,18972,18979,18986,18993,19000,19007,19014,19021,19028,19035,19042,19049,19056,19063,19070,19077,19084,19091,19098,19105,19112,19119,19126,19133,19140,19147,19154,19161,19168,19175,19182,19189,19196,19203,19210,19217,19224,19231,19238,19245,19252,19259,19266,19273,19280,19287,19294,19301,19308,19315,19322,19329,19336,19343,19350,19357,19364,19371,19378,19385,19392,19399,19406,19413,19420,19427,19434,19441,19448,19455,19462,19469,19476,19483,19490,19497,19504,19511,19518,19525,19532,19539,19546,19553,19560,19567,19574,19581,19588,19595,19602,19609,19616,19623,19630,19637,19644,19651,19658,19665,19672,19679,19686,19693,19700,19707,19714,19721,19728,19735,19742,19749,19756,19763,19770,19777,19784,19791,19798,19805,19812,19819,19826,19833,19840,19847,19854,19861,19868,19875,19882,19889,19896,19903,19910,19917,19924,19931,19938,19945,19952,19959,19966,19973,19980,19987,19994,20001,20008,20015,20022,20029,20036,20043,20050,20057,20064],"y":[0,0,6,5,12,13,16,27,101,1082,6429,42723,115197,179356,171653,175309,181133,174577,151892,150486,139736,139569,144253,151507,207223,289972,355010,421559,456685,453790,411220,398574,348459,294140,283564,255998,274707,290683,296965,306025,358789,424791,519327,655011,890746,1104747,1236718,1165455,1451928,1511242,1487353,1291562,1555150,1664240,1338709,1091016,881711,709968,514054,438231,419196,365197,350631,374327,419398,432459,470335,432512,358883,325688,255180,207064,161021,118025,99600,87360,83185,96647,131880,247860,283645,457554,667758,836947,976653,1038049,1166320,1072037,1043350,890677,788423,688812,607556,522301,499185,494997,533921,608238,651962,603330,838636,812675,1080532,1958218,3979213,5199932,5358057,4334738,2655644,1453128,879627,536379,367756,258677,205728,186933,183421,188894,206627,279168,355570,438075,565098,682587,736733,688173,737844,702129,664512,748386,746146,837493,862596,891544,804284,731188,674733,627382,595740,505397,454218,379654,323742,292932,249755,247656,247892,258133,273037,263860,292345,295206,442173,429261,467833,375511,456804,411127,313060,286547,273923,269245,252198,228547,224388,181229,166673,154568,139993,130451,107411,104694,94214,83267,73708,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"text":["date: 2020-01-11<br />cases_total:       0","date: 2020-01-18<br />cases_total:       0","date: 2020-01-25<br />cases_total:       6","date: 2020-02-01<br />cases_total:       5","date: 2020-02-08<br />cases_total:      12","date: 2020-02-15<br />cases_total:      13","date: 2020-02-22<br />cases_total:      16","date: 2020-02-29<br />cases_total:      27","date: 2020-03-07<br />cases_total:     101","date: 2020-03-14<br />cases_total:    1082","date: 2020-03-21<br />cases_total:    6429","date: 2020-03-28<br />cases_total:   42723","date: 2020-04-04<br />cases_total:  115197","date: 2020-04-11<br />cases_total:  179356","date: 2020-04-18<br />cases_total:  171653","date: 2020-04-25<br />cases_total:  175309","date: 2020-05-02<br />cases_total:  181133","date: 2020-05-09<br />cases_total:  174577","date: 2020-05-16<br />cases_total:  151892","date: 2020-05-23<br />cases_total:  150486","date: 2020-05-30<br />cases_total:  139736","date: 2020-06-06<br />cases_total:  139569","date: 2020-06-13<br />cases_total:  144253","date: 2020-06-20<br />cases_total:  151507","date: 2020-06-27<br />cases_total:  207223","date: 2020-07-04<br />cases_total:  289972","date: 2020-07-11<br />cases_total:  355010","date: 2020-07-18<br />cases_total:  421559","date: 2020-07-25<br />cases_total:  456685","date: 2020-08-01<br />cases_total:  453790","date: 2020-08-08<br />cases_total:  411220","date: 2020-08-15<br />cases_total:  398574","date: 2020-08-22<br />cases_total:  348459","date: 2020-08-29<br />cases_total:  294140","date: 2020-09-05<br />cases_total:  283564","date: 2020-09-12<br />cases_total:  255998","date: 2020-09-19<br />cases_total:  274707","date: 2020-09-26<br />cases_total:  290683","date: 2020-10-03<br />cases_total:  296965","date: 2020-10-10<br />cases_total:  306025","date: 2020-10-17<br />cases_total:  358789","date: 2020-10-24<br />cases_total:  424791","date: 2020-10-31<br />cases_total:  519327","date: 2020-11-07<br />cases_total:  655011","date: 2020-11-14<br />cases_total:  890746","date: 2020-11-21<br />cases_total: 1104747","date: 2020-11-28<br />cases_total: 1236718","date: 2020-12-05<br />cases_total: 1165455","date: 2020-12-12<br />cases_total: 1451928","date: 2020-12-19<br />cases_total: 1511242","date: 2020-12-26<br />cases_total: 1487353","date: 2021-01-02<br />cases_total: 1291562","date: 2021-01-09<br />cases_total: 1555150","date: 2021-01-16<br />cases_total: 1664240","date: 2021-01-23<br />cases_total: 1338709","date: 2021-01-30<br />cases_total: 1091016","date: 2021-02-06<br />cases_total:  881711","date: 2021-02-13<br />cases_total:  709968","date: 2021-02-20<br />cases_total:  514054","date: 2021-02-27<br />cases_total:  438231","date: 2021-03-06<br />cases_total:  419196","date: 2021-03-13<br />cases_total:  365197","date: 2021-03-20<br />cases_total:  350631","date: 2021-03-27<br />cases_total:  374327","date: 2021-04-03<br />cases_total:  419398","date: 2021-04-10<br />cases_total:  432459","date: 2021-04-17<br />cases_total:  470335","date: 2021-04-24<br />cases_total:  432512","date: 2021-05-01<br />cases_total:  358883","date: 2021-05-08<br />cases_total:  325688","date: 2021-05-15<br />cases_total:  255180","date: 2021-05-22<br />cases_total:  207064","date: 2021-05-29<br />cases_total:  161021","date: 2021-06-05<br />cases_total:  118025","date: 2021-06-12<br />cases_total:   99600","date: 2021-06-19<br />cases_total:   87360","date: 2021-06-26<br />cases_total:   83185","date: 2021-07-03<br />cases_total:   96647","date: 2021-07-10<br />cases_total:  131880","date: 2021-07-17<br />cases_total:  247860","date: 2021-07-24<br />cases_total:  283645","date: 2021-07-31<br />cases_total:  457554","date: 2021-08-07<br />cases_total:  667758","date: 2021-08-14<br />cases_total:  836947","date: 2021-08-21<br />cases_total:  976653","date: 2021-08-28<br />cases_total: 1038049","date: 2021-09-04<br />cases_total: 1166320","date: 2021-09-11<br />cases_total: 1072037","date: 2021-09-18<br />cases_total: 1043350","date: 2021-09-25<br />cases_total:  890677","date: 2021-10-02<br />cases_total:  788423","date: 2021-10-09<br />cases_total:  688812","date: 2021-10-16<br />cases_total:  607556","date: 2021-10-23<br />cases_total:  522301","date: 2021-10-30<br />cases_total:  499185","date: 2021-11-06<br />cases_total:  494997","date: 2021-11-13<br />cases_total:  533921","date: 2021-11-20<br />cases_total:  608238","date: 2021-11-27<br />cases_total:  651962","date: 2021-12-04<br />cases_total:  603330","date: 2021-12-11<br />cases_total:  838636","date: 2021-12-18<br />cases_total:  812675","date: 2021-12-25<br />cases_total: 1080532","date: 2022-01-01<br />cases_total: 1958218","date: 2022-01-08<br />cases_total: 3979213","date: 2022-01-15<br />cases_total: 5199932","date: 2022-01-22<br />cases_total: 5358057","date: 2022-01-29<br />cases_total: 4334738","date: 2022-02-05<br />cases_total: 2655644","date: 2022-02-12<br />cases_total: 1453128","date: 2022-02-19<br />cases_total:  879627","date: 2022-02-26<br />cases_total:  536379","date: 2022-03-05<br />cases_total:  367756","date: 2022-03-12<br />cases_total:  258677","date: 2022-03-19<br />cases_total:  205728","date: 2022-03-26<br />cases_total:  186933","date: 2022-04-02<br />cases_total:  183421","date: 2022-04-09<br />cases_total:  188894","date: 2022-04-16<br />cases_total:  206627","date: 2022-04-23<br />cases_total:  279168","date: 2022-04-30<br />cases_total:  355570","date: 2022-05-07<br />cases_total:  438075","date: 2022-05-14<br />cases_total:  565098","date: 2022-05-21<br />cases_total:  682587","date: 2022-05-28<br />cases_total:  736733","date: 2022-06-04<br />cases_total:  688173","date: 2022-06-11<br />cases_total:  737844","date: 2022-06-18<br />cases_total:  702129","date: 2022-06-25<br />cases_total:  664512","date: 2022-07-02<br />cases_total:  748386","date: 2022-07-09<br />cases_total:  746146","date: 2022-07-16<br />cases_total:  837493","date: 2022-07-23<br />cases_total:  862596","date: 2022-07-30<br />cases_total:  891544","date: 2022-08-06<br />cases_total:  804284","date: 2022-08-13<br />cases_total:  731188","date: 2022-08-20<br />cases_total:  674733","date: 2022-08-27<br />cases_total:  627382","date: 2022-09-03<br />cases_total:  595740","date: 2022-09-10<br />cases_total:  505397","date: 2022-09-17<br />cases_total:  454218","date: 2022-09-24<br />cases_total:  379654","date: 2022-10-01<br />cases_total:  323742","date: 2022-10-08<br />cases_total:  292932","date: 2022-10-15<br />cases_total:  249755","date: 2022-10-22<br />cases_total:  247656","date: 2022-10-29<br />cases_total:  247892","date: 2022-11-05<br />cases_total:  258133","date: 2022-11-12<br />cases_total:  273037","date: 2022-11-19<br />cases_total:  263860","date: 2022-11-26<br />cases_total:  292345","date: 2022-12-03<br />cases_total:  295206","date: 2022-12-10<br />cases_total:  442173","date: 2022-12-17<br />cases_total:  429261","date: 2022-12-24<br />cases_total:  467833","date: 2022-12-31<br />cases_total:  375511","date: 2023-01-07<br />cases_total:  456804","date: 2023-01-14<br />cases_total:  411127","date: 2023-01-21<br />cases_total:  313060","date: 2023-01-28<br />cases_total:  286547","date: 2023-02-04<br />cases_total:  273923","date: 2023-02-11<br />cases_total:  269245","date: 2023-02-18<br />cases_total:  252198","date: 2023-02-25<br />cases_total:  228547","date: 2023-03-04<br />cases_total:  224388","date: 2023-03-11<br />cases_total:  181229","date: 2023-03-18<br />cases_total:  166673","date: 2023-03-25<br />cases_total:  154568","date: 2023-04-01<br />cases_total:  139993","date: 2023-04-08<br />cases_total:  130451","date: 2023-04-15<br />cases_total:  107411","date: 2023-04-22<br />cases_total:  104694","date: 2023-04-29<br />cases_total:   94214","date: 2023-05-06<br />cases_total:   83267","date: 2023-05-13<br />cases_total:   73708","date: 2023-05-20<br />cases_total:       0","date: 2023-05-27<br />cases_total:       0","date: 2023-06-03<br />cases_total:       0","date: 2023-06-10<br />cases_total:       0","date: 2023-06-17<br />cases_total:       0","date: 2023-06-24<br />cases_total:       0","date: 2023-07-01<br />cases_total:       0","date: 2023-07-08<br />cases_total:       0","date: 2023-07-15<br />cases_total:       0","date: 2023-07-22<br />cases_total:       0","date: 2023-07-29<br />cases_total:       0","date: 2023-08-05<br />cases_total:       0","date: 2023-08-12<br />cases_total:       0","date: 2023-08-19<br />cases_total:       0","date: 2023-08-26<br />cases_total:       0","date: 2023-09-02<br />cases_total:       0","date: 2023-09-09<br />cases_total:       0","date: 2023-09-16<br />cases_total:       0","date: 2023-09-23<br />cases_total:       0","date: 2023-09-30<br />cases_total:       0","date: 2023-10-07<br />cases_total:       0","date: 2023-10-14<br />cases_total:       0","date: 2023-10-21<br />cases_total:       0","date: 2023-10-28<br />cases_total:       0","date: 2023-11-04<br />cases_total:       0","date: 2023-11-11<br />cases_total:       0","date: 2023-11-18<br />cases_total:       0","date: 2023-11-25<br />cases_total:       0","date: 2023-12-02<br />cases_total:       0","date: 2023-12-09<br />cases_total:       0","date: 2023-12-16<br />cases_total:       0","date: 2023-12-23<br />cases_total:       0","date: 2023-12-30<br />cases_total:       0","date: 2024-01-06<br />cases_total:       0","date: 2024-01-13<br />cases_total:       0","date: 2024-01-20<br />cases_total:       0","date: 2024-01-27<br />cases_total:       0","date: 2024-02-03<br />cases_total:       0","date: 2024-02-10<br />cases_total:       0","date: 2024-02-17<br />cases_total:       0","date: 2024-02-24<br />cases_total:       0","date: 2024-03-02<br />cases_total:       0","date: 2024-03-09<br />cases_total:       0","date: 2024-03-16<br />cases_total:       0","date: 2024-03-23<br />cases_total:       0","date: 2024-03-30<br />cases_total:       0","date: 2024-04-06<br />cases_total:       0","date: 2024-04-13<br />cases_total:       0","date: 2024-04-20<br />cases_total:       0","date: 2024-04-27<br />cases_total:       0","date: 2024-05-04<br />cases_total:       0","date: 2024-05-11<br />cases_total:       0","date: 2024-05-18<br />cases_total:       0","date: 2024-05-25<br />cases_total:       0","date: 2024-06-01<br />cases_total:       0","date: 2024-06-08<br />cases_total:       0","date: 2024-06-15<br />cases_total:       0","date: 2024-06-22<br />cases_total:       0","date: 2024-06-29<br />cases_total:       0","date: 2024-07-06<br />cases_total:       0","date: 2024-07-13<br />cases_total:       0","date: 2024-07-20<br />cases_total:       0","date: 2024-07-27<br />cases_total:       0","date: 2024-08-03<br />cases_total:       0","date: 2024-08-10<br />cases_total:       0","date: 2024-08-17<br />cases_total:       0","date: 2024-08-24<br />cases_total:       0","date: 2024-08-31<br />cases_total:       0","date: 2024-09-07<br />cases_total:       0","date: 2024-09-14<br />cases_total:       0","date: 2024-09-21<br />cases_total:       0","date: 2024-09-28<br />cases_total:       0","date: 2024-10-05<br />cases_total:       0","date: 2024-10-12<br />cases_total:       0","date: 2024-10-19<br />cases_total:       0","date: 2024-10-26<br />cases_total:       0","date: 2024-11-02<br />cases_total:       0","date: 2024-11-09<br />cases_total:       0","date: 2024-11-16<br />cases_total:       0","date: 2024-11-23<br />cases_total:       0","date: 2024-11-30<br />cases_total:       0","date: 2024-12-07<br />cases_total:       0"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":1.8897637795275593,"color":"rgba(255,0,0,1)","dash":"solid"},"frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":54.794520547945211},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Figure 2. COVID-19 cases from 2020 to 2023","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[18182.400000000001,20153.599999999999],"tickmode":"array","ticktext":["2020","2022","2024"],"tickvals":[18262,18993,19723],"categoryorder":"array","categoryarray":["2020","2022","2024"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Date","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-267902.85000000003,5625959.8499999996],"tickmode":"array","ticktext":["0e+00","2e+06","4e+06"],"tickvals":[0,2000000,3999999.9999999995],"categoryorder":"array","categoryarray":["0e+00","2e+06","4e+06"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Total COVID Cases","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"48d4733f7817":{"x":{},"y":{},"type":"scatter"},"48d44be5691d":{"x":{},"y":{}}},"cur_data":"48d4733f7817","visdat":{"48d4733f7817":["function (y) ","x"],"48d44be5691d":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Our decision to segment the COVID-19 pandemic from January 2020 to May 2023, rather than to December 2024, was due the discontinuation of the case data in May 2023. We chose to analyze the pandemic in three distinct waves based on variations in weekly case counts and death rates, as depicted in Supplementary Figures 1 and 2. This segmentation was driven by a focus on case counts over death rates to better represent the virus’s spread among various populations, including younger individuals less likely to experience severe outcomes such as death. The first wave, from January 11, 2020, to November 6, 2021, captured the initial outbreak and its fluctuations. The second wave, from November 6, 2021, to April 9, 2022, was marked by a notable peak on January 22, 2022. The third wave continued from April 9, 2022, to May 13, 2023, reflecting a persistent but less volatile transmission.</p>
+</section>
+<section id="covid-19-death-rates-by-state-comparison-1" class="level3">
+<h3 class="anchored" data-anchor-id="covid-19-death-rates-by-state-comparison-1">2) COVID 19 Death Rates by State Comparison</h3>
+<p>We analyzed state-level COVID-19 death rates across different periods to identify regional disparities. Insights were drawn from visualizations including time series plots and bar charts detailing state-level COVID-19 death rates over time and cumulatively.</p>
+<ul>
+<li><p><strong>Period 1 (January 11, 2020, to November 6, 2021):</strong></p>
+<p>Mississippi exhibited the highest COVID-19 death rates, while Vermont reported the lowest (Supplementary Figures 3 and 4).</p></li>
+<li><p><strong>Period 2 (November 6, 2021, to April 9, 2022):</strong></p>
+<p>West Virginia showed the highest rates, with Hawaii recording the lowest (Supplementary Figures 5 and 6).</p></li>
+<li><p><strong>Period 3 (April 9, 2022, to May 13, 2023):</strong></p>
+<p>The highest rates were observed in Kentucky, with Alaska having the lowest (Supplementary Figures 7 and 8).</p></li>
+</ul>
+</section>
+<section id="covid-19-virulence-trend-1" class="level3">
+<h3 class="anchored" data-anchor-id="covid-19-virulence-trend-1">3) COVID 19 Virulence Trend</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p3.<span class="fl">1.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-89971d12992b134e9067" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-89971d12992b134e9067">{"x":{"data":[{"x":[18272,18279,18286,18293,18300,18307,18314,18321,18328,18335,18342,18349,18356,18363,18370,18377,18384,18391,18398,18405,18412,18419,18426,18433,18440,18447,18454,18461,18468,18475,18482,18489,18496,18503,18510,18517,18524,18531,18538,18545,18552,18559,18566,18573,18580,18587,18594,18601,18608,18615,18622,18629,18636,18643,18650,18657,18664,18671,18678,18685,18692,18699,18706,18713,18720,18727,18734,18741,18748,18755,18762,18769,18776,18783,18790,18797,18804,18811,18818,18825,18832,18839,18846,18853,18860,18867,18874,18881,18888,18895,18902,18909,18916,18923,18930],"y":[null,null,0,0,0,0,0,0,20.792079207920793,2.5878003696857674,5.9418261004821904,5.0815719869859324,5.8855699367171024,6.3928722763665551,7.7534327975625246,7.3778300030232336,6.3406447196259101,5.8329562313477714,5.6625760408711452,4.5133766596228222,4.2065036926776207,3.4556384297372631,2.8179656575599816,2.4738130911443035,1.8106098261293391,1.5411832866621604,1.6086870792372046,1.680429073984899,1.7946724766523969,1.8219881442958199,1.9014153008122172,1.8214936247723135,1.831205392886968,1.9477119738899846,1.763975680975018,1.8086078797490606,1.5569315670878425,1.4775545869555495,1.4308083444176924,1.5756882607630096,1.447368787783349,1.4115176639806399,1.3505941343315484,1.3309700142440355,1.1969742216075063,1.2097792526252618,1.2653652651615002,1.591481438579782,1.4378123433117895,1.4703138213469451,1.5608265152926037,1.9092385808811347,1.6534739414204418,1.5249002547709465,1.73839124111364,1.8225213929034954,1.883156725956691,1.8376884591981608,2.016325133157217,1.8736693661562054,1.5128961154209486,1.4512715055162007,1.316198510685022,1.0939632994681121,0.91679025651052215,0.92494317380375934,0.90509955669894859,1.0184688517312814,1.1167985109353189,1.1836481540615558,1.3997962222744731,1.5193370165745856,1.661273995317381,1.9241686083456895,1.9698795180722892,1.9104853479853481,1.8500931658351867,1.5116868604302254,1.1897179253867152,0.77261357217784232,0.95048387949725899,0.89082381533108668,0.96651781034446604,1.1218153598734448,1.2512120476771176,1.3692031879034612,1.3318814733520816,1.4385697508574797,1.4602961614031724,1.6098989869503759,1.6236208228324136,1.6161158632544148,1.6200975712526913,1.7038068087175784,1.5869867884651983],"text":["date: 2020-01-11<br />case_fatality_rate:        NaN","date: 2020-01-18<br />case_fatality_rate:        NaN","date: 2020-01-25<br />case_fatality_rate:  0.0000000","date: 2020-02-01<br />case_fatality_rate:  0.0000000","date: 2020-02-08<br />case_fatality_rate:  0.0000000","date: 2020-02-15<br />case_fatality_rate:  0.0000000","date: 2020-02-22<br />case_fatality_rate:  0.0000000","date: 2020-02-29<br />case_fatality_rate:  0.0000000","date: 2020-03-07<br />case_fatality_rate: 20.7920792","date: 2020-03-14<br />case_fatality_rate:  2.5878004","date: 2020-03-21<br />case_fatality_rate:  5.9418261","date: 2020-03-28<br />case_fatality_rate:  5.0815720","date: 2020-04-04<br />case_fatality_rate:  5.8855699","date: 2020-04-11<br />case_fatality_rate:  6.3928723","date: 2020-04-18<br />case_fatality_rate:  7.7534328","date: 2020-04-25<br />case_fatality_rate:  7.3778300","date: 2020-05-02<br />case_fatality_rate:  6.3406447","date: 2020-05-09<br />case_fatality_rate:  5.8329562","date: 2020-05-16<br />case_fatality_rate:  5.6625760","date: 2020-05-23<br />case_fatality_rate:  4.5133767","date: 2020-05-30<br />case_fatality_rate:  4.2065037","date: 2020-06-06<br />case_fatality_rate:  3.4556384","date: 2020-06-13<br />case_fatality_rate:  2.8179657","date: 2020-06-20<br />case_fatality_rate:  2.4738131","date: 2020-06-27<br />case_fatality_rate:  1.8106098","date: 2020-07-04<br />case_fatality_rate:  1.5411833","date: 2020-07-11<br />case_fatality_rate:  1.6086871","date: 2020-07-18<br />case_fatality_rate:  1.6804291","date: 2020-07-25<br />case_fatality_rate:  1.7946725","date: 2020-08-01<br />case_fatality_rate:  1.8219881","date: 2020-08-08<br />case_fatality_rate:  1.9014153","date: 2020-08-15<br />case_fatality_rate:  1.8214936","date: 2020-08-22<br />case_fatality_rate:  1.8312054","date: 2020-08-29<br />case_fatality_rate:  1.9477120","date: 2020-09-05<br />case_fatality_rate:  1.7639757","date: 2020-09-12<br />case_fatality_rate:  1.8086079","date: 2020-09-19<br />case_fatality_rate:  1.5569316","date: 2020-09-26<br />case_fatality_rate:  1.4775546","date: 2020-10-03<br />case_fatality_rate:  1.4308083","date: 2020-10-10<br />case_fatality_rate:  1.5756883","date: 2020-10-17<br />case_fatality_rate:  1.4473688","date: 2020-10-24<br />case_fatality_rate:  1.4115177","date: 2020-10-31<br />case_fatality_rate:  1.3505941","date: 2020-11-07<br />case_fatality_rate:  1.3309700","date: 2020-11-14<br />case_fatality_rate:  1.1969742","date: 2020-11-21<br />case_fatality_rate:  1.2097793","date: 2020-11-28<br />case_fatality_rate:  1.2653653","date: 2020-12-05<br />case_fatality_rate:  1.5914814","date: 2020-12-12<br />case_fatality_rate:  1.4378123","date: 2020-12-19<br />case_fatality_rate:  1.4703138","date: 2020-12-26<br />case_fatality_rate:  1.5608265","date: 2021-01-02<br />case_fatality_rate:  1.9092386","date: 2021-01-09<br />case_fatality_rate:  1.6534739","date: 2021-01-16<br />case_fatality_rate:  1.5249003","date: 2021-01-23<br />case_fatality_rate:  1.7383912","date: 2021-01-30<br />case_fatality_rate:  1.8225214","date: 2021-02-06<br />case_fatality_rate:  1.8831567","date: 2021-02-13<br />case_fatality_rate:  1.8376885","date: 2021-02-20<br />case_fatality_rate:  2.0163251","date: 2021-02-27<br />case_fatality_rate:  1.8736694","date: 2021-03-06<br />case_fatality_rate:  1.5128961","date: 2021-03-13<br />case_fatality_rate:  1.4512715","date: 2021-03-20<br />case_fatality_rate:  1.3161985","date: 2021-03-27<br />case_fatality_rate:  1.0939633","date: 2021-04-03<br />case_fatality_rate:  0.9167903","date: 2021-04-10<br />case_fatality_rate:  0.9249432","date: 2021-04-17<br />case_fatality_rate:  0.9050996","date: 2021-04-24<br />case_fatality_rate:  1.0184689","date: 2021-05-01<br />case_fatality_rate:  1.1167985","date: 2021-05-08<br />case_fatality_rate:  1.1836482","date: 2021-05-15<br />case_fatality_rate:  1.3997962","date: 2021-05-22<br />case_fatality_rate:  1.5193370","date: 2021-05-29<br />case_fatality_rate:  1.6612740","date: 2021-06-05<br />case_fatality_rate:  1.9241686","date: 2021-06-12<br />case_fatality_rate:  1.9698795","date: 2021-06-19<br />case_fatality_rate:  1.9104853","date: 2021-06-26<br />case_fatality_rate:  1.8500932","date: 2021-07-03<br />case_fatality_rate:  1.5116869","date: 2021-07-10<br />case_fatality_rate:  1.1897179","date: 2021-07-17<br />case_fatality_rate:  0.7726136","date: 2021-07-24<br />case_fatality_rate:  0.9504839","date: 2021-07-31<br />case_fatality_rate:  0.8908238","date: 2021-08-07<br />case_fatality_rate:  0.9665178","date: 2021-08-14<br />case_fatality_rate:  1.1218154","date: 2021-08-21<br />case_fatality_rate:  1.2512120","date: 2021-08-28<br />case_fatality_rate:  1.3692032","date: 2021-09-04<br />case_fatality_rate:  1.3318815","date: 2021-09-11<br />case_fatality_rate:  1.4385698","date: 2021-09-18<br />case_fatality_rate:  1.4602962","date: 2021-09-25<br />case_fatality_rate:  1.6098990","date: 2021-10-02<br />case_fatality_rate:  1.6236208","date: 2021-10-09<br />case_fatality_rate:  1.6161159","date: 2021-10-16<br />case_fatality_rate:  1.6200976","date: 2021-10-23<br />case_fatality_rate:  1.7038068","date: 2021-10-30<br />case_fatality_rate:  1.5869868"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":37.260273972602747},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Figure 9. National COVID-19 Case Fatality Rate (2020-01-11 to 2021-11-06)","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[18239.099999999999,18962.900000000001],"tickmode":"array","ticktext":["2020-01","2020-07","2021-01","2021-07"],"tickvals":[18262,18444,18628,18809],"categoryorder":"array","categoryarray":["2020-01","2020-07","2021-01","2021-07"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Date","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.0396039603960396,21.831683168316832],"tickmode":"array","ticktext":["0","5","10","15","20"],"tickvals":[0,5,10,15,20],"categoryorder":"array","categoryarray":["0","5","10","15","20"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Case Fatality Rate (%)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"48d45a091020":{"x":{},"y":{},"type":"scatter"},"48d4901d30e":{"x":{},"y":{}}},"cur_data":"48d45a091020","visdat":{"48d45a091020":["function (y) ","x"],"48d4901d30e":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>We evaluated COVID-10 virulence trend with CFR both nationally and across states. Our analysis highlighted periods of significant variation, detailed in Supplementary Figures 9 to 14.</p>
+<ul>
+<li><p><strong>Period 1 (January 11, 2020, to November 6, 2021):</strong> Nationally, CFR peaked at 20.79% early in the pandemic between February 29 and March 7, 2020, as shown in Supplementary Figure 9, then declined to 2.59% and ultimately to 0.77% by the end of this period. The highest state-specific CFR was observed in Florida at 77.27% (Supplementary Figure 10).</p></li>
+<li><p><strong>Period 2 (November 6, 2021, to April 9, 2022):</strong> CFR fluctuations characterized this period; it initially decreased, rose, and then fell again, with the highest reported at 1.68% and the lowest at 0.38% (Supplementary Figure 11). Ohio recorded the highest state CFR of 7.02% during this period (Supplementary Figure 12).</p></li>
+<li><p><strong>Period 3 (April 9, 2022, to May 13, 2023):</strong> A sharp initial decrease in CFR was followed by a gradual rise, with the period’s lowest at 0.25% and the highest at 1.07% (Supplementary Figure 13). The highest state CFR was in Kentucky at 8.58% (Supplementary Figure 14).</p></li>
+</ul>
+</section>
+<section id="weekly-excess-mortality-by-state-1" class="level3">
+<h3 class="anchored" data-anchor-id="weekly-excess-mortality-by-state-1">4) Weekly Excess Mortality by State</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p4) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-a04f9f6462ea8dbb9d21" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a04f9f6462ea8dbb9d21">{"x":{"data":[{"x":[18272,18279,18286,18293,18300,18307,18314,18321,18328,18335,18342,18349,18356,18363,18370,18377,18384,18391,18398,18405,18412,18419,18426,18433,18440,18447,18454,18461,18468,18475,18482,18489,18496,18503,18510,18517,18524,18531,18538,18545,18552,18559,18566,18573,18580,18587,18594,18601,18608,18615,18622,18629,18636,18643,18650,18657,18664,18671,18678,18685,18692,18699,18706,18713,18720,18727,18734,18741,18748,18755,18762,18769,18776,18783,18790,18797,18804,18811,18818,18825,18832,18839,18846,18853,18860,18867,18874,18881,18888,18895,18902,18909,18916,18923,18930,18937,18944,18951,18958,18965,18972,18979,18986,18993,19000,19007,19014,19021,19028,19035,19042,19049,19056,19063,19070,19077,19084,19091,19098,19105,19112,19119,19126,19133,19140,19147,19154,19161,19168,19175,19182,19189,19196,19203,19210,19217,19224,19231,19238,19245,19252,19259,19266,19273,19280,19287,19294,19301,19308,19315,19322,19329,19336,19343,19350,19357,19364,19371,19378,19385,19392,19399,19406,19413,19420,19427,19434,19441,19448,19455,19462,19469,19476,19483,19490,19497,19504,19511,19518,19525,19532,19539,19546,19553,19560,19567,19574,19581,19588,19595,19602,19609,19616,19623,19630,19637,19644,19651,19658,19665,19672,19679,19686,19693,19700,19707,19714,19721,19728,19735,19742,19749,19756,19763,19770,19777,19784,19791,19798,19805,19812,19819,19826,19833,19840,19847,19854,19861,19868,19875,19882,19889,19896,19903,19910,19917,19924,19931,19938,19945,19952,19959,19966,19973,19980,19987,19994,20001,20008,20015,20022,20029,20036,20043,20050,20057,20064],"y":[0,0,0,0,0,0,0,0,0.0062722423795167201,0.0083629898393556279,0.11409507566549462,0.64843039075860953,2.0250382539582557,3.4246443392161297,3.9751082775708584,3.8631039493652026,3.430319225178549,3.0414401976485124,2.5689312717249195,2.0286223924608362,1.7556305098475848,1.4405249998290066,1.2141269177493079,1.1194459256394604,1.120640638473654,1.3347929140028678,1.7057512490199995,2.1158364293569738,2.4479665972628113,2.4694714282782972,2.3353649126400589,2.1684037940614944,1.9058656487474377,1.7111274567738708,1.4939883991591731,1.3828801055791626,1.277446697961572,1.2828229057154434,1.2690837081222164,1.4402263216204583,1.5510359369919204,1.7908745384562976,2.0949289547585845,2.6038766221250844,3.1845070595432032,3.99183425724957,4.6740152855741499,5.5398834121560059,6.2352062816567164,6.6366297939457866,6.9338146114514601,7.3651059445953706,7.6686862702989131,7.5684809896416674,6.9404086055221397,5.9300053588949053,4.9518109524789278,3.891006835521114,3.0911539702748789,2.44876654606146,1.8913746724055263,1.5806190103672801,1.3763314590273581,1.221251858010191,1.1466943575211683,1.1929200078243622,1.2695651183270775,1.313703158616579,1.1953058478400109,1.1496766575407293,1.0652775669871555,0.93823158615386093,0.79776525523254227,0.67728033444228164,0.58512726383784974,0.4977458732647152,0.45897597301042342,0.43571403285784838,0.46792287306910613,0.5711104537459134,0.80402808527362013,1.2155854879730252,1.9247764326246086,2.8000814883657346,3.644370623903427,4.2387430178019159,4.6327048503859114,4.5993030901668286,4.5438323098029958,4.2763199980483826,3.8176422550399152,3.3198963817752003,2.9354779092537995,2.6539487874072503,2.3625780754961494,2.1603781341699202,2.1245905339351894,2.1651498142012175,2.3318603852946724,2.5987762370453735,2.8850770389232201,3.0282274398621438,3.0732601701575137,3.4168211324109294,4.376633272937954,5.5175238232746686,6.2215534439435087,6.1196192270210048,5.497909659085499,4.5151211594857292,3.4057321455740439,2.4493930491990641,1.7810255452378052,1.2927517306498335,0.9049262114548835,0.71888883596366604,0.54325291117882657,0.43864403550325387,0.38782551919495006,0.37445222542960699,0.39792978559543152,0.39941570712491409,0.47608925804621455,0.4992696339061426,0.56108396953261741,0.58129250233358032,0.62081801501781664,0.63448849308905619,0.68292953495018793,0.70789301664549509,0.75603687420073018,0.85470206375837265,0.94474890844501624,0.99883645211818173,0.98635471127052821,0.95871657082215245,0.91889387383201948,0.89898252533695311,0.85797109112323433,0.81279907662696438,0.73315368264669867,0.7465269764120418,0.68887322106811821,0.62735606974753999,0.61814335626474803,0.62913917558291899,0.64102654781877955,0.64221528504236558,0.62587014821805742,0.64518712810133072,0.71918602026956258,0.74444668627076616,0.8743162279475426,0.92305445411457088,0.9539616219278082,1.0558958388503124,1.1120293042435458,1.06796218553815,0.93309905715116681,0.83934552272425078,0.75476031500785346,0.67194962213865317,0.59771575103090591,0.61191186980848311,0.56636598873042288,0.52791816704115135,0.49804716711333274,0.4782317513196313,0.39778707824669396,0.38152069214738671,0.34011534571278662,0.32651073188427515,0.28007759338261645,0.25789615779265213,0.21796957373071632,0.21087151434192769,0.19637964308981765,0.17449395997438619,0.16148085109494043,0.15112951448629039,0.14610172241923183,0.12835657394726036,0.11623072249141317,0.11652647496594602,0.12806082147272749,0.1357503858105818,0.16857891048372903,0.19430937576808766,0.24044676179521352,0.29249919731299651,0.32621497940974226,0.36643731594621098,0.39009751390883968,0.38891450401070815,0.40251911783921968,0.39098477133243825,0.36081801893008664,0.38625273173991242,0.34928367242330521,0.34573464272891091,0.38980176143430673,0.39335079112870103,0.40222336536468684,0.49390663246987276,0.50958151362011417,0.52910117693928282,0.5444803056149915,0.64503614695616307,0.70980593887885901,0.73229013051237912,0.66606614362922589,0.59778185493193003,0.48093330918698846,0.44414220536301446,0.38056717795518735,0.36585073642559773,0.34348174530062153,0.29491748825297581,0.27372581245036681,0.21898064996029343,0.18366119028927835,0.15893756851956781,0.13421394674985726,0.11272794211665643,0.087121333855170499,0.081234757243334649,0.040911707452259118,0.057099793134807689,0.059454423779542034,0.055628148981848737,0.046503955233503168,0.066223986883153257,0.095951198772924268,0.097717171756475027,0.11596555925316614,0.13333096025808189,0.18012924432217686,0.22839917253923075,0.25842071325959359,0.28196701970693694,0.29226852877764969,0.33877248401115284,0.37644657432690226,0.3370065110276021,0.33965547050292827,0.29109121345528249,0.28255567736812054,0.25694906910663462,0.19396269935999108,0.18012924432217686,0.14804740178767151,0.13097632961334754,0.11979183405085944,0.10566405018245341,0.069167275189071176,0.057982779626583068,0.017954058666099327],"text":["date: 2020-01-11<br />num_deaths:  0.000000000<br />death_type: COVID Death Rate","date: 2020-01-18<br />num_deaths:  0.000000000<br />death_type: COVID Death Rate","date: 2020-01-25<br />num_deaths:  0.000000000<br />death_type: COVID Death Rate","date: 2020-02-01<br />num_deaths:  0.000000000<br />death_type: COVID Death Rate","date: 2020-02-08<br />num_deaths:  0.000000000<br />death_type: COVID Death Rate","date: 2020-02-15<br />num_deaths:  0.000000000<br />death_type: COVID Death Rate","date: 2020-02-22<br />num_deaths:  0.000000000<br />death_type: COVID Death Rate","date: 2020-02-29<br />num_deaths:  0.000000000<br />death_type: COVID Death Rate","date: 2020-03-07<br />num_deaths:  0.006272242<br />death_type: COVID Death Rate","date: 2020-03-14<br />num_deaths:  0.008362990<br />death_type: COVID Death Rate","date: 2020-03-21<br />num_deaths:  0.114095076<br />death_type: COVID Death Rate","date: 2020-03-28<br />num_deaths:  0.648430391<br />death_type: COVID Death Rate","date: 2020-04-04<br />num_deaths:  2.025038254<br />death_type: COVID Death Rate","date: 2020-04-11<br />num_deaths:  3.424644339<br />death_type: COVID Death Rate","date: 2020-04-18<br />num_deaths:  3.975108278<br />death_type: COVID Death Rate","date: 2020-04-25<br />num_deaths:  3.863103949<br />death_type: COVID Death Rate","date: 2020-05-02<br />num_deaths:  3.430319225<br />death_type: COVID Death Rate","date: 2020-05-09<br />num_deaths:  3.041440198<br />death_type: COVID Death Rate","date: 2020-05-16<br />num_deaths:  2.568931272<br />death_type: COVID Death Rate","date: 2020-05-23<br />num_deaths:  2.028622392<br />death_type: COVID Death Rate","date: 2020-05-30<br />num_deaths:  1.755630510<br />death_type: COVID Death Rate","date: 2020-06-06<br />num_deaths:  1.440525000<br />death_type: COVID Death Rate","date: 2020-06-13<br />num_deaths:  1.214126918<br />death_type: COVID Death Rate","date: 2020-06-20<br />num_deaths:  1.119445926<br />death_type: COVID Death Rate","date: 2020-06-27<br />num_deaths:  1.120640638<br />death_type: COVID Death Rate","date: 2020-07-04<br />num_deaths:  1.334792914<br />death_type: COVID Death Rate","date: 2020-07-11<br />num_deaths:  1.705751249<br />death_type: COVID Death Rate","date: 2020-07-18<br />num_deaths:  2.115836429<br />death_type: COVID Death Rate","date: 2020-07-25<br />num_deaths:  2.447966597<br />death_type: COVID Death Rate","date: 2020-08-01<br />num_deaths:  2.469471428<br />death_type: COVID Death Rate","date: 2020-08-08<br />num_deaths:  2.335364913<br />death_type: COVID Death Rate","date: 2020-08-15<br />num_deaths:  2.168403794<br />death_type: COVID Death Rate","date: 2020-08-22<br />num_deaths:  1.905865649<br />death_type: COVID Death Rate","date: 2020-08-29<br />num_deaths:  1.711127457<br />death_type: COVID Death Rate","date: 2020-09-05<br />num_deaths:  1.493988399<br />death_type: COVID Death Rate","date: 2020-09-12<br />num_deaths:  1.382880106<br />death_type: COVID Death Rate","date: 2020-09-19<br />num_deaths:  1.277446698<br />death_type: COVID Death Rate","date: 2020-09-26<br />num_deaths:  1.282822906<br />death_type: COVID Death Rate","date: 2020-10-03<br />num_deaths:  1.269083708<br />death_type: COVID Death Rate","date: 2020-10-10<br />num_deaths:  1.440226322<br />death_type: COVID Death Rate","date: 2020-10-17<br />num_deaths:  1.551035937<br />death_type: COVID Death Rate","date: 2020-10-24<br />num_deaths:  1.790874538<br />death_type: COVID Death Rate","date: 2020-10-31<br />num_deaths:  2.094928955<br />death_type: COVID Death Rate","date: 2020-11-07<br />num_deaths:  2.603876622<br />death_type: COVID Death Rate","date: 2020-11-14<br />num_deaths:  3.184507060<br />death_type: COVID Death Rate","date: 2020-11-21<br />num_deaths:  3.991834257<br />death_type: COVID Death Rate","date: 2020-11-28<br />num_deaths:  4.674015286<br />death_type: COVID Death Rate","date: 2020-12-05<br />num_deaths:  5.539883412<br />death_type: COVID Death Rate","date: 2020-12-12<br />num_deaths:  6.235206282<br />death_type: COVID Death Rate","date: 2020-12-19<br />num_deaths:  6.636629794<br />death_type: COVID Death Rate","date: 2020-12-26<br />num_deaths:  6.933814611<br />death_type: COVID Death Rate","date: 2021-01-02<br />num_deaths:  7.365105945<br />death_type: COVID Death Rate","date: 2021-01-09<br />num_deaths:  7.668686270<br />death_type: COVID Death Rate","date: 2021-01-16<br />num_deaths:  7.568480990<br />death_type: COVID Death Rate","date: 2021-01-23<br />num_deaths:  6.940408606<br />death_type: COVID Death Rate","date: 2021-01-30<br />num_deaths:  5.930005359<br />death_type: COVID Death Rate","date: 2021-02-06<br />num_deaths:  4.951810952<br />death_type: COVID Death Rate","date: 2021-02-13<br />num_deaths:  3.891006836<br />death_type: COVID Death Rate","date: 2021-02-20<br />num_deaths:  3.091153970<br />death_type: COVID Death Rate","date: 2021-02-27<br />num_deaths:  2.448766546<br />death_type: COVID Death Rate","date: 2021-03-06<br />num_deaths:  1.891374672<br />death_type: COVID Death Rate","date: 2021-03-13<br />num_deaths:  1.580619010<br />death_type: COVID Death Rate","date: 2021-03-20<br />num_deaths:  1.376331459<br />death_type: COVID Death Rate","date: 2021-03-27<br />num_deaths:  1.221251858<br />death_type: COVID Death Rate","date: 2021-04-03<br />num_deaths:  1.146694358<br />death_type: COVID Death Rate","date: 2021-04-10<br />num_deaths:  1.192920008<br />death_type: COVID Death Rate","date: 2021-04-17<br />num_deaths:  1.269565118<br />death_type: COVID Death Rate","date: 2021-04-24<br />num_deaths:  1.313703159<br />death_type: COVID Death Rate","date: 2021-05-01<br />num_deaths:  1.195305848<br />death_type: COVID Death Rate","date: 2021-05-08<br />num_deaths:  1.149676658<br />death_type: COVID Death Rate","date: 2021-05-15<br />num_deaths:  1.065277567<br />death_type: COVID Death Rate","date: 2021-05-22<br />num_deaths:  0.938231586<br />death_type: COVID Death Rate","date: 2021-05-29<br />num_deaths:  0.797765255<br />death_type: COVID Death Rate","date: 2021-06-05<br />num_deaths:  0.677280334<br />death_type: COVID Death Rate","date: 2021-06-12<br />num_deaths:  0.585127264<br />death_type: COVID Death Rate","date: 2021-06-19<br />num_deaths:  0.497745873<br />death_type: COVID Death Rate","date: 2021-06-26<br />num_deaths:  0.458975973<br />death_type: COVID Death Rate","date: 2021-07-03<br />num_deaths:  0.435714033<br />death_type: COVID Death Rate","date: 2021-07-10<br />num_deaths:  0.467922873<br />death_type: COVID Death Rate","date: 2021-07-17<br />num_deaths:  0.571110454<br />death_type: COVID Death Rate","date: 2021-07-24<br />num_deaths:  0.804028085<br />death_type: COVID Death Rate","date: 2021-07-31<br />num_deaths:  1.215585488<br />death_type: COVID Death Rate","date: 2021-08-07<br />num_deaths:  1.924776433<br />death_type: COVID Death Rate","date: 2021-08-14<br />num_deaths:  2.800081488<br />death_type: COVID Death Rate","date: 2021-08-21<br />num_deaths:  3.644370624<br />death_type: COVID Death Rate","date: 2021-08-28<br />num_deaths:  4.238743018<br />death_type: COVID Death Rate","date: 2021-09-04<br />num_deaths:  4.632704850<br />death_type: COVID Death Rate","date: 2021-09-11<br />num_deaths:  4.599303090<br />death_type: COVID Death Rate","date: 2021-09-18<br />num_deaths:  4.543832310<br />death_type: COVID Death Rate","date: 2021-09-25<br />num_deaths:  4.276319998<br />death_type: COVID Death Rate","date: 2021-10-02<br />num_deaths:  3.817642255<br />death_type: COVID Death Rate","date: 2021-10-09<br />num_deaths:  3.319896382<br />death_type: COVID Death Rate","date: 2021-10-16<br />num_deaths:  2.935477909<br />death_type: COVID Death Rate","date: 2021-10-23<br />num_deaths:  2.653948787<br />death_type: COVID Death Rate","date: 2021-10-30<br />num_deaths:  2.362578075<br />death_type: COVID Death Rate","date: 2021-11-06<br />num_deaths:  2.160378134<br />death_type: COVID Death Rate","date: 2021-11-13<br />num_deaths:  2.124590534<br />death_type: COVID Death Rate","date: 2021-11-20<br />num_deaths:  2.165149814<br />death_type: COVID Death Rate","date: 2021-11-27<br />num_deaths:  2.331860385<br />death_type: COVID Death Rate","date: 2021-12-04<br />num_deaths:  2.598776237<br />death_type: COVID Death Rate","date: 2021-12-11<br />num_deaths:  2.885077039<br />death_type: COVID Death Rate","date: 2021-12-18<br />num_deaths:  3.028227440<br />death_type: COVID Death Rate","date: 2021-12-25<br />num_deaths:  3.073260170<br />death_type: COVID Death Rate","date: 2022-01-01<br />num_deaths:  3.416821132<br />death_type: COVID Death Rate","date: 2022-01-08<br />num_deaths:  4.376633273<br />death_type: COVID Death Rate","date: 2022-01-15<br />num_deaths:  5.517523823<br />death_type: COVID Death Rate","date: 2022-01-22<br />num_deaths:  6.221553444<br />death_type: COVID Death Rate","date: 2022-01-29<br />num_deaths:  6.119619227<br />death_type: COVID Death Rate","date: 2022-02-05<br />num_deaths:  5.497909659<br />death_type: COVID Death Rate","date: 2022-02-12<br />num_deaths:  4.515121159<br />death_type: COVID Death Rate","date: 2022-02-19<br />num_deaths:  3.405732146<br />death_type: COVID Death Rate","date: 2022-02-26<br />num_deaths:  2.449393049<br />death_type: COVID Death Rate","date: 2022-03-05<br />num_deaths:  1.781025545<br />death_type: COVID Death Rate","date: 2022-03-12<br />num_deaths:  1.292751731<br />death_type: COVID Death Rate","date: 2022-03-19<br />num_deaths:  0.904926211<br />death_type: COVID Death Rate","date: 2022-03-26<br />num_deaths:  0.718888836<br />death_type: COVID Death Rate","date: 2022-04-02<br />num_deaths:  0.543252911<br />death_type: COVID Death Rate","date: 2022-04-09<br />num_deaths:  0.438644036<br />death_type: COVID Death Rate","date: 2022-04-16<br />num_deaths:  0.387825519<br />death_type: COVID Death Rate","date: 2022-04-23<br />num_deaths:  0.374452225<br />death_type: COVID Death Rate","date: 2022-04-30<br />num_deaths:  0.397929786<br />death_type: COVID Death Rate","date: 2022-05-07<br />num_deaths:  0.399415707<br />death_type: COVID Death Rate","date: 2022-05-14<br />num_deaths:  0.476089258<br />death_type: COVID Death Rate","date: 2022-05-21<br />num_deaths:  0.499269634<br />death_type: COVID Death Rate","date: 2022-05-28<br />num_deaths:  0.561083970<br />death_type: COVID Death Rate","date: 2022-06-04<br />num_deaths:  0.581292502<br />death_type: COVID Death Rate","date: 2022-06-11<br />num_deaths:  0.620818015<br />death_type: COVID Death Rate","date: 2022-06-18<br />num_deaths:  0.634488493<br />death_type: COVID Death Rate","date: 2022-06-25<br />num_deaths:  0.682929535<br />death_type: COVID Death Rate","date: 2022-07-02<br />num_deaths:  0.707893017<br />death_type: COVID Death Rate","date: 2022-07-09<br />num_deaths:  0.756036874<br />death_type: COVID Death Rate","date: 2022-07-16<br />num_deaths:  0.854702064<br />death_type: COVID Death Rate","date: 2022-07-23<br />num_deaths:  0.944748908<br />death_type: COVID Death Rate","date: 2022-07-30<br />num_deaths:  0.998836452<br />death_type: COVID Death Rate","date: 2022-08-06<br />num_deaths:  0.986354711<br />death_type: COVID Death Rate","date: 2022-08-13<br />num_deaths:  0.958716571<br />death_type: COVID Death Rate","date: 2022-08-20<br />num_deaths:  0.918893874<br />death_type: COVID Death Rate","date: 2022-08-27<br />num_deaths:  0.898982525<br />death_type: COVID Death Rate","date: 2022-09-03<br />num_deaths:  0.857971091<br />death_type: COVID Death Rate","date: 2022-09-10<br />num_deaths:  0.812799077<br />death_type: COVID Death Rate","date: 2022-09-17<br />num_deaths:  0.733153683<br />death_type: COVID Death Rate","date: 2022-09-24<br />num_deaths:  0.746526976<br />death_type: COVID Death Rate","date: 2022-10-01<br />num_deaths:  0.688873221<br />death_type: COVID Death Rate","date: 2022-10-08<br />num_deaths:  0.627356070<br />death_type: COVID Death Rate","date: 2022-10-15<br />num_deaths:  0.618143356<br />death_type: COVID Death Rate","date: 2022-10-22<br />num_deaths:  0.629139176<br />death_type: COVID Death Rate","date: 2022-10-29<br />num_deaths:  0.641026548<br />death_type: COVID Death Rate","date: 2022-11-05<br />num_deaths:  0.642215285<br />death_type: COVID Death Rate","date: 2022-11-12<br />num_deaths:  0.625870148<br />death_type: COVID Death Rate","date: 2022-11-19<br />num_deaths:  0.645187128<br />death_type: COVID Death Rate","date: 2022-11-26<br />num_deaths:  0.719186020<br />death_type: COVID Death Rate","date: 2022-12-03<br />num_deaths:  0.744446686<br />death_type: COVID Death Rate","date: 2022-12-10<br />num_deaths:  0.874316228<br />death_type: COVID Death Rate","date: 2022-12-17<br />num_deaths:  0.923054454<br />death_type: COVID Death Rate","date: 2022-12-24<br />num_deaths:  0.953961622<br />death_type: COVID Death Rate","date: 2022-12-31<br />num_deaths:  1.055895839<br />death_type: COVID Death Rate","date: 2023-01-07<br />num_deaths:  1.112029304<br />death_type: COVID Death Rate","date: 2023-01-14<br />num_deaths:  1.067962186<br />death_type: COVID Death Rate","date: 2023-01-21<br />num_deaths:  0.933099057<br />death_type: COVID Death Rate","date: 2023-01-28<br />num_deaths:  0.839345523<br />death_type: COVID Death Rate","date: 2023-02-04<br />num_deaths:  0.754760315<br />death_type: COVID Death Rate","date: 2023-02-11<br />num_deaths:  0.671949622<br />death_type: COVID Death Rate","date: 2023-02-18<br />num_deaths:  0.597715751<br />death_type: COVID Death Rate","date: 2023-02-25<br />num_deaths:  0.611911870<br />death_type: COVID Death Rate","date: 2023-03-04<br />num_deaths:  0.566365989<br />death_type: COVID Death Rate","date: 2023-03-11<br />num_deaths:  0.527918167<br />death_type: COVID Death Rate","date: 2023-03-18<br />num_deaths:  0.498047167<br />death_type: COVID Death Rate","date: 2023-03-25<br />num_deaths:  0.478231751<br />death_type: COVID Death Rate","date: 2023-04-01<br />num_deaths:  0.397787078<br />death_type: COVID Death Rate","date: 2023-04-08<br />num_deaths:  0.381520692<br />death_type: COVID Death Rate","date: 2023-04-15<br />num_deaths:  0.340115346<br />death_type: COVID Death Rate","date: 2023-04-22<br />num_deaths:  0.326510732<br />death_type: COVID Death Rate","date: 2023-04-29<br />num_deaths:  0.280077593<br />death_type: COVID Death Rate","date: 2023-05-06<br />num_deaths:  0.257896158<br />death_type: COVID Death Rate","date: 2023-05-13<br />num_deaths:  0.217969574<br />death_type: COVID Death Rate","date: 2023-05-20<br />num_deaths:  0.210871514<br />death_type: COVID Death Rate","date: 2023-05-27<br />num_deaths:  0.196379643<br />death_type: COVID Death Rate","date: 2023-06-03<br />num_deaths:  0.174493960<br />death_type: COVID Death Rate","date: 2023-06-10<br />num_deaths:  0.161480851<br />death_type: COVID Death Rate","date: 2023-06-17<br />num_deaths:  0.151129514<br />death_type: COVID Death Rate","date: 2023-06-24<br />num_deaths:  0.146101722<br />death_type: COVID Death Rate","date: 2023-07-01<br />num_deaths:  0.128356574<br />death_type: COVID Death Rate","date: 2023-07-08<br />num_deaths:  0.116230722<br />death_type: COVID Death Rate","date: 2023-07-15<br />num_deaths:  0.116526475<br />death_type: COVID Death Rate","date: 2023-07-22<br />num_deaths:  0.128060821<br />death_type: COVID Death Rate","date: 2023-07-29<br />num_deaths:  0.135750386<br />death_type: COVID Death Rate","date: 2023-08-05<br />num_deaths:  0.168578910<br />death_type: COVID Death Rate","date: 2023-08-12<br />num_deaths:  0.194309376<br />death_type: COVID Death Rate","date: 2023-08-19<br />num_deaths:  0.240446762<br />death_type: COVID Death Rate","date: 2023-08-26<br />num_deaths:  0.292499197<br />death_type: COVID Death Rate","date: 2023-09-02<br />num_deaths:  0.326214979<br />death_type: COVID Death Rate","date: 2023-09-09<br />num_deaths:  0.366437316<br />death_type: COVID Death Rate","date: 2023-09-16<br />num_deaths:  0.390097514<br />death_type: COVID Death Rate","date: 2023-09-23<br />num_deaths:  0.388914504<br />death_type: COVID Death Rate","date: 2023-09-30<br />num_deaths:  0.402519118<br />death_type: COVID Death Rate","date: 2023-10-07<br />num_deaths:  0.390984771<br />death_type: COVID Death Rate","date: 2023-10-14<br />num_deaths:  0.360818019<br />death_type: COVID Death Rate","date: 2023-10-21<br />num_deaths:  0.386252732<br />death_type: COVID Death Rate","date: 2023-10-28<br />num_deaths:  0.349283672<br />death_type: COVID Death Rate","date: 2023-11-04<br />num_deaths:  0.345734643<br />death_type: COVID Death Rate","date: 2023-11-11<br />num_deaths:  0.389801761<br />death_type: COVID Death Rate","date: 2023-11-18<br />num_deaths:  0.393350791<br />death_type: COVID Death Rate","date: 2023-11-25<br />num_deaths:  0.402223365<br />death_type: COVID Death Rate","date: 2023-12-02<br />num_deaths:  0.493906632<br />death_type: COVID Death Rate","date: 2023-12-09<br />num_deaths:  0.509581514<br />death_type: COVID Death Rate","date: 2023-12-16<br />num_deaths:  0.529101177<br />death_type: COVID Death Rate","date: 2023-12-23<br />num_deaths:  0.544480306<br />death_type: COVID Death Rate","date: 2023-12-30<br />num_deaths:  0.645036147<br />death_type: COVID Death Rate","date: 2024-01-06<br />num_deaths:  0.709805939<br />death_type: COVID Death Rate","date: 2024-01-13<br />num_deaths:  0.732290131<br />death_type: COVID Death Rate","date: 2024-01-20<br />num_deaths:  0.666066144<br />death_type: COVID Death Rate","date: 2024-01-27<br />num_deaths:  0.597781855<br />death_type: COVID Death Rate","date: 2024-02-03<br />num_deaths:  0.480933309<br />death_type: COVID Death Rate","date: 2024-02-10<br />num_deaths:  0.444142205<br />death_type: COVID Death Rate","date: 2024-02-17<br />num_deaths:  0.380567178<br />death_type: COVID Death Rate","date: 2024-02-24<br />num_deaths:  0.365850736<br />death_type: COVID Death Rate","date: 2024-03-02<br />num_deaths:  0.343481745<br />death_type: COVID Death Rate","date: 2024-03-09<br />num_deaths:  0.294917488<br />death_type: COVID Death Rate","date: 2024-03-16<br />num_deaths:  0.273725812<br />death_type: COVID Death Rate","date: 2024-03-23<br />num_deaths:  0.218980650<br />death_type: COVID Death Rate","date: 2024-03-30<br />num_deaths:  0.183661190<br />death_type: COVID Death Rate","date: 2024-04-06<br />num_deaths:  0.158937569<br />death_type: COVID Death Rate","date: 2024-04-13<br />num_deaths:  0.134213947<br />death_type: COVID Death Rate","date: 2024-04-20<br />num_deaths:  0.112727942<br />death_type: COVID Death Rate","date: 2024-04-27<br />num_deaths:  0.087121334<br />death_type: COVID Death Rate","date: 2024-05-04<br />num_deaths:  0.081234757<br />death_type: COVID Death Rate","date: 2024-05-11<br />num_deaths:  0.040911707<br />death_type: COVID Death Rate","date: 2024-05-18<br />num_deaths:  0.057099793<br />death_type: COVID Death Rate","date: 2024-05-25<br />num_deaths:  0.059454424<br />death_type: COVID Death Rate","date: 2024-06-01<br />num_deaths:  0.055628149<br />death_type: COVID Death Rate","date: 2024-06-08<br />num_deaths:  0.046503955<br />death_type: COVID Death Rate","date: 2024-06-15<br />num_deaths:  0.066223987<br />death_type: COVID Death Rate","date: 2024-06-22<br />num_deaths:  0.095951199<br />death_type: COVID Death Rate","date: 2024-06-29<br />num_deaths:  0.097717172<br />death_type: COVID Death Rate","date: 2024-07-06<br />num_deaths:  0.115965559<br />death_type: COVID Death Rate","date: 2024-07-13<br />num_deaths:  0.133330960<br />death_type: COVID Death Rate","date: 2024-07-20<br />num_deaths:  0.180129244<br />death_type: COVID Death Rate","date: 2024-07-27<br />num_deaths:  0.228399173<br />death_type: COVID Death Rate","date: 2024-08-03<br />num_deaths:  0.258420713<br />death_type: COVID Death Rate","date: 2024-08-10<br />num_deaths:  0.281967020<br />death_type: COVID Death Rate","date: 2024-08-17<br />num_deaths:  0.292268529<br />death_type: COVID Death Rate","date: 2024-08-24<br />num_deaths:  0.338772484<br />death_type: COVID Death Rate","date: 2024-08-31<br />num_deaths:  0.376446574<br />death_type: COVID Death Rate","date: 2024-09-07<br />num_deaths:  0.337006511<br />death_type: COVID Death Rate","date: 2024-09-14<br />num_deaths:  0.339655471<br />death_type: COVID Death Rate","date: 2024-09-21<br />num_deaths:  0.291091213<br />death_type: COVID Death Rate","date: 2024-09-28<br />num_deaths:  0.282555677<br />death_type: COVID Death Rate","date: 2024-10-05<br />num_deaths:  0.256949069<br />death_type: COVID Death Rate","date: 2024-10-12<br />num_deaths:  0.193962699<br />death_type: COVID Death Rate","date: 2024-10-19<br />num_deaths:  0.180129244<br />death_type: COVID Death Rate","date: 2024-10-26<br />num_deaths:  0.148047402<br />death_type: COVID Death Rate","date: 2024-11-02<br />num_deaths:  0.130976330<br />death_type: COVID Death Rate","date: 2024-11-09<br />num_deaths:  0.119791834<br />death_type: COVID Death Rate","date: 2024-11-16<br />num_deaths:  0.105664050<br />death_type: COVID Death Rate","date: 2024-11-23<br />num_deaths:  0.069167275<br />death_type: COVID Death Rate","date: 2024-11-30<br />num_deaths:  0.057982780<br />death_type: COVID Death Rate","date: 2024-12-07<br />num_deaths:  0.017954059<br />death_type: COVID Death Rate"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"COVID Death Rate","legendgroup":"COVID Death Rate","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)","dash":"solid"},"frame":null},{"x":[18272,18279,18286,18293,18300,18307,18314,18321,18328,18335,18342,18349,18356,18363,18370,18377,18384,18391,18398,18405,18412,18419,18426,18433,18440,18447,18454,18461,18468,18475,18482,18489,18496,18503,18510,18517,18524,18531,18538,18545,18552,18559,18566,18573,18580,18587,18594,18601,18608,18615,18622,18629,18636,18643,18650,18657,18664,18671,18678,18685,18692,18699,18706,18713,18720,18727,18734,18741,18748,18755,18762,18769,18776,18783,18790,18797,18804,18811,18818,18825,18832,18839,18846,18853,18860,18867,18874,18881,18888,18895,18902,18909,18916,18923,18930,18937,18944,18951,18958,18965,18972,18979,18986,18993,19000,19007,19014,19021,19028,19035,19042,19049,19056,19063,19070,19077,19084,19091,19098,19105,19112,19119,19126,19133,19140,19147,19154,19161,19168,19175,19182,19189,19196,19203,19210,19217,19224,19231,19238,19245,19252,19259,19266,19273,19280,19287,19294,19301,19308,19315,19322,19329,19336,19343,19350,19357,19364,19371,19378,19385,19392,19399,19406,19413,19420,19427,19434,19441,19448,19455,19462,19469,19476,19483,19490,19497,19504,19511,19518,19525,19532,19539,19546,19553,19560,19567,19574,19581,19588,19595,19602,19609,19616,19623,19630,19637,19644,19651,19658,19665,19672,19679,19686,19693,19700,19707,19714,19721,19728,19735,19742,19749,19756,19763,19770,19777,19784,19791,19798,19805,19812,19819,19826,19833,19840,19847,19854,19861,19868,19875,19882,19889,19896,19903,19910,19917,19924,19931,19938,19945,19952,19959,19966,19973,19980,19987,19994,20001,20008,20015,20022,20029,20036,20043,20050,20057,20064],"y":[-0.49862510529406379,-0.45379908384821022,-0.16209858071598759,-0.17209795799132621,-0.05689858423619043,-0.0057240692302436003,0.23158084850692617,0.57108708505164785,0.55183872180876747,0.45941890468674274,0.62661247872457437,1.6273142468134729,3.3721473193592182,5.085255600373408,5.3662530657205867,5.1182468593130324,4.1507738577680531,3.9214831098656848,3.4420328050093278,2.7973514754002267,2.2984505486014868,1.9209607460993539,1.8402128113439318,1.9108503557907888,2.0896989033634359,2.3937264022741829,3.2150495962881678,3.678581084285927,4.0865420272865478,4.0192253330556209,3.8034906394626518,3.9451155627928376,3.6515780608649813,3.0270642776419532,2.7498019269897664,2.4333918850425498,2.4228004105115737,2.6222244841996591,2.2012271768226768,2.8512967871450083,2.195750156578578,2.5883699679682639,2.8510641458606845,3.9529510389697435,4.1626477046715813,4.9528756835291539,5.4092048683863396,6.2817205105373191,7.3758555036386433,7.4284797373494378,7.6143592795164423,8.4167515443516834,7.5351887198654559,7.3693187271149228,6.6682972780000078,5.7148531170633632,5.0032997960880472,3.4114273261834818,3.0589750484879481,2.4409557699526694,1.7536299733283158,1.1333020114019696,0.9088141265486982,1.1118121376316381,0.76135679277997426,1.4742895624098153,1.1408091871569397,1.8732290973733594,1.800260013870238,1.6329453958470381,1.7168575490142537,1.9089919079040971,1.6067465672280186,1.6806445294029384,1.4582790154000591,1.6416344914852665,1.5972263793735291,1.8288975832703027,1.6325027269103423,1.8024538637973002,2.2611457817329992,2.9189723459265586,3.856418388162254,4.7755761264410648,5.7841990918867019,6.4989592274617145,6.7058673542261058,6.7333380967313392,6.4792102350941558,6.1076842692426521,5.7609617188373736,4.9503190538601203,4.5630093954648796,4.1028816764425251,3.824371911762837,3.7753381304995521,3.9086948105267858,3.5853869810025607,3.7783673198793402,4.4138835058301851,4.7008339984578207,4.1630115636065099,4.2454039095554457,4.6317169539438083,5.3449589884742217,6.573164810943851,7.2807632709499046,7.4668794470959874,6.4871033289242916,5.2233473311610794,3.6176090408847337,2.4294084657388133,2.112785495159045,1.2357903440117006,1.0525612499392416,0.58475735322639366,0.71598968266838625,0.67040511791250523,0.82919426329740986,0.86034380948259859,1.1399217958463588,1.2215001176041032,1.6019830933796406,1.659755376573127,1.5474763821245539,1.7621982164404972,1.7658165054038406,1.8382816409306901,2.0453155026246748,2.0649804231703861,1.9539131312403164,2.2415620265488609,2.6707482692631981,2.4852322886208835,2.5604814961347646,2.3155145150213894,2.3623771997502523,2.3706548459264631,2.1651251464666785,2.2522082782368997,2.0202908896033467,2.1653859245078451,2.0201692170647032,2.1380296410817223,2.2521084600831003,2.059732075858502,1.9957612356755323,2.1729087366637057,2.0576996341178813,2.0498808714773595,2.8324812551056198,3.1674595626691655,3.2088337424068527,2.7373293830196417,2.9971360371228251,3.4647934649672862,2.2269088088886413,1.2512499997873725,1.0561582252176756,0.90343790282045688,1.1125738341739932,1.0333804811783907,0.9376900330121849,1.2449156737961609,1.2377257124205734,0.95525836508080886,1.2266777153915029,1.234058891194433,1.3128376671465354,0.99020714188397818,1.3287432641887627,1.4102876536474938,1.2815715972559367,1.3674266793912651,1.5980937218187581,1.3405020240056515,1.1712992999479948,1.5252621740655652,1.2695279881677024,1.4132319597847367,1.3391139048969922,1.3986774773163901,1.3204376933451822,1.385096820798335,1.492301677984063,1.6044706322559712,1.6604158749491056,1.7223168248644622,1.8441297402825878,1.8780724378500064,1.6204870771935003,1.8547011478583357,1.5672517435083968,1.631996725206637,1.6498027354917202,1.6928260571063696,1.8627215363523888,1.5836793509435232,1.5184335434244591,1.5754681822832595,1.8587529211544354,1.5020902269621352,1.2920741818951775,2.0670412519875789,2.1124452065077364,1.705624498675185,1.9565847456818624,1.99863245811094,1.6343175513933197,1.7338886949936452,1.7779277222664085,1.9467445934217977,1.0626870837970017,0.81753324020738916,0.71297007147967761,1.1022862320314104,1.0408718001771113,0.77953347179762034,0.85234598064150191,0.53147131959654814,0.8873047226685955,0.94757199757577126,1.1607556021228973,1.159297923035183,1.1269981353981748,1.0995673603324452,1.3019286984109169,1.2840101062340512,1.3459173089277776,1.2351077835747191,1.4157980173220981,1.4339116476833542,1.3775784628553964,1.5857324116228053,1.3613685716044799,1.4632321377171404,1.3663567580497737,1.5232309380770079,1.6774455853724088,1.5689292572850277,1.7436979065996621,1.7605662058829097,1.5718467646063949,1.4957351227709168,1.490228099621385,1.367378068524852,1.2461780449895556,1.0489772260089847,1.2887877680951156,1.0432640809197213,0.91096220488609525,0.5812206394355286,0.2665177663062348,-0.61936186179339359,-1.9512159581071273,-4.8387999579892451,-9.7528556569205165],"text":["date: 2020-01-11<br />num_deaths: -0.498625105<br />death_type: Excess Mortality Rate","date: 2020-01-18<br />num_deaths: -0.453799084<br />death_type: Excess Mortality Rate","date: 2020-01-25<br />num_deaths: -0.162098581<br />death_type: Excess Mortality Rate","date: 2020-02-01<br />num_deaths: -0.172097958<br />death_type: Excess Mortality Rate","date: 2020-02-08<br />num_deaths: -0.056898584<br />death_type: Excess Mortality Rate","date: 2020-02-15<br />num_deaths: -0.005724069<br />death_type: Excess Mortality Rate","date: 2020-02-22<br />num_deaths:  0.231580849<br />death_type: Excess Mortality Rate","date: 2020-02-29<br />num_deaths:  0.571087085<br />death_type: Excess Mortality Rate","date: 2020-03-07<br />num_deaths:  0.551838722<br />death_type: Excess Mortality Rate","date: 2020-03-14<br />num_deaths:  0.459418905<br />death_type: Excess Mortality Rate","date: 2020-03-21<br />num_deaths:  0.626612479<br />death_type: Excess Mortality Rate","date: 2020-03-28<br />num_deaths:  1.627314247<br />death_type: Excess Mortality Rate","date: 2020-04-04<br />num_deaths:  3.372147319<br />death_type: Excess Mortality Rate","date: 2020-04-11<br />num_deaths:  5.085255600<br />death_type: Excess Mortality Rate","date: 2020-04-18<br />num_deaths:  5.366253066<br />death_type: Excess Mortality Rate","date: 2020-04-25<br />num_deaths:  5.118246859<br />death_type: Excess Mortality Rate","date: 2020-05-02<br />num_deaths:  4.150773858<br />death_type: Excess Mortality Rate","date: 2020-05-09<br />num_deaths:  3.921483110<br />death_type: Excess Mortality Rate","date: 2020-05-16<br />num_deaths:  3.442032805<br />death_type: Excess Mortality Rate","date: 2020-05-23<br />num_deaths:  2.797351475<br />death_type: Excess Mortality Rate","date: 2020-05-30<br />num_deaths:  2.298450549<br />death_type: Excess Mortality Rate","date: 2020-06-06<br />num_deaths:  1.920960746<br />death_type: Excess Mortality Rate","date: 2020-06-13<br />num_deaths:  1.840212811<br />death_type: Excess Mortality Rate","date: 2020-06-20<br />num_deaths:  1.910850356<br />death_type: Excess Mortality Rate","date: 2020-06-27<br />num_deaths:  2.089698903<br />death_type: Excess Mortality Rate","date: 2020-07-04<br />num_deaths:  2.393726402<br />death_type: Excess Mortality Rate","date: 2020-07-11<br />num_deaths:  3.215049596<br />death_type: Excess Mortality Rate","date: 2020-07-18<br />num_deaths:  3.678581084<br />death_type: Excess Mortality Rate","date: 2020-07-25<br />num_deaths:  4.086542027<br />death_type: Excess Mortality Rate","date: 2020-08-01<br />num_deaths:  4.019225333<br />death_type: Excess Mortality Rate","date: 2020-08-08<br />num_deaths:  3.803490639<br />death_type: Excess Mortality Rate","date: 2020-08-15<br />num_deaths:  3.945115563<br />death_type: Excess Mortality Rate","date: 2020-08-22<br />num_deaths:  3.651578061<br />death_type: Excess Mortality Rate","date: 2020-08-29<br />num_deaths:  3.027064278<br />death_type: Excess Mortality Rate","date: 2020-09-05<br />num_deaths:  2.749801927<br />death_type: Excess Mortality Rate","date: 2020-09-12<br />num_deaths:  2.433391885<br />death_type: Excess Mortality Rate","date: 2020-09-19<br />num_deaths:  2.422800411<br />death_type: Excess Mortality Rate","date: 2020-09-26<br />num_deaths:  2.622224484<br />death_type: Excess Mortality Rate","date: 2020-10-03<br />num_deaths:  2.201227177<br />death_type: Excess Mortality Rate","date: 2020-10-10<br />num_deaths:  2.851296787<br />death_type: Excess Mortality Rate","date: 2020-10-17<br />num_deaths:  2.195750157<br />death_type: Excess Mortality Rate","date: 2020-10-24<br />num_deaths:  2.588369968<br />death_type: Excess Mortality Rate","date: 2020-10-31<br />num_deaths:  2.851064146<br />death_type: Excess Mortality Rate","date: 2020-11-07<br />num_deaths:  3.952951039<br />death_type: Excess Mortality Rate","date: 2020-11-14<br />num_deaths:  4.162647705<br />death_type: Excess Mortality Rate","date: 2020-11-21<br />num_deaths:  4.952875684<br />death_type: Excess Mortality Rate","date: 2020-11-28<br />num_deaths:  5.409204868<br />death_type: Excess Mortality Rate","date: 2020-12-05<br />num_deaths:  6.281720511<br />death_type: Excess Mortality Rate","date: 2020-12-12<br />num_deaths:  7.375855504<br />death_type: Excess Mortality Rate","date: 2020-12-19<br />num_deaths:  7.428479737<br />death_type: Excess Mortality Rate","date: 2020-12-26<br />num_deaths:  7.614359280<br />death_type: Excess Mortality Rate","date: 2021-01-02<br />num_deaths:  8.416751544<br />death_type: Excess Mortality Rate","date: 2021-01-09<br />num_deaths:  7.535188720<br />death_type: Excess Mortality Rate","date: 2021-01-16<br />num_deaths:  7.369318727<br />death_type: Excess Mortality Rate","date: 2021-01-23<br />num_deaths:  6.668297278<br />death_type: Excess Mortality Rate","date: 2021-01-30<br />num_deaths:  5.714853117<br />death_type: Excess Mortality Rate","date: 2021-02-06<br />num_deaths:  5.003299796<br />death_type: Excess Mortality Rate","date: 2021-02-13<br />num_deaths:  3.411427326<br />death_type: Excess Mortality Rate","date: 2021-02-20<br />num_deaths:  3.058975048<br />death_type: Excess Mortality Rate","date: 2021-02-27<br />num_deaths:  2.440955770<br />death_type: Excess Mortality Rate","date: 2021-03-06<br />num_deaths:  1.753629973<br />death_type: Excess Mortality Rate","date: 2021-03-13<br />num_deaths:  1.133302011<br />death_type: Excess Mortality Rate","date: 2021-03-20<br />num_deaths:  0.908814127<br />death_type: Excess Mortality Rate","date: 2021-03-27<br />num_deaths:  1.111812138<br />death_type: Excess Mortality Rate","date: 2021-04-03<br />num_deaths:  0.761356793<br />death_type: Excess Mortality Rate","date: 2021-04-10<br />num_deaths:  1.474289562<br />death_type: Excess Mortality Rate","date: 2021-04-17<br />num_deaths:  1.140809187<br />death_type: Excess Mortality Rate","date: 2021-04-24<br />num_deaths:  1.873229097<br />death_type: Excess Mortality Rate","date: 2021-05-01<br />num_deaths:  1.800260014<br />death_type: Excess Mortality Rate","date: 2021-05-08<br />num_deaths:  1.632945396<br />death_type: Excess Mortality Rate","date: 2021-05-15<br />num_deaths:  1.716857549<br />death_type: Excess Mortality Rate","date: 2021-05-22<br />num_deaths:  1.908991908<br />death_type: Excess Mortality Rate","date: 2021-05-29<br />num_deaths:  1.606746567<br />death_type: Excess Mortality Rate","date: 2021-06-05<br />num_deaths:  1.680644529<br />death_type: Excess Mortality Rate","date: 2021-06-12<br />num_deaths:  1.458279015<br />death_type: Excess Mortality Rate","date: 2021-06-19<br />num_deaths:  1.641634491<br />death_type: Excess Mortality Rate","date: 2021-06-26<br />num_deaths:  1.597226379<br />death_type: Excess Mortality Rate","date: 2021-07-03<br />num_deaths:  1.828897583<br />death_type: Excess Mortality Rate","date: 2021-07-10<br />num_deaths:  1.632502727<br />death_type: Excess Mortality Rate","date: 2021-07-17<br />num_deaths:  1.802453864<br />death_type: Excess Mortality Rate","date: 2021-07-24<br />num_deaths:  2.261145782<br />death_type: Excess Mortality Rate","date: 2021-07-31<br />num_deaths:  2.918972346<br />death_type: Excess Mortality Rate","date: 2021-08-07<br />num_deaths:  3.856418388<br />death_type: Excess Mortality Rate","date: 2021-08-14<br />num_deaths:  4.775576126<br />death_type: Excess Mortality Rate","date: 2021-08-21<br />num_deaths:  5.784199092<br />death_type: Excess Mortality Rate","date: 2021-08-28<br />num_deaths:  6.498959227<br />death_type: Excess Mortality Rate","date: 2021-09-04<br />num_deaths:  6.705867354<br />death_type: Excess Mortality Rate","date: 2021-09-11<br />num_deaths:  6.733338097<br />death_type: Excess Mortality Rate","date: 2021-09-18<br />num_deaths:  6.479210235<br />death_type: Excess Mortality Rate","date: 2021-09-25<br />num_deaths:  6.107684269<br />death_type: Excess Mortality Rate","date: 2021-10-02<br />num_deaths:  5.760961719<br />death_type: Excess Mortality Rate","date: 2021-10-09<br />num_deaths:  4.950319054<br />death_type: Excess Mortality Rate","date: 2021-10-16<br />num_deaths:  4.563009395<br />death_type: Excess Mortality Rate","date: 2021-10-23<br />num_deaths:  4.102881676<br />death_type: Excess Mortality Rate","date: 2021-10-30<br />num_deaths:  3.824371912<br />death_type: Excess Mortality Rate","date: 2021-11-06<br />num_deaths:  3.775338130<br />death_type: Excess Mortality Rate","date: 2021-11-13<br />num_deaths:  3.908694811<br />death_type: Excess Mortality Rate","date: 2021-11-20<br />num_deaths:  3.585386981<br />death_type: Excess Mortality Rate","date: 2021-11-27<br />num_deaths:  3.778367320<br />death_type: Excess Mortality Rate","date: 2021-12-04<br />num_deaths:  4.413883506<br />death_type: Excess Mortality Rate","date: 2021-12-11<br />num_deaths:  4.700833998<br />death_type: Excess Mortality Rate","date: 2021-12-18<br />num_deaths:  4.163011564<br />death_type: Excess Mortality Rate","date: 2021-12-25<br />num_deaths:  4.245403910<br />death_type: Excess Mortality Rate","date: 2022-01-01<br />num_deaths:  4.631716954<br />death_type: Excess Mortality Rate","date: 2022-01-08<br />num_deaths:  5.344958988<br />death_type: Excess Mortality Rate","date: 2022-01-15<br />num_deaths:  6.573164811<br />death_type: Excess Mortality Rate","date: 2022-01-22<br />num_deaths:  7.280763271<br />death_type: Excess Mortality Rate","date: 2022-01-29<br />num_deaths:  7.466879447<br />death_type: Excess Mortality Rate","date: 2022-02-05<br />num_deaths:  6.487103329<br />death_type: Excess Mortality Rate","date: 2022-02-12<br />num_deaths:  5.223347331<br />death_type: Excess Mortality Rate","date: 2022-02-19<br />num_deaths:  3.617609041<br />death_type: Excess Mortality Rate","date: 2022-02-26<br />num_deaths:  2.429408466<br />death_type: Excess Mortality Rate","date: 2022-03-05<br />num_deaths:  2.112785495<br />death_type: Excess Mortality Rate","date: 2022-03-12<br />num_deaths:  1.235790344<br />death_type: Excess Mortality Rate","date: 2022-03-19<br />num_deaths:  1.052561250<br />death_type: Excess Mortality Rate","date: 2022-03-26<br />num_deaths:  0.584757353<br />death_type: Excess Mortality Rate","date: 2022-04-02<br />num_deaths:  0.715989683<br />death_type: Excess Mortality Rate","date: 2022-04-09<br />num_deaths:  0.670405118<br />death_type: Excess Mortality Rate","date: 2022-04-16<br />num_deaths:  0.829194263<br />death_type: Excess Mortality Rate","date: 2022-04-23<br />num_deaths:  0.860343809<br />death_type: Excess Mortality Rate","date: 2022-04-30<br />num_deaths:  1.139921796<br />death_type: Excess Mortality Rate","date: 2022-05-07<br />num_deaths:  1.221500118<br />death_type: Excess Mortality Rate","date: 2022-05-14<br />num_deaths:  1.601983093<br />death_type: Excess Mortality Rate","date: 2022-05-21<br />num_deaths:  1.659755377<br />death_type: Excess Mortality Rate","date: 2022-05-28<br />num_deaths:  1.547476382<br />death_type: Excess Mortality Rate","date: 2022-06-04<br />num_deaths:  1.762198216<br />death_type: Excess Mortality Rate","date: 2022-06-11<br />num_deaths:  1.765816505<br />death_type: Excess Mortality Rate","date: 2022-06-18<br />num_deaths:  1.838281641<br />death_type: Excess Mortality Rate","date: 2022-06-25<br />num_deaths:  2.045315503<br />death_type: Excess Mortality Rate","date: 2022-07-02<br />num_deaths:  2.064980423<br />death_type: Excess Mortality Rate","date: 2022-07-09<br />num_deaths:  1.953913131<br />death_type: Excess Mortality Rate","date: 2022-07-16<br />num_deaths:  2.241562027<br />death_type: Excess Mortality Rate","date: 2022-07-23<br />num_deaths:  2.670748269<br />death_type: Excess Mortality Rate","date: 2022-07-30<br />num_deaths:  2.485232289<br />death_type: Excess Mortality Rate","date: 2022-08-06<br />num_deaths:  2.560481496<br />death_type: Excess Mortality Rate","date: 2022-08-13<br />num_deaths:  2.315514515<br />death_type: Excess Mortality Rate","date: 2022-08-20<br />num_deaths:  2.362377200<br />death_type: Excess Mortality Rate","date: 2022-08-27<br />num_deaths:  2.370654846<br />death_type: Excess Mortality Rate","date: 2022-09-03<br />num_deaths:  2.165125146<br />death_type: Excess Mortality Rate","date: 2022-09-10<br />num_deaths:  2.252208278<br />death_type: Excess Mortality Rate","date: 2022-09-17<br />num_deaths:  2.020290890<br />death_type: Excess Mortality Rate","date: 2022-09-24<br />num_deaths:  2.165385925<br />death_type: Excess Mortality Rate","date: 2022-10-01<br />num_deaths:  2.020169217<br />death_type: Excess Mortality Rate","date: 2022-10-08<br />num_deaths:  2.138029641<br />death_type: Excess Mortality Rate","date: 2022-10-15<br />num_deaths:  2.252108460<br />death_type: Excess Mortality Rate","date: 2022-10-22<br />num_deaths:  2.059732076<br />death_type: Excess Mortality Rate","date: 2022-10-29<br />num_deaths:  1.995761236<br />death_type: Excess Mortality Rate","date: 2022-11-05<br />num_deaths:  2.172908737<br />death_type: Excess Mortality Rate","date: 2022-11-12<br />num_deaths:  2.057699634<br />death_type: Excess Mortality Rate","date: 2022-11-19<br />num_deaths:  2.049880871<br />death_type: Excess Mortality Rate","date: 2022-11-26<br />num_deaths:  2.832481255<br />death_type: Excess Mortality Rate","date: 2022-12-03<br />num_deaths:  3.167459563<br />death_type: Excess Mortality Rate","date: 2022-12-10<br />num_deaths:  3.208833742<br />death_type: Excess Mortality Rate","date: 2022-12-17<br />num_deaths:  2.737329383<br />death_type: Excess Mortality Rate","date: 2022-12-24<br />num_deaths:  2.997136037<br />death_type: Excess Mortality Rate","date: 2022-12-31<br />num_deaths:  3.464793465<br />death_type: Excess Mortality Rate","date: 2023-01-07<br />num_deaths:  2.226908809<br />death_type: Excess Mortality Rate","date: 2023-01-14<br />num_deaths:  1.251250000<br />death_type: Excess Mortality Rate","date: 2023-01-21<br />num_deaths:  1.056158225<br />death_type: Excess Mortality Rate","date: 2023-01-28<br />num_deaths:  0.903437903<br />death_type: Excess Mortality Rate","date: 2023-02-04<br />num_deaths:  1.112573834<br />death_type: Excess Mortality Rate","date: 2023-02-11<br />num_deaths:  1.033380481<br />death_type: Excess Mortality Rate","date: 2023-02-18<br />num_deaths:  0.937690033<br />death_type: Excess Mortality Rate","date: 2023-02-25<br />num_deaths:  1.244915674<br />death_type: Excess Mortality Rate","date: 2023-03-04<br />num_deaths:  1.237725712<br />death_type: Excess Mortality Rate","date: 2023-03-11<br />num_deaths:  0.955258365<br />death_type: Excess Mortality Rate","date: 2023-03-18<br />num_deaths:  1.226677715<br />death_type: Excess Mortality Rate","date: 2023-03-25<br />num_deaths:  1.234058891<br />death_type: Excess Mortality Rate","date: 2023-04-01<br />num_deaths:  1.312837667<br />death_type: Excess Mortality Rate","date: 2023-04-08<br />num_deaths:  0.990207142<br />death_type: Excess Mortality Rate","date: 2023-04-15<br />num_deaths:  1.328743264<br />death_type: Excess Mortality Rate","date: 2023-04-22<br />num_deaths:  1.410287654<br />death_type: Excess Mortality Rate","date: 2023-04-29<br />num_deaths:  1.281571597<br />death_type: Excess Mortality Rate","date: 2023-05-06<br />num_deaths:  1.367426679<br />death_type: Excess Mortality Rate","date: 2023-05-13<br />num_deaths:  1.598093722<br />death_type: Excess Mortality Rate","date: 2023-05-20<br />num_deaths:  1.340502024<br />death_type: Excess Mortality Rate","date: 2023-05-27<br />num_deaths:  1.171299300<br />death_type: Excess Mortality Rate","date: 2023-06-03<br />num_deaths:  1.525262174<br />death_type: Excess Mortality Rate","date: 2023-06-10<br />num_deaths:  1.269527988<br />death_type: Excess Mortality Rate","date: 2023-06-17<br />num_deaths:  1.413231960<br />death_type: Excess Mortality Rate","date: 2023-06-24<br />num_deaths:  1.339113905<br />death_type: Excess Mortality Rate","date: 2023-07-01<br />num_deaths:  1.398677477<br />death_type: Excess Mortality Rate","date: 2023-07-08<br />num_deaths:  1.320437693<br />death_type: Excess Mortality Rate","date: 2023-07-15<br />num_deaths:  1.385096821<br />death_type: Excess Mortality Rate","date: 2023-07-22<br />num_deaths:  1.492301678<br />death_type: Excess Mortality Rate","date: 2023-07-29<br />num_deaths:  1.604470632<br />death_type: Excess Mortality Rate","date: 2023-08-05<br />num_deaths:  1.660415875<br />death_type: Excess Mortality Rate","date: 2023-08-12<br />num_deaths:  1.722316825<br />death_type: Excess Mortality Rate","date: 2023-08-19<br />num_deaths:  1.844129740<br />death_type: Excess Mortality Rate","date: 2023-08-26<br />num_deaths:  1.878072438<br />death_type: Excess Mortality Rate","date: 2023-09-02<br />num_deaths:  1.620487077<br />death_type: Excess Mortality Rate","date: 2023-09-09<br />num_deaths:  1.854701148<br />death_type: Excess Mortality Rate","date: 2023-09-16<br />num_deaths:  1.567251744<br />death_type: Excess Mortality Rate","date: 2023-09-23<br />num_deaths:  1.631996725<br />death_type: Excess Mortality Rate","date: 2023-09-30<br />num_deaths:  1.649802735<br />death_type: Excess Mortality Rate","date: 2023-10-07<br />num_deaths:  1.692826057<br />death_type: Excess Mortality Rate","date: 2023-10-14<br />num_deaths:  1.862721536<br />death_type: Excess Mortality Rate","date: 2023-10-21<br />num_deaths:  1.583679351<br />death_type: Excess Mortality Rate","date: 2023-10-28<br />num_deaths:  1.518433543<br />death_type: Excess Mortality Rate","date: 2023-11-04<br />num_deaths:  1.575468182<br />death_type: Excess Mortality Rate","date: 2023-11-11<br />num_deaths:  1.858752921<br />death_type: Excess Mortality Rate","date: 2023-11-18<br />num_deaths:  1.502090227<br />death_type: Excess Mortality Rate","date: 2023-11-25<br />num_deaths:  1.292074182<br />death_type: Excess Mortality Rate","date: 2023-12-02<br />num_deaths:  2.067041252<br />death_type: Excess Mortality Rate","date: 2023-12-09<br />num_deaths:  2.112445207<br />death_type: Excess Mortality Rate","date: 2023-12-16<br />num_deaths:  1.705624499<br />death_type: Excess Mortality Rate","date: 2023-12-23<br />num_deaths:  1.956584746<br />death_type: Excess Mortality Rate","date: 2023-12-30<br />num_deaths:  1.998632458<br />death_type: Excess Mortality Rate","date: 2024-01-06<br />num_deaths:  1.634317551<br />death_type: Excess Mortality Rate","date: 2024-01-13<br />num_deaths:  1.733888695<br />death_type: Excess Mortality Rate","date: 2024-01-20<br />num_deaths:  1.777927722<br />death_type: Excess Mortality Rate","date: 2024-01-27<br />num_deaths:  1.946744593<br />death_type: Excess Mortality Rate","date: 2024-02-03<br />num_deaths:  1.062687084<br />death_type: Excess Mortality Rate","date: 2024-02-10<br />num_deaths:  0.817533240<br />death_type: Excess Mortality Rate","date: 2024-02-17<br />num_deaths:  0.712970071<br />death_type: Excess Mortality Rate","date: 2024-02-24<br />num_deaths:  1.102286232<br />death_type: Excess Mortality Rate","date: 2024-03-02<br />num_deaths:  1.040871800<br />death_type: Excess Mortality Rate","date: 2024-03-09<br />num_deaths:  0.779533472<br />death_type: Excess Mortality Rate","date: 2024-03-16<br />num_deaths:  0.852345981<br />death_type: Excess Mortality Rate","date: 2024-03-23<br />num_deaths:  0.531471320<br />death_type: Excess Mortality Rate","date: 2024-03-30<br />num_deaths:  0.887304723<br />death_type: Excess Mortality Rate","date: 2024-04-06<br />num_deaths:  0.947571998<br />death_type: Excess Mortality Rate","date: 2024-04-13<br />num_deaths:  1.160755602<br />death_type: Excess Mortality Rate","date: 2024-04-20<br />num_deaths:  1.159297923<br />death_type: Excess Mortality Rate","date: 2024-04-27<br />num_deaths:  1.126998135<br />death_type: Excess Mortality Rate","date: 2024-05-04<br />num_deaths:  1.099567360<br />death_type: Excess Mortality Rate","date: 2024-05-11<br />num_deaths:  1.301928698<br />death_type: Excess Mortality Rate","date: 2024-05-18<br />num_deaths:  1.284010106<br />death_type: Excess Mortality Rate","date: 2024-05-25<br />num_deaths:  1.345917309<br />death_type: Excess Mortality Rate","date: 2024-06-01<br />num_deaths:  1.235107784<br />death_type: Excess Mortality Rate","date: 2024-06-08<br />num_deaths:  1.415798017<br />death_type: Excess Mortality Rate","date: 2024-06-15<br />num_deaths:  1.433911648<br />death_type: Excess Mortality Rate","date: 2024-06-22<br />num_deaths:  1.377578463<br />death_type: Excess Mortality Rate","date: 2024-06-29<br />num_deaths:  1.585732412<br />death_type: Excess Mortality Rate","date: 2024-07-06<br />num_deaths:  1.361368572<br />death_type: Excess Mortality Rate","date: 2024-07-13<br />num_deaths:  1.463232138<br />death_type: Excess Mortality Rate","date: 2024-07-20<br />num_deaths:  1.366356758<br />death_type: Excess Mortality Rate","date: 2024-07-27<br />num_deaths:  1.523230938<br />death_type: Excess Mortality Rate","date: 2024-08-03<br />num_deaths:  1.677445585<br />death_type: Excess Mortality Rate","date: 2024-08-10<br />num_deaths:  1.568929257<br />death_type: Excess Mortality Rate","date: 2024-08-17<br />num_deaths:  1.743697907<br />death_type: Excess Mortality Rate","date: 2024-08-24<br />num_deaths:  1.760566206<br />death_type: Excess Mortality Rate","date: 2024-08-31<br />num_deaths:  1.571846765<br />death_type: Excess Mortality Rate","date: 2024-09-07<br />num_deaths:  1.495735123<br />death_type: Excess Mortality Rate","date: 2024-09-14<br />num_deaths:  1.490228100<br />death_type: Excess Mortality Rate","date: 2024-09-21<br />num_deaths:  1.367378069<br />death_type: Excess Mortality Rate","date: 2024-09-28<br />num_deaths:  1.246178045<br />death_type: Excess Mortality Rate","date: 2024-10-05<br />num_deaths:  1.048977226<br />death_type: Excess Mortality Rate","date: 2024-10-12<br />num_deaths:  1.288787768<br />death_type: Excess Mortality Rate","date: 2024-10-19<br />num_deaths:  1.043264081<br />death_type: Excess Mortality Rate","date: 2024-10-26<br />num_deaths:  0.910962205<br />death_type: Excess Mortality Rate","date: 2024-11-02<br />num_deaths:  0.581220639<br />death_type: Excess Mortality Rate","date: 2024-11-09<br />num_deaths:  0.266517766<br />death_type: Excess Mortality Rate","date: 2024-11-16<br />num_deaths: -0.619361862<br />death_type: Excess Mortality Rate","date: 2024-11-23<br />num_deaths: -1.951215958<br />death_type: Excess Mortality Rate","date: 2024-11-30<br />num_deaths: -4.838799958<br />death_type: Excess Mortality Rate","date: 2024-12-07<br />num_deaths: -9.752855657<br />death_type: Excess Mortality Rate"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,191,196,1)"}},"hoveron":"points","name":"Excess Mortality Rate","legendgroup":"Excess Mortality Rate","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":1.8897637795275593,"color":"rgba(0,191,196,1)","dash":"solid"},"frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":43.105022831050235},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Figure 15. Overall Excess Mortality and COVID Death Rates in U.S.<br />Throughout Pandemic","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[18182.400000000001,20153.599999999999],"tickmode":"array","ticktext":["2020","2022","2024"],"tickvals":[18262,18993,19723],"categoryorder":"array","categoryarray":["2020","2022","2024"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Date","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-10.661336016984126,9.3252319044152934],"tickmode":"array","ticktext":["-10","-5","0","5"],"tickvals":[-10,-5,0,4.9999999999999982],"categoryorder":"array","categoryarray":["-10","-5","0","5"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Death Rate (per 100,000)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Death Rate Type","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"48d41373b096":{"x":{},"y":{},"colour":{},"type":"scatter"},"48d4104e51d4":{"x":{},"y":{},"colour":{}}},"cur_data":"48d41373b096","visdat":{"48d41373b096":["function (y) ","x"],"48d4104e51d4":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>We inferred that COVID-19 deaths alone did not account for all observed excess mortality because the excess mortality rates were consistently higher than the COVID-19 death rates in our analysis (Figure 15).</p>
+</section>
+<section id="excess-mortality-by-state-comparison-1" class="level3">
+<h3 class="anchored" data-anchor-id="excess-mortality-by-state-comparison-1">5) Excess Mortality by State Comparison</h3>
+<p>We conducted a comparative analysis of excess mortality by state across three distinct periods of the COVID-19 pandemic.</p>
+<ul>
+<li><p><strong>Period 1 (January 11, 2020, to November 6, 2021):</strong></p>
+<p>Mississippi, Arizona, Alabama, and South Carolina reported the highest excess mortality rates. In contrast, Vermont, Hawaii, New Hampshire, and New York experienced the lowest rates (Supplementary Figures 16).</p></li>
+<li><p><strong>Period 2 (November 6, 2021, to April 9, 2022):</strong></p>
+<p>New Mexico, West Virginia, Arizona, and Ohio observed the highest rates of excess mortality. Conversely, New York, Hawaii, Massachusetts, and Puerto Rico recorded the lowest rates (Supplementary Figures 17).</p></li>
+<li><p><strong>Period 3 (April 9, 2022, to May 13, 2023):</strong></p>
+<p>Puerto Rico, Maine, Oregon, and Delaware exhibited the highest excess mortality rates during this phase, while New Jersey, Rhode Island, Pennsylvania, and New York showed the lowest (Supplementary Figures 18).</p></li>
+</ul>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>We found that during wave 1, Mississippi had the highest cumulative death rate and Vermont had the lowest. Phase 1 went from the start of the pandemic until around the time the Omicron variant of COVID was discovered. Many of the states with high death rates are located in the southeastern region of the United States, whereas many of the states with low death rates are located either in the northern region of the United States or away from the US mainland (i.e.&nbsp;Hawaii, Alaska, Puerto Rico). The states away from the US mainland likely had fewer deaths because fewer people were traveling during that phase. Also, many states in the south likely had less restrictive stay-at-home orders, especially during the later stages of phase 1, resulting in a higher death count.</p>
+<p>During the second wave, which was from the time the Omicron variant was discovered until the time when masks became optional, West Virginia had the highest death rate and Hawaii had the lowest. The states with the highest number of deaths are located in various regions of the United States. Hawaii, and Puerto Rico again had relatively low death rates due to low travel. During this phase of the pandemic, there were fewer restrictions than there were in the first phase. For example, many schools held classes in-person or hybrid, and people were staying home less. Additionally, Omicron was a highly transmissible variant of COVID. Therefore, it makes sense that the states with higher and lower death rates would be more scattered and less confined to certain regions.</p>
+<p>During the third wave, from when mask mandates lessened until the end of the pandemic, the states with the highest and lowest death rates were again in various locations around the country, likely due to the easing of COVID restrictions and the spread of the virus. However, compared to the other two periods, death rates in this period were lowest overall, most likley because people had been vaccinated or had natural immunity.</p>
+<p>We examined COVID-19 case fatality rates during the three periods to assess changes in virulence. Case fatality rate was highest during the first period. At the start, it ranged from 5–10%, likely due to healthcare systems learning effective treatments. It remained relatively constant from the end of the first period through the second, with a slight dip in January likely due to random fluctuations. Period 3 exhibited a similar trend. The relatively stable trend from the end of period 1 onward may reflect isolation measures and later, vaccines and protective measures, reducing deaths despite ongoing cases.</p>
+<p>Lastly, we examined excess mortality to determine whether COVID-19 deaths explained the excess mortality. Looking at overall excess mortality, we found that it was higher overall than the mortality rate due to COVID deaths, suggesting that COVID deaths do not explain the excess mortality. It is possible that other factors, such as mental health struggles due to stay at home orders may explain the excess mortality.</p>
+<p>One limitation with our calculation of excess mortality is we did not have data on factors such as changing population demographics, nor on actual death rates of prior years. We had to rely on the percent excess mortality given in our COVID-19 dataset to calculate expected numbers of deaths. Therefore, we were not able to account for factors such as changing population demographics. We assumed that those who calculated the percentage of expected deaths took factors like these into account, but we do not have a way to verify what factors exactly, nor how thorough they were.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
