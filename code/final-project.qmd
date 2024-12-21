@@ -7,11 +7,34 @@ editor: source
 
 ## Abstract
 
-TODO
+#### Objective
+
+To assess the effects of the covid-19 pandemic on nationwide and state level mortality from 2020 to 2024 with integrated data. We used longitudinal time series data to provide comprehensive analysis of infection and mortality trends over time.
+
+#### Key Findings
+
+We identified distinct waves of infection before and after the emergence of the Omicron Variant in November 2021, and the expand of authorization of the secondary booster dose for adults in 2022. Before the widespread of the Omicron Variant, the COVID-19 fatality rate had a sharp increase with large state-by-state variation. In response to the Omicron variant surge, several states reimpose mask mandates and restrictions, resulting a relatively low fatality rate given the widespread of the virus. As of 2024, public health recommendations continue to adapt to the changing landscape of the pandemic, the transmission and death attributable to COVID-19 became to stabilize.
+
+#### Significance
+
+This study highlights the importance of robust data integration and visualization in tracking and responding to public health crises. The insights derived from this analysis can inform future pandemic preparedness and response strategies.
 
 ## Introduction
 
-TODO
+The COVID-19 pandemic marked the introduction of a virulent coronavirus into the human society, resulting in millions of infections and deaths across United States since late 2019. Understanding the temporal and spatial dynamics of the pandemic is crucial for public health interventions and policy decisions.
+
+In the United States, the pandemic has revealed significant variability in infection and fatality rates across states. As of 2024, the country has experienced multiple waves of infection, with significant challenges posed by Delta and Omicron variants. The authorization and distribution of vaccines also played a crucial role in affecting the overall trends of pandemic. In this project, we aim to analyze the impact of the COVID-19 pandemic across U.S. states from 2020 to 2024, with a specific focus on understanding the temporal trends in COVID-19 cases and death rates, identifying distinct waves of infection, assessing the relationship between excess mortality and COVID-19 death rate. This study seeks to provide a comprehensive analysis of the pandemic's progression and its implications on mortality over the last few years.
+
+The primary objectives of this research are to examine the temporal trends in COVID-19 cases and death rates across U.S. states from 2020 to 2024, identify distinct waves of the pandemic and correlate them with excess mortality rate during this period.
+
+#### Hypotheses
+
+1.  **Regional Variation Hypothesis:** States in the southeastern region of the United States would have had higher cumulative death rates during the initial wave of the pandemic compared to states in the northern region or away from the mainland (e.g., Hawaii, Alaska, Puerto Rico) due to differences in public health measures and travel restrictions. Specifically, states like New York, California, and Washington, which experienced early and severe outbreaks and implemented strict lockdowns policies starting in early 2020 might have lower death rates. Whereas states that took a more hands-off approach (e.g., Florida) might have higher death rates initially.
+2.  **Variant Impact Hypothesis:** The Omicron variant, first reported in late 2021 and being highly transmissible, would have led to more scattered patterns of transmission but relatively lower death rates across all states in the U.S. during the second wave.
+3.  **Case Fatality Rate Hypothesis:** The case fatality rate would be highest during the first period due to the initial strain on healthcare systems and will remain relatively constant during the second and third periods due to improved testing techniques, treatment protocols and vaccination efforts. Following the authorization and distribution of the secondary booster vaccine of Pfizer-BioNTech and Moderna, as well as the natural immune response of the population, the virus would become less virulent, and the mortality rate would gradually stabilize.
+4.  **Excess Mortality Hypothesis:** Excess mortality during the pandemic would be higher but also roughly correlated with the mortality of COVID-19, suggesting the presence of other contributing factors such as mental health struggles and indirect impacts of the pandemic. In other words, excess mortality will not be completely attributable to the death caused by COVID-19.
+
+By addressing these objectives and hypotheses, this study aims to generate actionable insights that can assist public health policy makers to improve preparedness for possible future outbreaks. The findings will contribute to a deeper understanding of the special and temporal factors driving the pandemic's dynamics and highlight the importance of data-driven approaches in decision-making when it comes to combating a novel pathogen that endangers the human society.
 
 ## Methods
 
@@ -20,74 +43,56 @@ TODO
 
 library(tidyverse)
 library(plotly)
-
-# load data
-covid <- read_csv("../data/covid_cases_deaths.csv")
 ```
 
 ### Data Preparation
 
-To prepare and wrangle the data for this analysis, we integrated multiple datasets, cleaned the data, and structured it for consistency and analysis. The key steps are detailed below:
+To prepare and wrangle the data for this analysis, we integrated multiple datasets, cleaned the data, and structured it for consistency and analysis.
 
-#### 1. **Population Data Wrangling**
+```{r}
+# load data
+covid <- read_csv("../data/covid_cases_deaths.csv")
+```
 
--   We processed population data for U.S. states from two datasets: population estimates from 2020 to 2023 and 2024 projections. These datasets were merged into a single dataset.
+The key steps are detailed below:
 
--   The states with missing population data for 2024 was filled using its corresponding 2023 population.
+1.  **Population Data Wrangling:**
+    We integrated U.S. state population estimates from 2020-2023 and from 2024, filling gaps with the previous year's data and standardizing state names to abbreviations. The dataset was restructured into a long format to align each state with corresponding annual population figures.
 
--   State names were converted to standardized abbreviations for consistency, and non-U.S. states (e.g., territories) were excluded.
+```{=html}
+<!-- -->
+```
+1.  **COVID-19 Death Data Wrangling:**
+    Weekly COVID-19 death data was standardized by filtering for consistency, renaming relevant columns, and converting dates to a standard format. We ensured inclusion of only those states present in the population dataset, resulting in a dataset of weekly death counts.
 
--   The population data was pivoted into a long format, where each row represents a state-year combination with the corresponding population value.
+2.  **Combining Death and Population Data:**
+    The standardized death data was merged with population figures by state and year, enabling calculation of death rates per 100,000 people to facilitate comparative analysis.
 
-#### 2. **COVID-19 Death Data Wrangling**
+3.  **COVID-19 Cases Data Wrangling:**
+    The cases dataset underwent similar standardization, aligning weekly case data with the death dataset structure. It includes only the states featured in the population dataset to maintain consistency across data types. The cases dataset only recorded up to May 2023.
 
--   The COVID-19 death dataset was filtered to include only weekly data for consistency.
+4.  **Final Dataset Integration:**
+    We merged the cleaned death, population, and cases datasets by state, year, and week, ensuring completeness with forward and backward filling. This integration also included calculating epidemiological weeks and years for standard reporting.
 
--   Relevant columns, including weekly start and end dates, state, COVID-19 deaths, total deaths, and percentage of expected deaths, were renamed and standardized.
-
--   Dates were converted into a standard date format, and year and week numbers were extracted.
-
--   State names were standardized to abbreviations, and data was filtered to include only states present in the population dataset.
-
--   The cleaned dataset includes weekly COVID-19 death counts and related information for each state.
-
-#### 3. **Combining Death and Population Data**
-
--   The cleaned COVID-19 death data was merged with the population dataset by state and year to ensure each record included population data, allowing the calculation of rates (e.g., death rates per 100,000 people).
-
-#### 4. **COVID-19 Cases Data Wrangling**
-
--   The COVID-19 cases dataset was cleaned and standardized. Weekly case numbers, end dates, and state abbreviations were extracted and converted into the same structure as the death data.
-
--   Only states present in the population dataset were included.
-
--   The processed dataset contains weekly case counts for each state.
-
-#### 5. **Final Dataset Integration**
-
--   The cleaned COVID-19 death, population, and case datasets were integrated into a single dataset by merging them on state, year, and week.
-
--   Population data was forward and backward filled to ensure completeness for all records.
-
--   Additional columns, such as epidemiological week (`epiweek`) and year, were calculated for consistency with standard reporting practices.
-
-#### 6. **Final Dataset Output**
-
--   The final dataset contains the following variables: state, date, epidemiological week, COVID-19 deaths, total deaths, population, and cases. This dataset provides a comprehensive, time-resolved view of COVID-19 impacts across U.S. states.
-
--   The processed dataset was exported as a CSV file for subsequent analysis.
+5.  **Final Dataset Output:**
+    Our comprehensive dataset, capturing detailed COVID-19 metrics for each U.S. state, was formatted exported as a CSV file for further analysis. This dataset includes columns for `state`, `date`, `week`, `covid_death`, `total_death`, `year`, `percentage_expected_death`, `population`, and `cases`, providing a thorough view of the pandemic’s impact across U.S. states.
 
 ### 1) COVID-19 Pandemic Waves
 
-Divide the pandemic period, January 2020 to December 2024 into waves. Justify your choice with data visualization.
-
-#### 1.1 Measurement Computations for COVID-19 Metrics
+*Divide the pandemic period, January 2020 to December 2024 into waves. Justify your choice with data visualization.*
 
 We first computed the following:
 
+-   **Total COVID-19 cases by week**
+
+```{=html}
+<!-- -->
+```
 -   **COVID-19 death rate per 100,000 people by week**
 
--   **Total COVID-19 cases by week**
+$$
+\text{COVID-19 Death Rate} = \left(\frac{\text{COVID-19 Deaths}}{\text{Population}}\right) \times 10^5
+$$
 
 ```{r}
 base_plot <- covid|>
@@ -102,8 +107,6 @@ base_plot <- covid|>
   labs(x = "Date")
 ```
 
-#### 1.2 Trend Visualisation
-
 We then made two plots to observe the trends of:
 
 -   **COVID-19 death rate from 2020 to 2024**
@@ -114,35 +117,23 @@ We then made two plots to observe the trends of:
 #COVID-19 Death Rate Trend (2020-2024)
 y_map_death <- aes(y = covid_death_rate_100k)
 
-death_rate_plot <- base_plot + 
+p1.1 <- base_plot + 
   geom_point(mapping = y_map_death) + 
   geom_line(mapping = y_map_death, color = "red") +
-  labs(title = "COVID-19 Death Rate Trend (2020-2024)",
+  labs(title = "Figure 1. COVID-19 death rate from 2020 to 2024",
        y = "COVID Death Rate Per 100K")
-
-ggplotly(death_rate_plot)
 
 #COVID-19 Case Trend (2020-2023)
 y_map_cases <- aes(y = cases_total)
 
-cases_plot <- base_plot + 
+p1.2 <- base_plot + 
   geom_point(mapping = y_map_cases) + 
   geom_line(mapping = y_map_cases, color = "red") +
-  labs(title = "COVID-19 Case Trend (2020-2023)",
+  labs(title = "Figure 2. COVID-19 cases from 2020 to 2023",
        y = "Total COVID Cases")
-
-ggplotly(cases_plot)
 ```
 
-#### 1.3 Define Periods
-
-After analyzing the trends in COVID-19 death rates and case counts, we decided to divide the pandemic period into three waves based on the number of COVID-19 cases. This approach was chosen because it better reflects the overall spread of the virus. For instance, the virus might have been spreading widely among younger populations, who are less likely to experience severe outcomes or fatalities. By focusing on case counts rather than death tolls, we aim to capture the dynamics of viral transmission during the pandemic.
-
--   Period 1: 2020-01-11 to 2021-11-06
-
--   Period 2: 2021-11-06 to 2022-04-09
-
--   Period 3: 2022-04-09 to 2024-05-13
+We then divided the pandemic period into three waves based on the number of COVID-19 cases:
 
 ```{r}
 covid_period_1 <- covid|>
@@ -152,22 +143,20 @@ covid_period_2 <- covid|>
   filter(date >= "2021-11-06" & date < "2022-04-09")
 
 covid_period_3 <- covid|>
-  filter(date >= "2022-04-09" & date <= "2024-05-13")
+  filter(date >= "2022-04-09" & date <= "2023-05-13")
 ```
 
 ### 2) COVID 19 Death Rates by State Comparison
 
-For each period, compute the death rates by state. Describe which states did better or worse during the different periods.
+*For each period, compute the death rates by state. Describe which states did better or worse during the different periods.*
 
-To compare the death rates between each state, we first computed death rates by state in each period and made two different visualisation:
+We first computed death rates by state in each period and made two different visualisations:
 
--   **Time Series Plot of State-Level COVID-19 Death Rates**: This graph displays the COVID-19 death rate per 100,000 people for each state over time, using both points and lines to represent changes. This visualization allows for easy comparison of trends between states within the specified period.
+-   **Time Series Plot of State-Level COVID-19 Death Rates:** This plot visualizes the COVID-19 death rate per 100,000 people for each state over time. Using `ggplot2`, it combines point markers and lines to track changes in death rates, with states differentiated by color.
 
-<!-- -->
+-   **Bar Chart of State-Level Cumulative COVID-19 Death Rates:** This plot aggregates COVID-19 deaths to compute cumulative death rates per 100,000 people for each state, displayed using a bar chart. Bars are filled light blue and reordered by death rate to aid comparison.
 
--   **Bar Chart of State-Level Cumulative COVID-19 Death Rates**: This visualization uses a bar chart to display the cumulative COVID-19 death rates per 100,000 people for each state within the specified period. The states are ordered by death rate, facilitating an easy comparison of the pandemic's impact across states. The bars are coloured in light blue for visual clarity, and the states are listed on the y-axis (due to `coord_flip()`), making it straightforward to identify and compare the rates across states.
-
-#### 2.1 Period 1: 2020-01-11 to 2021-11-06
+#### 2.1 Period 1
 
 ```{r}
 # 2.1.1 State-Level COVID-19 Death Rate
@@ -176,11 +165,9 @@ p2.1.1 <-covid_period_1|>
   ggplot(aes(x=date, y=covid_death_rate_100k, color= state))+
   geom_point()+
   geom_line()+
-  labs(title = "State-Level COVID-19 Death Rate (2020-01-11 to 2021-11-06)",
+  labs(title = "Figure 3. State-Level COVID-19 Death Rate (2020-01-11 to 2021-11-06)",
        x = "Date",
        y = "Death Rate (per 100k People)")
-
-ggplotly(p2.1.1)
 
 #2.1.2 State-Level Cumulative COVID-19 Death Rates
 p2.1.2 <- covid_period_1 |> 
@@ -192,18 +179,12 @@ p2.1.2 <- covid_period_1 |>
   ggplot(aes(x=reorder(state, death_rate_per_100k), y=death_rate_per_100k))+
   geom_bar(stat = 'identity', fill = 'lightblue')+
   coord_flip()+
-  labs(title = "State-Level Cumulative COVID-19 Death Rates (2020-01-11 to 2021-11-06)",
+  labs(title = "Figure 4. State-Level Cumulative COVID-19 Death Rates\n(2020-01-11 to 2021-11-06)",
        x = "State",
        y = "Death Rate (per 100k people)")
-
-ggplotly(p2.1.2)
 ```
 
-#### Observation:
-
-During Period 1, Mississippi State (MS) had the greatest COVID-19 death rate when Vermont (VT) had the lowest.
-
-#### 2.2 Period 2: 2021-11-06 to 2022-04-09
+#### 2.2 Period 2
 
 ```{r}
 #2.2.1 State-Level COVID-19 Death Rate
@@ -212,11 +193,9 @@ p2.2.1 <-covid_period_2|>
   ggplot(aes(x=date, y=covid_death_rate_100k, color= state))+
   geom_point()+
   geom_line()+
-  labs(title = "State-Level COVID-19 Death Rate (2021-11-06 to 2022-04-09)",
+  labs(title = "Figure 5. State-Level COVID-19 Death Rate (2021-11-06 to 2022-04-09)",
        x = "Date",
        y = "Death Rate (per 100k People)")
-
-ggplotly(p2.2.1)
 
 #2.2.2 State-Level Cumulative COVID-19 Death Rates
 p2.2.2 <- covid_period_2 |> 
@@ -228,18 +207,12 @@ p2.2.2 <- covid_period_2 |>
   ggplot(aes(x=reorder(state, death_rate_per_100k), y=death_rate_per_100k))+
   geom_bar(stat = 'identity', fill = 'lightblue')+
   coord_flip()+
-  labs(title = "State-Level Cumulative COVID-19 Death Rates (2021-11-06 to 2022-04-09)",
+  labs(title = "Figure 6. State-Level Cumulative COVID-19 Death Rates\n(2021-11-06 to 2022-04-09)",
        x = "State",
        y = "Death Rate (per 100k people)")
-
-ggplotly(p2.2.2)
 ```
 
-#### Observation:
-
-During Period 2, West Virginia (WV) had the greatest COVID-19 death rate when Hawaii (HI) had the lowest.
-
-#### 2.3 Period 3: 2022-04-09 to 2024-05-13
+#### 2.3 Period 3
 
 ```{r}
 #2.3.1 State-Level COVID-19 Death Rate
@@ -248,11 +221,9 @@ p2.3.1 <-covid_period_3|>
   ggplot(aes(x=date, y=covid_death_rate_100k, color= state))+
   geom_point()+
   geom_line()+
-  labs(title = "State-Level COVID-19 Death Rate (2022-04-09 to 2024-05-13)",
+  labs(title = "Figure 7. State-Level COVID-19 Death Rate\n(2022-04-09 to 2023-05-13)",
        x = "Date",
        y = "Death Rate (per 100k People)")
-
-ggplotly(p2.3.1)
 
 #2.3.2 State-Level Cumulative COVID-19 Death Rates
 p2.3.2 <- covid_period_3 |> 
@@ -264,32 +235,26 @@ p2.3.2 <- covid_period_3 |>
   ggplot(aes(x=reorder(state, death_rate_per_100k), y=death_rate_per_100k))+
   geom_bar(stat = 'identity', fill = 'lightblue')+
   coord_flip()+
-  labs(title = "State-Level Cumulative COVID-19 Death Rates (2022-04-09 to 2024-05-13)",
+  labs(title = "Figure 8. State-Level Cumulative COVID-19 Death Rates\n(2022-04-09 to 2023-05-13)",
        x = "State",
        y = "Death Rate (per 100k people)")
-
-ggplotly(p2.3.2)
 ```
 
-#### Observation:
+### 3) COVID 19 Virulence Trend
 
-During Period 3, Kentucky (KY) had the greatest COVID-19 death rate when Alaska (AK) had the lowest.
+*Describe if COVID-19 became less or more virulent across the different periods.*
 
-### 3) COVID 19 Trend
-
-Describe if COVID-19 became less or more virulent across the different periods.
-
-To evaluate the trend of COVID-19 virulence acorss different periods, we first computed case fatality rate (CFR) with the following equation:
+To evaluate the trend of COVID-19 virulence acorss different periods, we first computed case fatality rate (CFR):
 
 $$\text{Case Fatality Rate} = \left(\frac{\text{COVID-19 Death}}{\text{COVID-19 Cases}}\right) \times 100$$
 
 We then visualised the changes in the CFR over time within specified period with two different plots:
 
--   National COVID-19 Case Fatality Rate
+-   **National COVID-19 Case Fatality Rate**
 
--   State-Level COVID-19 Case Fatality Rates
+-   **State-Level COVID-19 Case Fatality Rates**
 
-### 3.1 Period 1: 2020-01-11 to 2021-11-06
+#### 3.1 Period 1
 
 ```{r}
 #3.1.1 National COVID-19 Case Fatality Rate
@@ -302,11 +267,9 @@ p3.1.1 <- covid_period_1|>
   ggplot(aes(x=date, y=case_fatality_rate))+
   geom_point()+
   geom_line()+
-  labs(title = "National COVID-19 Case Fatality Rate (2020-01-11 to 2021-11-06)",
+  labs(title = "Figure 9. National COVID-19 Case Fatality Rate (2020-01-11 to 2021-11-06)",
        x = "Date",
        y = "Case Fatality Rate (%)")
-
-ggplotly(p3.1.1)
 
 #3.1.2 State-Level COVID-19 Case Fatality Rates
 p3.1.2 <- covid_period_1|>
@@ -314,22 +277,12 @@ p3.1.2 <- covid_period_1|>
   ggplot(aes(x=date, y=case_fatality_rate, color=state))+
   geom_point()+
   geom_line()+
- labs(title = "State-Level COVID-19 Case Fatality Rates (2020-01-11 to 2021-11-06)",
+ labs(title = "Figure 10. State-Level COVID-19 Case Fatality Rates\n(2020-01-11 to 2021-11-06)",
        x = "Date",
        y = "Case Fatality Rate (%)")
-  
-ggplotly(p3.1.2)
 ```
 
-#### Observation:
-
-During Period 1, the COVID-19 fatality rate exhibited a sharp increase from February 29, 2020, to March 7, 2020, peaking at 20.79%. Following this peak, the fatality rate declined significantly to 2.59% and eventually to 0.77% towards the end of this period.
-
-The trend during this period showed that COVID-19 became less virulent over time. However, the sharp rise and fall during Period 1 indicate that early in the pandemic, the virus was particularly lethal, possibly due to a lack of understanding of effective treatments and overwhelmed healthcare systems.
-
-Notably, according to **Plot 3.1.2**, Florida (FL) recorded the highest COVID-19 fatality rate (77.27%) among all states.
-
-### 3.2 Period 2: 2021-11-06 to 2022-04-09
+#### 3.2 Period 2
 
 ```{r}
 #3.2.1 National COVID-19 Case Fatality Rate
@@ -342,11 +295,9 @@ p3.2.1 <- covid_period_2|>
   ggplot(aes(x=date, y=case_fatality_rate))+
   geom_point()+
   geom_line()+
-  labs(title = "National COVID-19 Case Fatality Rate (2021-11-06 to 2022-04-09)",
+  labs(title = "Figure 11. National COVID-19 Case Fatality Rate\n(2021-11-06 to 2022-04-09)",
        x = "Date",
        y = "Case Fatality Rate (%)")
-
-ggplotly(p3.2.1)
 
 #3.2.2 State-Level COVID-19 Case Fatality Rates
 p3.2.2 <- covid_period_2|>
@@ -354,22 +305,12 @@ p3.2.2 <- covid_period_2|>
   ggplot(aes(x=date, y=case_fatality_rate, color=state))+
   geom_point()+
   geom_line()+
- labs(title = "State-Level COVID-19 Case Fatality Rates (2021-11-06 to 2022-04-09)",
+ labs(title = "Figure 12. State-Level COVID-19 Case Fatality Rates\n(2021-11-06 to 2022-04-09)",
        x = "Date",
        y = "Case Fatality Rate (%)")
-  
-ggplotly(p3.2.2)
 ```
 
-#### Observation:
-
-During Period 2, the COVID-19 fatality rate exhibited an unstable trend, initially decreasing, followed by an increase, and then another decrease. The highest fatality rate during this period was 1.68%, and the lowest was 0.38%, both significantly lower than the corresponding highest and lowest rates in Period 1.
-
-The fatality rate experienced two major decreases and one major increase during this period. The first decrease occurred between November 6, 2021, and January 15, 2022, while the second decrease was observed between March 12, 2022, and April 9, 2022. The major increase took place between January 15, 2022, and March 12, 2022.
-
-Notably, according to **Plot 3.2.2,** Kansas (KS) recorded the highest COVID-19 fatality rate (7.02%) among all states.
-
-### 3.3 Period 3: 2022-04-09 to 2024-05-13
+#### 3.3 Period 3
 
 ```{r}
 #3.3.1 National COVID-19 Case Fatality Rate
@@ -382,11 +323,9 @@ p3.3.1 <- covid_period_3|>
   ggplot(aes(x=date, y=case_fatality_rate))+
   geom_point()+
   geom_line()+
-  labs(title = "National COVID-19 Case Fatality Rate (2022-04-09 to 2024-05-13)",
+  labs(title = "Figure 13. National COVID-19 Case Fatality Rate\n(2022-04-09 to 2023-05-13)",
        x = "Date",
        y = "Case Fatality Rate (%)")
-
-ggplotly(p3.3.1)
 
 #3.3.2 State-Level COVID-19 Case Fatality Rates
 p3.3.2 <- covid_period_3|>
@@ -394,18 +333,10 @@ p3.3.2 <- covid_period_3|>
   ggplot(aes(x=date, y=case_fatality_rate, color=state))+
   geom_point()+
   geom_line()+
- labs(title = "State-Level COVID-19 Case Fatality Rates (2022-04-09 to 2024-05-13)",
+ labs(title = "Figure 14. State-Level COVID-19 Case Fatality Rates\n(2022-04-09 to 2023-05-13)",
        x = "Date",
        y = "Case Fatality Rate (%)")
-  
-ggplotly(p3.3.2)
 ```
-
-#### Observation:
-
-During Period 3, the COVID-19 fatality rate initially exhibited a sharp decrease and followed by a gradual increase. The decline occurred between April 9, 2022 and May 21, 2022, and the increase then followed. The highest fatality rate during this period was 1.07%, and the lowest was 0.25%, both significantly lower than the corresponding highest and lowest rates in Period 1 and slighly lower than the ones in Period 3.
-
-Notably, according to **Plot 3.1.2**, Kentucky (KY) recorded the highest COVID-19 fatality rate (8.58%) among all states.
 
 ### 4) Weekly Excess Mortality by State
 
@@ -424,16 +355,9 @@ In other words, if `percentage_expected_death` \> 100, mortality is higher now (
 $$\text{Percentage Expected Death} = \left(\frac{\text{Total Death 2020 to 2024}}{\text{Total Death 2017 to 2019}}\right) \times 100
 $$
 
-Since we are comparing across states, states with larger populations will have larger excess mortalities. Therefore, we compute mortality rates (per 100,000) to allow for comparison between states.
+Since we are comparing across states, states with larger populations will have larger excess mortalities. Therefore, we computed mortality rates (per 100,000) to allow for comparison between states.
 
 ```{r}
-
-# New version
-
-deaths_pre_2020 <- read_csv("../data/deaths_pre_2020.csv")
-
-# Old version
-
 # compute excess mortality
 covid_exp_deaths <- covid |> 
   # compute expected deaths
@@ -480,37 +404,34 @@ p4 <- covid_exp_deaths |>
     x = "Date",
     y = "Death Rate (per 100,000)",
     color = "Death Rate Type",
-    title = "Overall Excess Mortality and COVID Death Rates in U.S. Throughout Pandemic"
+    title = "Figure 15. Overall Excess Mortality and COVID Death Rates in U.S.\nThroughout Pandemic"
   )
- 
-ggplotly(p4) 
 ```
-
-#### Observation:
-
-Looking at the plot, the excess mortality rate is pretty consistently higher than the COVID deaths. This suggests that COVID-19 deaths do not explain the excess mortality.
 
 ### 5) Excess Mortality by State Comparison
 
-*For those working in groups:* Repeat 2 but for excess mortality instead of COVID-19 deaths.
+*For those working in groups: Repeat 2 but for excess mortality instead of COVID-19 deaths.*
 
 I.e. For each period compute the excess mortality by state. Describe which states did better or worse during the different periods.
 
-Will aggregate across all dates for easy visualisation.
+We aggregated across all dates for easy visualisation.
 
 ```{r}
 covid_pers <- list(
+  #Period 1
   per1 = list(
     start = make_date(2020, 1, 11),
     end = make_date(2021, 11, 6)
   ),
+  #Period 2
   per2 = list(
     start = make_date(2021, 11, 6),
     end = make_date(2022, 4, 9)
   ),
+  #Period 3
   per3 = list(
     start = make_date(2022, 4, 9),
-    end = make_date(2024, 5, 13)
+    end = make_date(2023, 5, 13)
   )
 )
 
@@ -542,9 +463,8 @@ p5.1 <- exc_mort_per_1 |> mutate(state = reorder(state, exc_mort_rate)) |>
   geom_col() + labs(
     x = "Excess Mortality Rate (per 100,000 people)",
     y = "State",
-    title = "Excess Mortality Rate By State During Period 1 (2020-01-11 to 2021-11-06)"
+    title = "Figure 16. Excess Mortality Rate By State During Period 1\n(2020-01-11 to 2021-11-06)"
   )
-ggplotly(p5.1)
 
 #Period 2
 exc_mort_per_2 <- exc_mortality_period(covid_pers$per2$start, covid_pers$per2$end)
@@ -553,10 +473,10 @@ p5.2 <- exc_mort_per_2 |> mutate(state = reorder(state, exc_mort_rate)) |>
   geom_col() + labs(
     x = "Excess Mortality Rate (per 100,000 people)",
     y = "State",
-    title = "Excess Mortality Rate By State During Period 2 (2021-11-06 to 2022-04-09)"
+    title = "Figure 17. Excess Mortality Rate By State During Period 2\n(2021-11-06 to 2022-04-09)"
   )
-ggplotly(p5.2)
 
+#Period 3
 #Period 3
 exc_mort_per_3 <- exc_mortality_period(covid_pers$per3$start, covid_pers$per3$end)
 p5.3 <- exc_mort_per_3 |> mutate(state = reorder(state, exc_mort_rate)) |> 
@@ -564,20 +484,76 @@ p5.3 <- exc_mort_per_3 |> mutate(state = reorder(state, exc_mort_rate)) |>
   geom_col() + labs(
     x = "Excess Mortality Rate (per 100,000 people)",
     y = "State",
-    title = "Excess Mortality Rate By State During Period 3 (2022-04-09 to 2024-05-13)"
+    title = "Figure 18. Excess Mortality Rate By State During Period 3\n(2022-04-09 to 2023-05-13)"
   )
-ggplotly(p5.3)
 ```
 
-#### Observation:
-
-During period 1, the states that had the highest excess mortality rates were MS, AZ, AL, and SC. The states with the lowest excess mortality rates were VT, HI, NH, and NY.
-
-During period 2, the states that had the highest excess mortality rates were NM, WV, AZ, OH. The states with the lowest excess mortality rates were NY, HI, MA, PR.
-
-During period 3, the states that had the highest excess mortality rates were SC, AK, OR, DE. The states with the lowest excess mortality rates were NJ, RI, PA, NY.
-
 ## Results
+
+### 1) COVID-19 Pandemic Waves
+
+```{r}
+ggplotly(p1.2)
+```
+
+Our decision to segment the COVID-19 pandemic from January 2020 to May 2023, rather than to December 2024, was due the discontinuation of the case data in May 2023. We chose to analyze the pandemic in three distinct waves based on variations in weekly case counts and death rates, as depicted in Supplementary Figures 1 and 2. This segmentation was driven by a focus on case counts over death rates to better represent the virus's spread among various populations, including younger individuals less likely to experience severe outcomes such as death. The first wave, from January 11, 2020, to November 6, 2021, captured the initial outbreak and its fluctuations. The second wave, from November 6, 2021, to April 9, 2022, was marked by a notable peak on January 22, 2022. The third wave continued from April 9, 2022, to May 13, 2023, reflecting a persistent but less volatile transmission.
+
+### 2) COVID 19 Death Rates by State Comparison
+
+We analyzed state-level COVID-19 death rates across different periods to identify regional disparities. Insights were drawn from visualizations including time series plots and bar charts detailing state-level COVID-19 death rates over time and cumulatively.
+
+-   **Period 1 (January 11, 2020, to November 6, 2021):**
+
+    Mississippi exhibited the highest COVID-19 death rates, while Vermont reported the lowest (Supplementary Figures 3 and 4).
+
+-   **Period 2 (November 6, 2021, to April 9, 2022):**
+
+    West Virginia showed the highest rates, with Hawaii recording the lowest (Supplementary Figures 5 and 6).
+
+-   **Period 3 (April 9, 2022, to May 13, 2023):**
+
+    The highest rates were observed in Kentucky, with Alaska having the lowest (Supplementary Figures 7 and 8).
+
+### 3) COVID 19 Virulence Trend
+
+```{r}
+ggplotly(p3.1.1)
+```
+
+We evaluated COVID-10 virulence trend with CFR both nationally and across states. Our analysis highlighted periods of significant variation, detailed in Supplementary Figures 9 to 14.
+
+-   **Period 1 (January 11, 2020, to November 6, 2021):**
+    Nationally, CFR peaked at 20.79% early in the pandemic between February 29 and March 7, 2020, as shown in Supplementary Figure 9, then declined to 2.59% and ultimately to 0.77% by the end of this period. The highest state-specific CFR was observed in Florida at 77.27% (Supplementary Figure 10).
+
+-   **Period 2 (November 6, 2021, to April 9, 2022):**
+    CFR fluctuations characterized this period; it initially decreased, rose, and then fell again, with the highest reported at 1.68% and the lowest at 0.38% (Supplementary Figure 11). Ohio recorded the highest state CFR of 7.02% during this period (Supplementary Figure 12).
+
+-   **Period 3 (April 9, 2022, to May 13, 2023):**
+    A sharp initial decrease in CFR was followed by a gradual rise, with the period’s lowest at 0.25% and the highest at 1.07% (Supplementary Figure 13). The highest state CFR was in Kentucky at 8.58% (Supplementary Figure 14).
+
+### 4) Weekly Excess Mortality by State
+
+```{r}
+ggplotly(p4) 
+```
+
+We inferred that COVID-19 deaths alone did not account for all observed excess mortality because the excess mortality rates were consistently higher than the COVID-19 death rates in our analysis (Figure 15).
+
+### 5) Excess Mortality by State Comparison
+
+We conducted a comparative analysis of excess mortality by state across three distinct periods of the COVID-19 pandemic.
+
+-   **Period 1 (January 11, 2020, to November 6, 2021):**
+
+    Mississippi, Arizona, Alabama, and South Carolina reported the highest excess mortality rates. In contrast, Vermont, Hawaii, New Hampshire, and New York experienced the lowest rates (Supplementary Figures 16).
+
+-   **Period 2 (November 6, 2021, to April 9, 2022):**
+
+    New Mexico, West Virginia, Arizona, and Ohio observed the highest rates of excess mortality. Conversely, New York, Hawaii, Massachusetts, and Puerto Rico recorded the lowest rates (Supplementary Figures 17).
+
+-   **Period 3 (April 9, 2022, to May 13, 2023):**
+
+    Puerto Rico, Maine, Oregon, and Delaware exhibited the highest excess mortality rates during this phase, while New Jersey, Rhode Island, Pennsylvania, and New York showed the lowest (Supplementary Figures 18).
 
 ## Discussion
 
@@ -587,7 +563,7 @@ During the second wave, which was from the time the Omicron variant was discover
 
 During the third wave, from when mask mandates lessened until the end of the pandemic, the states with the highest and lowest death rates were again in various locations around the country, likely due to the easing of COVID restrictions and the spread of the virus. However, compared to the other two periods, death rates in this period were lowest overall, most likley because people had been vaccinated or had natural immunity.
 
-We also examined COVID-19 case fatality rates during the three periods to assess whether COVID became more or less virulent during the periods. Case fatality rate appeared to be highest during the first period. At the begining of the period, it was between 5 and 10%, likely due to the fact that the healthcare system was still discovering how to best treat people with COVID. It remained relatively constant from the end of the first period until throughout the second period, with a slight dip at the start of January (which is likely due mainly to random fluctuations in the rate rather than anything significant). Period 3 exhibited a similar trend. The relatively constant trend from the end of period 1 and throughouot periods 2 and 3 may be due to the fact that we were taking measures to isolate people, especially the most vulnerable, so fewer COVID cases led to deaths. Toward the later stages of the pandemic, when the isolation measures ended, we had vaccines and other means to protect the most vulnerable, causing fewer COVID cases to lead to deaths.
+We examined COVID-19 case fatality rates during the three periods to assess changes in virulence. Case fatality rate was highest during the first period. At the start, it ranged from 5–10%, likely due to healthcare systems learning effective treatments. It remained relatively constant from the end of the first period through the second, with a slight dip in January likely due to random fluctuations. Period 3 exhibited a similar trend. The relatively stable trend from the end of period 1 onward may reflect isolation measures and later, vaccines and protective measures, reducing deaths despite ongoing cases.
 
 Lastly, we examined excess mortality to determine whether COVID-19 deaths explained the excess mortality. Looking at overall excess mortality, we found that it was higher overall than the mortality rate due to COVID deaths, suggesting that COVID deaths do not explain the excess mortality. It is possible that other factors, such as mental health struggles due to stay at home orders may explain the excess mortality.
 

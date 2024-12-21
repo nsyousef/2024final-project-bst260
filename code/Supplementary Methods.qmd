@@ -1,0 +1,446 @@
+---
+title: "Supplementary Methods"
+format: html
+editor: visual
+---
+
+## **Supplementary Methods**
+
+```{r}
+#| output: false
+
+library(tidyverse)
+library(plotly)
+
+# load data
+covid <- read_csv("../data/covid_cases_deaths.csv")
+```
+
+### 1) COVID-19 Pandemic Waves
+
+#### Figure 1. **COVID-19 death rate from 2020 to 2024**
+
+```{r}
+base_plot <- covid|>
+  group_by(year, week)|>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE), #Total COVID-19 cases by week 
+            cases_total = sum(cases, na.rm = TRUE),
+            population = sum(population),
+            date = first(date),
+            .groups = 'drop')|> 
+  mutate(covid_death_rate_100k = (covid_death / population) * 1e5)|> #COVID-19 death rate per 100,000 people by week
+  ggplot(aes(x = date,))+
+  labs(x = "Date")
+```
+
+```{r}
+#COVID-19 Death Rate Trend (2020-2024)
+y_map_death <- aes(y = covid_death_rate_100k)
+
+p1.1 <- base_plot + 
+  geom_point(mapping = y_map_death) + 
+  geom_line(mapping = y_map_death, color = "red") +
+  labs(title = "Figure 1. COVID-19 death rate from 2020 to 2024",
+       y = "COVID Death Rate Per 100K")
+
+ggplotly(p1.1)
+```
+
+#### Figure 2. **COVID-19 cases from 2020 to 2023**
+
+```{r}
+#COVID-19 Case Trend (2020-2023)
+y_map_cases <- aes(y = cases_total)
+
+p1.2 <- base_plot + 
+  geom_point(mapping = y_map_cases) + 
+  geom_line(mapping = y_map_cases, color = "red") +
+  labs(title = "Figure 2. COVID-19 cases from 2020 to 2023",
+       y = "Total COVID Cases")
+
+ggplotly(p1.2)
+```
+
+### 2) COVID 19 Death Rates by State Comparison
+
+```{r}
+covid_period_1 <- covid|>
+  filter(date >= "2020-01-11" & date < "2021-11-06")
+  
+covid_period_2 <- covid|>
+  filter(date >= "2021-11-06" & date < "2022-04-09")
+
+covid_period_3 <- covid|>
+  filter(date >= "2022-04-09" & date <= "2023-05-13")
+```
+
+### 2.1 Period 1
+
+#### Figure 3. State-Level COVID-19 Death Rate (2020-01-11 to 2021-11-06)
+
+```{r}
+# 2.1.1 State-Level COVID-19 Death Rate
+p2.1.1 <-covid_period_1|>
+  mutate(covid_death_rate_100k = (covid_death / population)*1e5)|>
+  ggplot(aes(x=date, y=covid_death_rate_100k, color= state))+
+  geom_point()+
+  geom_line()+
+  labs(title = "Figure 3. State-Level COVID-19 Death Rate (2020-01-11 to 2021-11-06)",
+       x = "Date",
+       y = "Death Rate (per 100k People)")
+
+ggplotly(p2.1.1)
+```
+
+#### Figure 4. State-Level Cumulative COVID-19 Death Rates
+
+```{r}
+#2.1.2 State-Level Cumulative COVID-19 Death Rates
+p2.1.2 <- covid_period_1 |> 
+  group_by(state) |>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            population = first(population),            
+            death_rate_per_100k = (covid_death /population)*1e5,
+            .groups = 'drop')|>
+  ggplot(aes(x=reorder(state, death_rate_per_100k), y=death_rate_per_100k))+
+  geom_bar(stat = 'identity', fill = 'lightblue')+
+  coord_flip()+
+  labs(title = "Figure 4. State-Level Cumulative COVID-19 Death Rates\n(2020-01-11 to 2021-11-06)",
+       x = "State",
+       y = "Death Rate (per 100k people)")
+
+ggplotly(p2.1.2)
+```
+
+### 2.2 Period 2
+
+#### Figure 5. State-Level COVID-19 Death Rate (2021-11-06 to 2022-04-09)
+
+```{r}
+#2.2.1 State-Level COVID-19 Death Rate
+p2.2.1 <-covid_period_2|>
+  mutate(covid_death_rate_100k = (covid_death / population)*1e5)|>
+  ggplot(aes(x=date, y=covid_death_rate_100k, color= state))+
+  geom_point()+
+  geom_line()+
+  labs(title = "Figure 5. State-Level COVID-19 Death Rate (2021-11-06 to 2022-04-09)",
+       x = "Date",
+       y = "Death Rate (per 100k People)")
+
+ggplotly(p2.2.1)
+```
+
+#### Figure 6. State-Level Cumulative COVID-19 Death Rates (2021-11-06 to 2022-04-09)
+
+```{r}
+#2.2.2 State-Level Cumulative COVID-19 Death Rates
+p2.2.2 <- covid_period_2 |> 
+  group_by(state) |>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            population = first(population),            
+            death_rate_per_100k = (covid_death /population)*1e5,
+            .groups = 'drop')|>
+  ggplot(aes(x=reorder(state, death_rate_per_100k), y=death_rate_per_100k))+
+  geom_bar(stat = 'identity', fill = 'lightblue')+
+  coord_flip()+
+  labs(title = "Figure 6. State-Level Cumulative COVID-19 Death Rates\n(2021-11-06 to 2022-04-09)",
+       x = "State",
+       y = "Death Rate (per 100k people)")
+
+ggplotly(p2.2.2)
+```
+
+### 2.3 Period 3
+
+#### Figure 7. State-Level COVID-19 Death Rate (2022-04-09 to 2023-05-13)
+
+```{r}
+#2.3.1 State-Level COVID-19 Death Rate
+p2.3.1 <-covid_period_3|>
+  mutate(covid_death_rate_100k = (covid_death / population)*1e5)|>
+  ggplot(aes(x=date, y=covid_death_rate_100k, color= state))+
+  geom_point()+
+  geom_line()+
+  labs(title = "Figure 7. State-Level COVID-19 Death Rate\n(2022-04-09 to 2023-05-13)",
+       x = "Date",
+       y = "Death Rate (per 100k People)")
+
+ggplotly(p2.3.1)
+```
+
+#### Figure 8. State-Level Cumulative COVID-19 Death Rates (2022-04-09 to 2023-05-13)
+
+```{r}
+#2.3.2 State-Level Cumulative COVID-19 Death Rates
+p2.3.2 <- covid_period_3 |> 
+  group_by(state) |>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            population = first(population),            
+            death_rate_per_100k = (covid_death /population)*1e5,
+            .groups = 'drop')|>
+  ggplot(aes(x=reorder(state, death_rate_per_100k), y=death_rate_per_100k))+
+  geom_bar(stat = 'identity', fill = 'lightblue')+
+  coord_flip()+
+  labs(title = "Figure 8. State-Level Cumulative COVID-19 Death Rates\n(2022-04-09 to 2023-05-13)",
+       x = "State",
+       y = "Death Rate (per 100k people)")
+
+ggplotly(p2.3.2)
+```
+
+### 3) COVID 19 Virulence Trend
+
+### 3.1 Period 1
+
+#### Figure 9. National COVID-19 Case Fatality Rate (2020-01-11 to 2021-11-06)
+
+```{r}
+#3.1.1 National COVID-19 Case Fatality Rate
+p3.1.1 <- covid_period_1|>
+  group_by(date)|>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            cases_total = sum(cases, na.rm = TRUE),
+            .groups = 'drop')|>
+  mutate(case_fatality_rate = (covid_death/cases_total)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate))+
+  geom_point()+
+  geom_line()+
+  labs(title = "Figure 9. National COVID-19 Case Fatality Rate (2020-01-11 to 2021-11-06)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
+
+ggplotly(p3.1.1)
+```
+
+#### Figure 10. State-Level COVID-19 Case Fatality Rates (2020-01-11 to 2021-11-06)
+
+```{r}
+#3.1.2 State-Level COVID-19 Case Fatality Rates
+p3.1.2 <- covid_period_1|>
+  mutate(case_fatality_rate = (covid_death/cases)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate, color=state))+
+  geom_point()+
+  geom_line()+
+ labs(title = "Figure 10. State-Level COVID-19 Case Fatality Rates\n(2020-01-11 to 2021-11-06)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
+  
+ggplotly(p3.1.2)
+```
+
+### 3.2 Period 2
+
+#### Figure 11. National COVID-19 Case Fatality Rate (2021-11-06 to 2022-04-09)
+
+```{r}
+#3.2.1 National COVID-19 Case Fatality Rate
+p3.2.1 <- covid_period_2|>
+  group_by(date)|>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            cases_total = sum(cases, na.rm = TRUE),
+            .groups = 'drop')|>
+  mutate(case_fatality_rate = (covid_death/cases_total)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate))+
+  geom_point()+
+  geom_line()+
+  labs(title = "Figure 11. National COVID-19 Case Fatality Rate\n(2021-11-06 to 2022-04-09)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
+
+ggplotly(p3.2.1)
+```
+
+#### Figure 12. State-Level COVID-19 Case Fatality Rates (2021-11-06 to 2022-04-09)
+
+```{r}
+#3.2.2 State-Level COVID-19 Case Fatality Rates
+p3.2.2 <- covid_period_2|>
+  mutate(case_fatality_rate = (covid_death/cases)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate, color=state))+
+  geom_point()+
+  geom_line()+
+ labs(title = "Figure 12. State-Level COVID-19 Case Fatality Rates\n(2021-11-06 to 2022-04-09)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
+  
+ggplotly(p3.2.2)
+```
+
+### 3.3 Period 3
+
+#### Figure 13. National COVID-19 Case Fatality Rate (2022-04-09 to 2023-05-13)
+
+```{r}
+#3.3.1 National COVID-19 Case Fatality Rate
+p3.3.1 <- covid_period_3|>
+  group_by(date)|>
+  summarise(covid_death = sum(covid_death, na.rm = TRUE),
+            cases_total = sum(cases, na.rm = TRUE),
+            .groups = 'drop')|>
+  mutate(case_fatality_rate = (covid_death/cases_total)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate))+
+  geom_point()+
+  geom_line()+
+  labs(title = "Figure 13. National COVID-19 Case Fatality Rate\n(2022-04-09 to 2023-05-13)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
+
+ggplotly(p3.3.1)
+
+```
+
+#### Figure 14. State-Level COVID-19 Case Fatality Rates (2022-04-09 to 2023-05-13)
+
+```{r}
+#3.3.2 State-Level COVID-19 Case Fatality Rates
+p3.3.2 <- covid_period_3|>
+  mutate(case_fatality_rate = (covid_death/cases)*100)|>
+  ggplot(aes(x=date, y=case_fatality_rate, color=state))+
+  geom_point()+
+  geom_line()+
+ labs(title = "Figure 14. State-Level COVID-19 Case Fatality Rates\n(2022-04-09 to 2023-05-13)",
+       x = "Date",
+       y = "Case Fatality Rate (%)")
+  
+ggplotly(p3.3.2)
+```
+
+### 4) Weekly Excess Mortality by State
+
+#### Figure 15. Overall Excess Mortality and COVID Death Rates in U.S. Throughout Pandemic
+
+```{r}
+# compute excess mortality
+covid_exp_deaths <- covid |> 
+  # compute expected deaths
+  mutate(prop_exp_death = percentage_expected_death / 100) |> 
+  mutate(exp_death = total_death / prop_exp_death) |> 
+  # compute excess mortality
+  # need to use rates since mortality will depend on population
+  mutate(
+    total_death_rate = total_death / population * 1e5,
+    exp_death_rate = exp_death / population * 1e5
+  ) |> 
+  mutate(exc_mort_rate = total_death_rate - exp_death_rate)
+
+# plot excess mortality
+# for simplicity of viewing, will collapse to total excess mortality over all US
+p4 <- covid_exp_deaths |> 
+  select(state, date, covid_death, total_death, exp_death, population) |> 
+  group_by(date) |> 
+  summarize(
+    covid_death = sum(covid_death, na.rm=T),
+    total_death = sum(total_death, na.rm=T),
+    exp_death = sum(exp_death, na.rm=T),
+    population = sum(population, na.rm=T) # since we are collapsing across states, sum population of each state to get total US pop
+  ) |> 
+  ungroup() |> 
+  mutate(
+    total_death_rate = total_death / population * 1e5,
+    exp_death_rate = exp_death / population * 1e5,
+    covid_death_rate = covid_death / population * 1e5
+  ) |> 
+  mutate(exc_mort_rate = total_death_rate - exp_death_rate) |> 
+  select(date, covid_death_rate, exc_mort_rate) |> 
+  pivot_longer(cols = c("covid_death_rate", "exc_mort_rate"), names_to = "death_type", values_to = "num_deaths") |> 
+  mutate(death_type = case_when(
+    death_type == "covid_death_rate" ~ "COVID Death Rate",
+    death_type == "exc_mort_rate" ~ "Excess Mortality Rate"
+  )) |> 
+  ggplot(aes(
+    x = date,
+    y = num_deaths,
+    color = death_type
+  )) + geom_point() + geom_line() +
+  labs(
+    x = "Date",
+    y = "Death Rate (per 100,000)",
+    color = "Death Rate Type",
+    title = "Figure 15. Overall Excess Mortality and COVID Death Rates in U.S.\nThroughout Pandemic"
+  )
+ 
+ggplotly(p4) 
+```
+
+### 5) Excess Mortality by State Comparison
+
+#### Figure 16. Excess Mortality Rate By State During Period 1 (2020-01-11 to 2021-11-06)
+
+```{r}
+covid_pers <- list(
+  per1 = list(
+    start = make_date(2020, 1, 11),
+    end = make_date(2021, 11, 6)
+  ),
+  per2 = list(
+    start = make_date(2021, 11, 6),
+    end = make_date(2022, 4, 9)
+  ),
+  per3 = list(
+    start = make_date(2022, 4, 9),
+    end = make_date(2023, 5, 13)
+  )
+)
+
+# aggregate across all dates
+exc_mortality_period <- function(per_start_date, per_end_date) {
+  output <- covid_exp_deaths |> 
+    filter((date >= per_start_date) & (date < per_end_date)) |> 
+    group_by(state) |> 
+    summarize(
+      covid_death = sum(covid_death, na.rm=T),
+      total_death = sum(total_death, na.rm=T),
+      exp_death = sum(exp_death, na.rm=T),
+      population = first(population)
+    ) |> ungroup() |> 
+    mutate(
+      total_death_rate = total_death / population * 1e5,
+      exp_death_rate = exp_death / population * 1e5,
+      covid_death_rate = exp_death / population * 1e5
+    ) |> 
+    mutate(exc_mort_rate = total_death_rate - exp_death_rate)
+  
+  return(output)
+}
+
+#Period 1
+exc_mort_per_1 <- exc_mortality_period(covid_pers$per1$start, covid_pers$per1$end)
+p5.1 <- exc_mort_per_1 |> mutate(state = reorder(state, exc_mort_rate)) |> 
+  ggplot(aes(y = state, x = exc_mort_rate)) +
+  geom_col() + labs(
+    x = "Excess Mortality Rate (per 100,000 people)",
+    y = "State",
+    title = "Figure 16. Excess Mortality Rate By State During Period 1\n(2020-01-11 to 2021-11-06)"
+  )
+ggplotly(p5.1)
+```
+
+#### Figure 17. Excess Mortality Rate By State During Period 2 (2021-11-06 to 2022-04-09)
+
+```{r}
+#Period 2
+exc_mort_per_2 <- exc_mortality_period(covid_pers$per2$start, covid_pers$per2$end)
+p5.2 <- exc_mort_per_2 |> mutate(state = reorder(state, exc_mort_rate)) |> 
+  ggplot(aes(y = state, x = exc_mort_rate)) +
+  geom_col() + labs(
+    x = "Excess Mortality Rate (per 100,000 people)",
+    y = "State",
+    title = "Figure 17. Excess Mortality Rate By State During Period 2\n(2021-11-06 to 2022-04-09)"
+  )
+ggplotly(p5.2)
+```
+
+#### Figure 18. Excess Mortality Rate By State During Period 3 (2022-04-09 to 2023-05-13)
+
+```{r}
+#Period 3
+exc_mort_per_3 <- exc_mortality_period(covid_pers$per3$start, covid_pers$per3$end)
+p5.3 <- exc_mort_per_3 |> mutate(state = reorder(state, exc_mort_rate)) |> 
+  ggplot(aes(y = state, x = exc_mort_rate)) +
+  geom_col() + labs(
+    x = "Excess Mortality Rate (per 100,000 people)",
+    y = "State",
+    title = "Figure 18. Excess Mortality Rate By State During Period 3\n(2022-04-09 to 2023-05-13)"
+  )
+ggplotly(p5.3)
+```
